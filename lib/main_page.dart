@@ -11,6 +11,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
+  // ここchangePageにしてほしい
   void changepage(int index) {
     setState(
       () => _currentIndex = index,

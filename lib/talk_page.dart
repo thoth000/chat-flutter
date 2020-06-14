@@ -8,7 +8,7 @@ class TalkPage extends StatefulWidget {
 }
 
 class _TalkPageState extends State<TalkPage> {
-  List roomList =[
+  List roomList = [
     Room(
       name: "Sport",
       imgUrl: "https://prtimes.jp/i/24101/70/resize/d24101-70-320114-0.jpg",
@@ -33,7 +33,7 @@ class _TalkPageState extends State<TalkPage> {
     return ListView(
       children: <Widget>[
         //TODO:リストを回してTalkPageListTileを作る
-        for(var room in roomList)TalkPageListTile(room),
+        for (var room in roomList) TalkPageListTile(room),
       ],
     );
   }

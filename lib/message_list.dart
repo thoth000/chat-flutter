@@ -39,7 +39,7 @@ class _MessageListState extends State<MessageList> {
       child: ListView(
         children: <Widget>[
           //TODO:messageListを回してMessageListItemを作る
-          for(var message in messageList)MessageListItem(message),
+          for (var message in messageList) MessageListItem(message),
         ],
       ),
     );
