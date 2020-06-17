@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'mainpage.dart';
+import 'sign_up_page.dart';
+import 'main_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainPage(),
+      initialRoute: '/mainPage',
+      routes: {
+        '/mainPage': (context) => MainPage(),
+        '/signUpPage': (context) => SignUpPage(),
+      },
     );
   }
 }
