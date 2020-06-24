@@ -13,12 +13,12 @@ class ProfileImage extends StatelessWidget {
       padding: EdgeInsets.all(8),
       child: Container(
         padding: EdgeInsets.all(3),
-        child: Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(image: AssetImage("assets/images/avatar.JPG")
-                // NetworkImage(image),
-                ),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: AssetImage(
+              "assets/images/avatar.JPG",
+            ),
           ),
         ),
       ),
