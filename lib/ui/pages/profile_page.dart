@@ -1,5 +1,4 @@
 import 'package:chat_flutter/providers/user.dart';
-import 'package:chat_flutter/ui/atoms/position_center.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +18,8 @@ class ProfilePage extends StatelessWidget {
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting: // データの取得まち
-            return PositionCenter(
-              widget: CircularProgressIndicator(),
+            return Center(
+              child: CircularProgressIndicator(),
             );
 
           default:
@@ -29,8 +28,8 @@ class ProfilePage extends StatelessWidget {
                 user: snapshot.data,
               );
             } else {
-              return PositionCenter(
-                widget: Padding(
+              return Center(
+                child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text("該当するユーザーがいません"),
                 ),
