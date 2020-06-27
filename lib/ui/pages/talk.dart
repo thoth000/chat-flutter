@@ -1,5 +1,5 @@
+import 'package:chat_flutter/ui/molecules/talk/list_tile.dart';
 import 'package:flutter/material.dart';
-import 'talk_page_list_tile.dart';
 import 'package:chat_flutter/model/room.dart';
 
 class TalkPage extends StatefulWidget {

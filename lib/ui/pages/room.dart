@@ -1,6 +1,6 @@
+import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'message_list.dart';
 
 class RoomPage extends StatefulWidget {
   final String name;

@@ -1,6 +1,6 @@
+import 'package:chat_flutter/ui/pages/room.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
-import 'room_page.dart';
 
 class TalkPageListTile extends StatelessWidget {
   final Room room;

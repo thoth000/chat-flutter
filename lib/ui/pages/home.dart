@@ -1,5 +1,5 @@
+import 'package:chat_flutter/ui/molecules/home/list_tile.dart';
 import 'package:flutter/material.dart';
-import 'home_page_list_tile.dart';
 import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/model/group.dart';
 

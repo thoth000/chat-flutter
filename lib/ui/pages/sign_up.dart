@@ -1,7 +1,9 @@
-import 'package:chat_flutter/input_text_field.dart';
+import 'package:chat_flutter/ui/atoms/input_text_field.dart';
+import 'package:chat_flutter/ui/pages/sign_in.dart';
 import 'package:flutter/material.dart';
 
-class SignInPage extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
+  final nameTextController = TextEditingController();
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
@@ -16,7 +18,7 @@ class SignInPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(left: 20, top: 60),
             child: Text(
-              'SIGN IN',
+              'SIGN UP',
               style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
           ),
@@ -38,6 +40,11 @@ class SignInPage extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       InputTextField(
+                        hintText: 'name',
+                        keyboardType: TextInputType.text,
+                        controller: nameTextController,
+                      ),
+                      InputTextField(
                         hintText: 'email',
                         keyboardType: TextInputType.text,
                         controller: emailTextController,
@@ -45,11 +52,7 @@ class SignInPage extends StatelessWidget {
                       InputTextField(
                         hintText: 'password',
                         keyboardType: TextInputType.text,
-                        obscureText: true,
                         controller: passwordTextController,
-                      ),
-                      SizedBox(
-                        height: 60,
                       ),
                     ],
                   ),
@@ -80,10 +83,16 @@ class SignInPage extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SignInPage();
+                          },
+                        ),
+                      );
                     },
                     child: Text(
-                      'SIGN UP',
+                      'SIGN IN',
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,

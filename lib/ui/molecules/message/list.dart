@@ -1,5 +1,5 @@
+import 'package:chat_flutter/ui/molecules/message/list_item.dart';
 import 'package:flutter/material.dart';
-import 'message_list_item.dart';
 import 'package:chat_flutter/model/message.dart';
 
 class MessageList extends StatelessWidget {
