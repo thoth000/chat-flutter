@@ -33,10 +33,7 @@ class ProfileEditPage extends StatelessWidget {
                 );
               } else {
                 return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("該当するユーザーがいません"),
-                  ),
+                  child: Text("該当するユーザーがいません"),
                 );
               }
           }
@@ -72,38 +69,22 @@ class _ProfileEditPage extends StatelessWidget {
             SizedBox(
               height: 35,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  width: 150,
-                  child: RaisedButton.icon(
-                    icon: Icon(
-                      Icons.cancel,
-                      color: Colors.white,
-                    ),
-                    label: Text("キャンセル"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    color: Colors.blueGrey,
-                    textColor: Colors.white,
+            Center(
+              child: Container(
+                width: 150,
+                child: RaisedButton.icon(
+                  icon: Icon(
+                    Icons.arrow_upward,
+                    color: Colors.white,
                   ),
+                  label: Text("更新する"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  color: Colors.redAccent,
+                  textColor: Colors.white,
                 ),
-                Container(
-                  width: 150,
-                  child: RaisedButton.icon(
-                    icon: Icon(
-                      Icons.arrow_upward,
-                      color: Colors.white,
-                    ),
-                    label: Text("更新する"),
-                    onPressed: () {},
-                    color: Colors.redAccent,
-                    textColor: Colors.white,
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),

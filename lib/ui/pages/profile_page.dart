@@ -29,10 +29,7 @@ class ProfilePage extends StatelessWidget {
               );
             } else {
               return Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text("該当するユーザーがいません"),
-                ),
+                child: Text("該当するユーザーがいません"),
               );
             }
         }
@@ -48,47 +45,40 @@ class _ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding:
-            const EdgeInsets.only(top: 10, right: 25, bottom: 25, left: 25),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ProfileImage(image: user.imgUrl),
-            SizedBox(height: 15),
-            Text(
-              user.name,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ProfileImage(image: user.imgUrl),
+          SizedBox(height: 15),
+          Text(
+            user.name,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(
+            height: 35,
+          ),
+          Center(
+            child: Container(
+              width: 150,
+              child: RaisedButton.icon(
+                icon: Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                ),
+                label: Text("編集する"),
+                onPressed: () {
+                  Navigator.pushNamed<void>(context, "/profileEditPage");
+                },
+                color: Colors.green,
+                textColor: Colors.white,
               ),
             ),
-            SizedBox(
-              height: 35,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 150,
-                  child: RaisedButton.icon(
-                    icon: Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                    ),
-                    label: Text("編集する"),
-                    onPressed: () {
-                      Navigator.pushNamed<void>(context, "/profileEditPage");
-                    },
-                    color: Colors.green,
-                    textColor: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
