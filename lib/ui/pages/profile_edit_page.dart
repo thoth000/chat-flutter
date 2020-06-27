@@ -22,20 +22,17 @@ class ProfileEditPage extends StatelessWidget {
           }
           switch (snapshot.connectionState) {
             case ConnectionState.waiting: // データの取得まち
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CircularProgressIndicator(),
-                ],
+              return Center(
+                child: CircularProgressIndicator(),
               );
+
             default:
               if (snapshot.hasData) {
                 return _ProfileEditPage(
                   user: snapshot.data,
                 );
               } else {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                return Center(
                   child: Text("該当するユーザーがいません"),
                 );
               }
@@ -53,57 +50,37 @@ class _ProfileEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Padding(
-            padding:
-                const EdgeInsets.only(top: 10, right: 25, bottom: 25, left: 25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Spacer(),
-                ProfileImage(image: user.imgUrl),
-                SizedBox(height: 15),
-                Text(
-                  user.name,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+          ProfileImage(image: user.imgUrl),
+          SizedBox(height: 15),
+          Text(
+            user.name,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(
+            height: 35,
+          ),
+          Center(
+            child: Container(
+              width: 150,
+              child: RaisedButton.icon(
+                icon: Icon(
+                  Icons.arrow_upward,
+                  color: Colors.white,
                 ),
-                SizedBox(height: 35),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(
-                      width: 150,
-                      child: RaisedButton.icon(
-                        icon: Icon(
-                          Icons.cancel,
-                          color: Colors.white,
-                        ),
-                        label: Text("キャンセル"),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        color: Colors.blueGrey,
-                        textColor: Colors.white,
-                      ),
-                    ),
-                    Container(
-                      width: 150,
-                      child: RaisedButton.icon(
-                        icon: Icon(
-                          Icons.arrow_upward,
-                          color: Colors.white,
-                        ),
-                        label: Text("更新する"),
-                        onPressed: () {},
-                        color: Colors.redAccent,
-                        textColor: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                Spacer(),
-              ],
+                label: Text("更新する"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                color: Colors.redAccent,
+                textColor: Colors.white,
+              ),
             ),
           ),
         ],

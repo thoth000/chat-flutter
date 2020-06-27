@@ -9,6 +9,9 @@ class ProfilePageAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       elevation: 1.0,
       backgroundColor: Colors.white,
+      iconTheme: IconThemeData(
+        color: Color(0xff707070),
+      ),
       title: Text(
         "Profile",
         style: TextStyle(
