@@ -1,6 +1,6 @@
+import 'package:chat_flutter/ui/molecules/create_group_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
-import 'create_group_list_tile.dart';
 
 class CreateGroupPage extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
@@ -82,7 +82,7 @@ class CreateGroupPage extends StatelessWidget {
                   if (snapshot.hasData) {
                     if (snapshot.data.length != 0) {
                       return Container(
-                        height:280,//4人分
+                        height: 280, //4人分
                         child: ListView.builder(
                           physics: ScrollPhysics(),
                           scrollDirection: Axis.vertical,
@@ -96,14 +96,14 @@ class CreateGroupPage extends StatelessWidget {
                           },
                         ),
                       );
-                    }else{
+                    } else {
                       return Container();
                     }
-                  }else if(snapshot.connectionState!=ConnectionState.done){
+                  } else if (snapshot.connectionState != ConnectionState.done) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  }else{
+                  } else {
                     return Container();
                   }
                 },

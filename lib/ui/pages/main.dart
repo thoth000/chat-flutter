@@ -1,10 +1,10 @@
-import 'package:chat_flutter/ui/molecules/profile_page_app_bar.dart';
-import 'package:chat_flutter/ui/pages/profile_page.dart';
+import 'package:chat_flutter/ui/molecules/home/app_bar.dart';
+import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
+import 'package:chat_flutter/ui/molecules/talk/app_bar.dart';
+import 'package:chat_flutter/ui/pages/home.dart';
+import 'package:chat_flutter/ui/pages/profile.dart';
+import 'package:chat_flutter/ui/pages/talk.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-import 'talk_page.dart';
-import 'home_page_app_bar.dart';
-import 'talk_page_app_bar.dart';
 
 class MainPage extends StatefulWidget {
   @override

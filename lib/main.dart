@@ -1,10 +1,10 @@
 import 'package:chat_flutter/di.dart';
-import 'package:chat_flutter/ui/pages/profile_edit_page.dart';
-import 'package:chat_flutter/ui/pages/profile_page.dart';
+import 'package:chat_flutter/ui/pages/main.dart';
+import 'package:chat_flutter/ui/pages/profile_edit.dart';
+import 'package:chat_flutter/ui/pages/profile.dart';
+import 'package:chat_flutter/ui/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'sign_up_page.dart';
-import 'main_page.dart';
 
 void main() {
   runApp(

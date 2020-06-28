@@ -1,6 +1,6 @@
 import 'package:chat_flutter/providers/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
-import 'package:chat_flutter/ui/molecules/profile_page_app_bar.dart';
+import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

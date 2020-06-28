@@ -51,8 +51,8 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
               ),
             ),
             Icon(
-              _isSelect?Icons.check_box:Icons.check_box_outline_blank,
-              color: _isSelect?Colors.blue:null,
+              _isSelect ? Icons.check_box : Icons.check_box_outline_blank,
+              color: _isSelect ? Colors.blue : null,
             ),
           ],
         ),
