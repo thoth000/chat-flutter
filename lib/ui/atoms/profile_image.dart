@@ -10,7 +10,6 @@ class ProfileImage extends StatelessWidget {
     return Container(
       width: 150,
       height: 150,
-      padding: EdgeInsets.all(11),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(

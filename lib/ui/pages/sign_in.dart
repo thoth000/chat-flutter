@@ -94,7 +94,7 @@ class SignInPage extends StatelessWidget {
                     onPressed: () {},
                   ),
                   SizedBox(
-                    height: 30,
+                    height: AppSpace.large,
                   ),
                   FlatButton(
                     onPressed: () {
