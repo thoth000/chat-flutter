@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,7 @@ class _RoomPageState extends State<RoomPage> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide(),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(AppRadius.midium),
                     ),
                     contentPadding: EdgeInsets.all(
                       AppSpace.small,

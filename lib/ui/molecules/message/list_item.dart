@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class MessageListItem extends StatelessWidget {
     //isMeは頻繁に使うし変化しないから、ここで定義するのは？
     //あとmessage.messageに少し違和感 => message.textとか？
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(AppSpace.xsmall),
       child: Row(
         mainAxisAlignment:
             message.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -43,10 +44,10 @@ class MessageListItem extends StatelessWidget {
               horizontal: AppSpace.xsmall,
             ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(AppRadius.small),
               color: message.isMe ? Colors.blue : Color(0xffEEEEEE),
             ),
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(AppSpace.small),
             child: Text(
               message.message,
               softWrap: true,

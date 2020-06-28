@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/atoms/input_text_field.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
@@ -45,7 +46,7 @@ class SignUpPage extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(),
                 borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(30),
+                  top: Radius.circular(AppRadius.large),
                 ),
               ),
               child: Column(
