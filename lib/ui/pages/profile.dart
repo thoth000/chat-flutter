@@ -3,9 +3,7 @@ import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:chat_flutter/model/user.dart';
-
-import 'package:chat_flutter/config/app_color.dart';
+import '../../model/user.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key key}) : super(key: key);
@@ -75,7 +73,7 @@ class _ProfilePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed<void>(context, "/profileEditPage");
                 },
-                color: AppColor.accentColor,
+                color: Colors.green,
                 textColor: Colors.white,
               ),
             ),

@@ -2,8 +2,6 @@ import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:chat_flutter/config/app_color.dart';
-
 class RoomPage extends StatefulWidget {
   final String name;
   RoomPage(this.name);
@@ -24,13 +22,13 @@ class _RoomPageState extends State<RoomPage> {
         elevation: 1,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
-          color: AppColor.baseColor,
+          color: Color(0xff707070),
         ),
         title: Text(
           name,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: AppColor.baseColor,
+            color: Color(0xff707070),
           ),
         ),
         actions: <Widget>[
@@ -86,7 +84,6 @@ class _RoomPageState extends State<RoomPage> {
                 icon: Icon(
                   Icons.send,
                 ),
-                color: AppColor.accentColor,
               ),
             ],
           ),

@@ -1,8 +1,6 @@
 import 'package:chat_flutter/ui/atoms/input_text_field.dart';
 import 'package:flutter/material.dart';
 
-import 'package:chat_flutter/config/app_color.dart';
-
 class SignInPage extends StatelessWidget {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
@@ -10,7 +8,7 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white70,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,7 +17,7 @@ class SignInPage extends StatelessWidget {
             padding: EdgeInsets.only(left: 20, top: 60),
             child: Text(
               'SIGN IN',
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold,),
+              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
           ),
           SizedBox(
@@ -27,7 +25,7 @@ class SignInPage extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 20, top: 40, right: 20,),
+              padding: EdgeInsets.only(left: 20, top: 40, right: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(),
@@ -66,13 +64,13 @@ class SignInPage extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: AppColor.baseColor,),
+                          color: Colors.grey),
                     ),
                     color: Colors.white,
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                          style: BorderStyle.solid, color: Colors.grey,),
+                          style: BorderStyle.solid, color: Colors.grey),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     onPressed: () {},
@@ -90,7 +88,7 @@ class SignInPage extends StatelessWidget {
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
-                        color: AppColor.baseColor,
+                        color: Colors.grey,
                       ),
                     ),
                   ),

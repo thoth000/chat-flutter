@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:chat_flutter/config/app_color.dart';
-
 class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -14,18 +12,16 @@ class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
       title: Text(
         "Talk",
         style: TextStyle(
-          color: AppColor.baseColor,
+          color: Color(0xff707070),
           fontWeight: FontWeight.bold,
         ),
-      ),
-      iconTheme: IconThemeData(
-        color: AppColor.baseColor
       ),
       actions: <Widget>[
         IconButton(
           icon: Icon(
             Icons.more_vert,
           ),
+          color: Color(0xff707070),
           onPressed: () {},
         ),
       ],

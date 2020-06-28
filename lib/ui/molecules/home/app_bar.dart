@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:chat_flutter/config/app_color.dart';
-
 class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -10,11 +8,11 @@ class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 1.0,
-      backgroundColor: AppColor.backColor,
+      backgroundColor: Color(0xffEEEEEE),
       title: Text(
         "Chat",
         style: TextStyle(
-          color: AppColor.baseColor,
+          color: Color(0xff707070),
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -23,14 +21,14 @@ class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: Icon(
             Icons.add_circle_outline,
           ),
-          color: AppColor.baseColor,
+          color: Color(0xff707070),
           onPressed: () {},
         ),
         IconButton(
           icon: Icon(
             Icons.add_circle_outline,
           ),
-          color: AppColor.baseColor,
+          color: Color(0xff707070),
           onPressed: () {},
         ),
       ],

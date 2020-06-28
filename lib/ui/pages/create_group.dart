@@ -2,8 +2,6 @@ import 'package:chat_flutter/ui/molecules/create_group_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 
-import 'package:chat_flutter/config/app_color.dart';
-
 class CreateGroupPage extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
 
@@ -16,11 +14,11 @@ class CreateGroupPage extends StatelessWidget {
         title: Text(
           "Group",
           style: TextStyle(
-            color: AppColor.baseColor,
+            color: Color(0xff707070),
           ),
         ),
         iconTheme: IconThemeData(
-          color: AppColor.accentColor,
+          color: Colors.blue,
         ),
         actions: <Widget>[
           IconButton(

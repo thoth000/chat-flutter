@@ -2,8 +2,6 @@ import 'package:chat_flutter/ui/pages/room.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
 
-import 'package:chat_flutter/config/app_color.dart';
-
 class TalkPageListTile extends StatelessWidget {
   final Room room;
   TalkPageListTile(this.room);
@@ -60,7 +58,7 @@ class TalkPageListTile extends StatelessWidget {
                           room.sendTime,
                           style: TextStyle(
                             fontSize: 10,
-                            color: AppColor.baseColor,
+                            color: Colors.grey,
                           ),
                         ),
                       ],
@@ -70,7 +68,7 @@ class TalkPageListTile extends StatelessWidget {
                         room.lastMessage,
                         style: TextStyle(
                           fontSize: 15,
-                          color: AppColor.baseColor,
+                          color: Colors.grey,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
