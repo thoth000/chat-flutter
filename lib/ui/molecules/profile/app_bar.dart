@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_color.dart';
+
 class ProfilePageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -10,12 +12,12 @@ class ProfilePageAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 1.0,
       backgroundColor: Colors.white,
       iconTheme: IconThemeData(
-        color: Color(0xff707070),
+        color: AppColor.baseColor,
       ),
       title: Text(
         "Profile",
         style: TextStyle(
-          color: Color(0xff707070),
+          color: AppColor.baseColor,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -24,7 +26,6 @@ class ProfilePageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: Icon(
             Icons.more_vert,
           ),
-          color: Color(0xff707070),
           onPressed: () {},
         ),
       ],

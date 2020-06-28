@@ -4,7 +4,9 @@ import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/user.dart';
+import 'package:chat_flutter/model/user.dart';
+
+import 'package:chat_flutter/config/app_color.dart';
 
 class ProfileEditPage extends StatelessWidget {
   const ProfileEditPage({Key key}) : super(key: key);
@@ -78,7 +80,7 @@ class _ProfileEditPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                color: Colors.redAccent,
+                color: AppColor.accentColor,
                 textColor: Colors.white,
               ),
             ),

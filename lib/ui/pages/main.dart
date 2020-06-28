@@ -6,6 +6,8 @@ import 'package:chat_flutter/ui/pages/profile.dart';
 import 'package:chat_flutter/ui/pages/talk.dart';
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_color.dart';
+
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
@@ -28,7 +30,7 @@ class _MainPageState extends State<MainPage> {
     ];
 
     final List<Color> backgroundColor = [
-      Color(0xffEEEEEE),
+      AppColor.backColor,
       Colors.white,
       Colors.white,
     ];

@@ -1,6 +1,8 @@
 import 'package:chat_flutter/model/message.dart';
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_color.dart';
+
 class MessageListItem extends StatelessWidget {
   final Message message;
   MessageListItem(this.message);
@@ -41,7 +43,7 @@ class MessageListItem extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: message.isMe ? Colors.blue : Color(0xffEEEEEE),
+              color: message.isMe ? AppColor.accentColor : AppColor.backColor,
             ),
             padding: const EdgeInsets.all(10),
             child: Text(

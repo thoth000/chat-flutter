@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_color.dart';
+
 class CreateGroupListTile extends StatefulWidget {
   final String name;
   final String imgUrl;
@@ -52,7 +54,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
             ),
             Icon(
               _isSelect ? Icons.check_box : Icons.check_box_outline_blank,
-              color: _isSelect ? Colors.blue : null,
+              color: _isSelect ? AppColor.accentColor : null,
             ),
           ],
         ),

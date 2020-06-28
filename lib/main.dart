@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/mainPage',
+      initialRoute: '/signUpPage',
       routes: {
         '/mainPage': (context) => MainPage(),
         '/signUpPage': (context) => SignUpPage(),

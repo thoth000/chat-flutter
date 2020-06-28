@@ -2,6 +2,8 @@ import 'package:chat_flutter/ui/molecules/add_friend_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 
+import 'package:chat_flutter/config/app_color.dart';
+
 class AddFriendPage extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
 
@@ -22,7 +24,7 @@ class AddFriendPage extends StatelessWidget {
           ),
         ),
         actionsIconTheme: IconThemeData(
-          color: Color(0xff707070),
+          color: AppColor.baseColor,
         ),
         actions: <Widget>[
           IconButton(
