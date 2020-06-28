@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
@@ -28,7 +29,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
         select();
       },
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(AppSpace.small),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -41,7 +42,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
               ),
             ),
             SizedBox(
-              width: 20,
+              width: AppSpace.midium,
             ),
             Expanded(
               child: Text(

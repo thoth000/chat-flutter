@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/atoms/input_text_field.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,10 @@ class SignUpPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 20, top: 60),
+            padding: EdgeInsets.only(
+              left: AppSpace.midium,
+              top: AppSpace.big,
+            ),
             child: Text(
               'SIGN UP',
               style: TextStyle(
@@ -28,11 +32,15 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 60,
+            height: AppSpace.big,
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 20, top: 40, right: 20),
+              padding: EdgeInsets.only(
+                left: AppSpace.midium,
+                top: AppSpace.xlarge,
+                right: AppSpace.midium,
+              ),
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(),
@@ -62,17 +70,20 @@ class SignUpPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 30,
+                    height: AppSpace.large,
                   ),
                   RaisedButton(
-                    padding: EdgeInsets.only(
-                        left: 60, right: 60, top: 10, bottom: 10),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSpace.big,
+                      vertical: AppSpace.small,
+                    ),
                     child: Text(
                       "Start",
                       style: TextStyle(
-                          fontSize: AppTextSize.xlarge,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
+                        fontSize: AppTextSize.xlarge,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
                     ),
                     color: Colors.white,
                     elevation: 3,
@@ -86,7 +97,7 @@ class SignUpPage extends StatelessWidget {
                     onPressed: () {},
                   ),
                   SizedBox(
-                    height: 30,
+                    height: AppSpace.large,
                   ),
                   FlatButton(
                     onPressed: () {

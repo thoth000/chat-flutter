@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
@@ -14,7 +15,7 @@ class AddFriendListTile extends StatelessWidget {
     return FlatButton(
       onPressed: () {},
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(AppSpace.small),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -27,7 +28,7 @@ class AddFriendListTile extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 20,
+              width: AppSpace.midium,
             ),
             Flexible(
               child: Text(

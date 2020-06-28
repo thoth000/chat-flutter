@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/providers/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,9 @@ class _ProfilePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ProfileImage(image: user.imgUrl),
-          SizedBox(height: 15),
+          SizedBox(
+            height: AppSpace.small,
+          ),
           Text(
             user.name,
             style: TextStyle(
@@ -61,7 +64,7 @@ class _ProfilePage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 35,
+            height: AppSpace.large,
           ),
           Center(
             child: Container(

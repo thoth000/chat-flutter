@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,8 @@ class HomePageListTile extends StatelessWidget {
       onPressed: () {},
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: isMe ? 30 : 10,
+          horizontal: AppSpace.small,
+          vertical: isMe ? AppSpace.large : AppSpace.small,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,7 +33,7 @@ class HomePageListTile extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 20,
+              width: AppSpace.midium,
             ),
             Flexible(
               child: Text(

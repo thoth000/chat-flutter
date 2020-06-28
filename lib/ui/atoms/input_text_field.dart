@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_space.dart';
+
 class InputTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
@@ -41,8 +43,7 @@ class InputTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(),
           ),
-          contentPadding:
-              EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          contentPadding: EdgeInsets.all(AppSpace.small),
         ),
       ),
     );

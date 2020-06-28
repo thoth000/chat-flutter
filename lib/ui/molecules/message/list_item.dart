@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
 import 'package:flutter/material.dart';
 
@@ -38,8 +39,8 @@ class MessageListItem extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width / 2,
             ),
-            margin: const EdgeInsets.symmetric(
-              horizontal: 5,
+            margin: EdgeInsets.symmetric(
+              horizontal: AppSpace.xsmall,
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),

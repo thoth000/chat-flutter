@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/add_friend_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
@@ -12,7 +13,9 @@ class AddFriendPage extends StatelessWidget {
         elevation: 1,
         backgroundColor: Colors.white,
         title: Container(
-          margin: EdgeInsets.symmetric(vertical: 5),
+          margin: EdgeInsets.symmetric(
+            vertical: AppSpace.xsmall,
+          ),
           child: TextField(
             controller: _textEditingController,
             //autofocus: true,

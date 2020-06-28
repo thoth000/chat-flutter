@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/create_group_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
@@ -36,7 +37,7 @@ class CreateGroupPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 20,
+                height: AppSpace.midium,
               ),
               FlatButton(
                 onPressed: () {},
@@ -62,12 +63,14 @@ class CreateGroupPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: AppSpace.big,
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 20),
+                  padding: EdgeInsets.only(
+                    left: AppSpace.midium,
+                  ),
                   child: Text(
                     "members",
                     style: TextStyle(
