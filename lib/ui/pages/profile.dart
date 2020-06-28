@@ -3,7 +3,9 @@ import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/user.dart';
+import 'package:chat_flutter/model/user.dart';
+
+import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key key}) : super(key: key);
@@ -54,7 +56,7 @@ class _ProfilePage extends StatelessWidget {
           Text(
             user.name,
             style: TextStyle(
-              fontSize: 30,
+              fontSize: AppTextSize.xlarge,
               fontWeight: FontWeight.w700,
             ),
           ),

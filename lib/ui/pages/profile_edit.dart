@@ -4,7 +4,9 @@ import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/user.dart';
+import 'package:chat_flutter/model/user.dart';
+
+import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfileEditPage extends StatelessWidget {
   const ProfileEditPage({Key key}) : super(key: key);
@@ -59,7 +61,7 @@ class _ProfileEditPage extends StatelessWidget {
           Text(
             user.name,
             style: TextStyle(
-              fontSize: 30,
+              fontSize: AppTextSize.xlarge,
               fontWeight: FontWeight.w700,
             ),
           ),

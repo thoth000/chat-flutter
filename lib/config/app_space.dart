@@ -1,4 +1,4 @@
-class AppSpace{
+class AppSpace {
   //5 10 (15) 20 30 (35) 40 50 60
   static final double xsmall = 5.0;
   static final double small = 10.0;

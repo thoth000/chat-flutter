@@ -1,6 +1,8 @@
 import 'package:chat_flutter/model/message.dart';
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_text_size.dart';
+
 class MessageListItem extends StatelessWidget {
   final Message message;
   MessageListItem(this.message);
@@ -21,13 +23,13 @@ class MessageListItem extends StatelessWidget {
                 Text(
                   (message.isRead) ? "既読" : "",
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: AppTextSize.xsmall,
                   ),
                 ),
                 Text(
                   message.sendTime,
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: AppTextSize.xsmall,
                   ),
                 ),
               ],
@@ -48,7 +50,7 @@ class MessageListItem extends StatelessWidget {
               message.message,
               softWrap: true,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: AppTextSize.midium,
                 color: message.isMe ? Colors.white : Colors.black,
               ),
             ),
@@ -57,7 +59,7 @@ class MessageListItem extends StatelessWidget {
             Text(
               message.sendTime,
               style: TextStyle(
-                fontSize: 10,
+                fontSize: AppTextSize.xsmall,
               ),
             ),
         ],

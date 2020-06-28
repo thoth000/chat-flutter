@@ -1,3 +1,4 @@
+import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:flutter/material.dart';
 
 class HomePageListTile extends StatelessWidget {
@@ -37,7 +38,7 @@ class HomePageListTile extends StatelessWidget {
               child: Text(
                 name,
                 style: TextStyle(
-                  fontSize: isMe ? 30 : 20,
+                  fontSize: isMe ? AppTextSize.xlarge : AppTextSize.midium,
                   fontWeight: FontWeight.bold,
                 ),
                 overflow: TextOverflow.ellipsis,

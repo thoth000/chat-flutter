@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_text_size.dart';
+
 class AddFriendListTile extends StatelessWidget {
   final String name;
   final String imgUrl;
@@ -31,7 +33,7 @@ class AddFriendListTile extends StatelessWidget {
               child: Text(
                 name,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: AppTextSize.midium,
                   fontWeight: FontWeight.bold,
                 ),
                 overflow: TextOverflow.ellipsis,

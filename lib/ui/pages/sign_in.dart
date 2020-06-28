@@ -1,6 +1,8 @@
 import 'package:chat_flutter/ui/atoms/input_text_field.dart';
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_text_size.dart';
+
 class SignInPage extends StatelessWidget {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
@@ -17,7 +19,10 @@ class SignInPage extends StatelessWidget {
             padding: EdgeInsets.only(left: 20, top: 60),
             child: Text(
               'SIGN IN',
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: AppTextSize.big,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(
@@ -62,15 +67,18 @@ class SignInPage extends StatelessWidget {
                     child: Text(
                       "Start",
                       style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
+                        fontSize: AppTextSize.xlarge,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
                     ),
                     color: Colors.white,
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                          style: BorderStyle.solid, color: Colors.grey),
+                        style: BorderStyle.solid,
+                        color: Colors.grey,
+                      ),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     onPressed: () {},
@@ -85,7 +93,7 @@ class SignInPage extends StatelessWidget {
                     child: Text(
                       'SIGN UP',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: AppTextSize.large,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
                         color: Colors.grey,

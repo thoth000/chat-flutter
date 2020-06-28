@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:chat_flutter/config/app_text_size.dart';
+
 class CreateGroupListTile extends StatefulWidget {
   final String name;
   final String imgUrl;
@@ -45,7 +47,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
               child: Text(
                 widget.name,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: AppTextSize.midium,
                   fontWeight: FontWeight.bold,
                 ),
               ),

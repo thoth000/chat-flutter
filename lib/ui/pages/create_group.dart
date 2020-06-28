@@ -2,6 +2,8 @@ import 'package:chat_flutter/ui/molecules/create_group_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 
+import 'package:chat_flutter/config/app_text_size.dart';
+
 class CreateGroupPage extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
 
@@ -53,7 +55,7 @@ class CreateGroupPage extends StatelessWidget {
                 child: TextField(
                   controller: _textEditingController,
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: AppTextSize.xlarge,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
@@ -69,7 +71,7 @@ class CreateGroupPage extends StatelessWidget {
                   child: Text(
                     "members",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTextSize.small,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/model/group.dart';
 
+import 'package:chat_flutter/config/app_text_size.dart';
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     'Groups',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTextSize.small,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -111,7 +113,7 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     'Friends',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTextSize.small,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
