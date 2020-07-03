@@ -1,7 +1,10 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/home/list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/model/group.dart';
+
+import 'package:chat_flutter/config/app_text_size.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -28,16 +31,16 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: 20,
+                  height: AppSpace.midium,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
+                  padding: EdgeInsets.only(
+                    left: AppSpace.midium,
                   ),
                   child: Text(
                     'Groups',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTextSize.small,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -58,7 +61,7 @@ class HomePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 SizedBox(
-                                  height: 10,
+                                  height: AppSpace.small,
                                 ),
                                 ListView.builder(
                                   physics: ScrollPhysics(),
@@ -81,10 +84,10 @@ class HomePage extends StatelessWidget {
                         );
                       } else {
                         return Padding(
-                          padding: const EdgeInsets.only(
-                            left: 30,
-                            top: 10,
-                            bottom: 10,
+                          padding: EdgeInsets.only(
+                            left: AppSpace.large,
+                            top: AppSpace.small,
+                            bottom: AppSpace.small,
                           ),
                           child: Text(
                             'グループがありません',
@@ -102,16 +105,16 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 Divider(
-                  endIndent: 50,
+                  endIndent: AppSpace.big,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
+                  padding: EdgeInsets.only(
+                    left: AppSpace.midium,
                   ),
                   child: Text(
                     'Friends',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: AppTextSize.small,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -132,7 +135,7 @@ class HomePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 SizedBox(
-                                  height: 10,
+                                  height: AppSpace.small,
                                 ),
                                 ListView.builder(
                                   physics: ScrollPhysics(),
@@ -155,10 +158,10 @@ class HomePage extends StatelessWidget {
                         );
                       } else {
                         return Padding(
-                          padding: const EdgeInsets.only(
-                            left: 30,
-                            top: 10,
-                            bottom: 10,
+                          padding: EdgeInsets.only(
+                            left: AppSpace.large,
+                            top: AppSpace.small,
+                            bottom: AppSpace.small,
                           ),
                           child: Text(
                             '友達がいません',

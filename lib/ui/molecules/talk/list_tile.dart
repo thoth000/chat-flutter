@@ -1,3 +1,5 @@
+import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:chat_flutter/ui/pages/room.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
@@ -18,7 +20,7 @@ class TalkPageListTile extends StatelessWidget {
       },
       child: SizedBox(
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: EdgeInsets.all(AppSpace.small),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -31,7 +33,7 @@ class TalkPageListTile extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 20,
+                width: AppSpace.midium,
               ),
               SizedBox(
                 height: 60,
@@ -48,7 +50,7 @@ class TalkPageListTile extends StatelessWidget {
                           child: Text(
                             room.name,
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: AppTextSize.midium,
                               fontWeight: FontWeight.bold,
                             ),
                             overflow: TextOverflow.ellipsis,
@@ -57,7 +59,7 @@ class TalkPageListTile extends StatelessWidget {
                         Text(
                           room.sendTime,
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: AppTextSize.xsmall,
                             color: Colors.grey,
                           ),
                         ),
@@ -67,7 +69,7 @@ class TalkPageListTile extends StatelessWidget {
                       child: Text(
                         room.lastMessage,
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: AppTextSize.small,
                           color: Colors.grey,
                         ),
                         overflow: TextOverflow.ellipsis,

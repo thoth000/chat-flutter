@@ -1,10 +1,13 @@
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/providers/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/user.dart';
+import 'package:chat_flutter/model/user.dart';
+
+import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfileEditPage extends StatelessWidget {
   const ProfileEditPage({Key key}) : super(key: key);
@@ -55,16 +58,18 @@ class _ProfileEditPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ProfileImage(image: user.imgUrl),
-          SizedBox(height: 15),
+          SizedBox(
+            height: AppSpace.small,
+          ),
           Text(
             user.name,
             style: TextStyle(
-              fontSize: 30,
+              fontSize: AppTextSize.xlarge,
               fontWeight: FontWeight.w700,
             ),
           ),
           SizedBox(
-            height: 35,
+            height: AppSpace.large,
           ),
           Center(
             child: Container(

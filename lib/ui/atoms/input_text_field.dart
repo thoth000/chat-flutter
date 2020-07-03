@@ -1,4 +1,7 @@
+import 'package:chat_flutter/config/app_radius.dart';
 import 'package:flutter/material.dart';
+
+import 'package:chat_flutter/config/app_space.dart';
 
 class InputTextField extends StatelessWidget {
   final String hintText;
@@ -34,15 +37,14 @@ class InputTextField extends StatelessWidget {
             color: Colors.grey,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(AppRadius.xsmall),
             borderSide: BorderSide(),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(AppRadius.xsmall),
             borderSide: BorderSide(),
           ),
-          contentPadding:
-              EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          contentPadding: EdgeInsets.all(AppSpace.small),
         ),
       ),
     );

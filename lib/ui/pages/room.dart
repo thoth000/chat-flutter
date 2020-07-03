@@ -1,6 +1,10 @@
+import 'package:chat_flutter/config/app_radius.dart';
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import 'package:chat_flutter/config/app_text_size.dart';
 
 class RoomPage extends StatefulWidget {
   final String name;
@@ -44,14 +48,14 @@ class _RoomPageState extends State<RoomPage> {
         children: <Widget>[
           MessageList(),
           SizedBox(
-            height: 5,
+            height: AppSpace.xsmall,
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               SizedBox(
-                width: 5,
+                width: AppSpace.small,
               ),
               Expanded(
                 child: TextField(
@@ -62,20 +66,19 @@ class _RoomPageState extends State<RoomPage> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderSide: BorderSide(),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(AppRadius.midium),
                     ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 10,
+                    contentPadding: EdgeInsets.all(
+                      AppSpace.small,
                     ),
                   ),
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: AppTextSize.midium,
                   ),
                 ),
               ),
               SizedBox(
-                width: 5,
+                width: AppSpace.xsmall,
               ),
               IconButton(
                 onPressed: () {
@@ -88,7 +91,7 @@ class _RoomPageState extends State<RoomPage> {
             ],
           ),
           SizedBox(
-            height: 5,
+            height: AppSpace.xsmall,
           ),
         ],
       ),

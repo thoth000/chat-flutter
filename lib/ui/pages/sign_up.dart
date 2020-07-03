@@ -1,6 +1,10 @@
+import 'package:chat_flutter/config/app_radius.dart';
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/atoms/input_text_field.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
 import 'package:flutter/material.dart';
+
+import 'package:chat_flutter/config/app_text_size.dart';
 
 class SignUpPage extends StatelessWidget {
   final nameTextController = TextEditingController();
@@ -16,23 +20,33 @@ class SignUpPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 20, top: 60),
+            padding: EdgeInsets.only(
+              left: AppSpace.midium,
+              top: AppSpace.big,
+            ),
             child: Text(
               'SIGN UP',
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: AppTextSize.big,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(
-            height: 60,
+            height: AppSpace.big,
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 20, top: 40, right: 20),
+              padding: EdgeInsets.only(
+                left: AppSpace.midium,
+                top: AppSpace.xlarge,
+                right: AppSpace.midium,
+              ),
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(),
                 borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(30),
+                  top: Radius.circular(AppRadius.large),
                 ),
               ),
               child: Column(
@@ -57,29 +71,34 @@ class SignUpPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 30,
+                    height: AppSpace.large,
                   ),
                   RaisedButton(
-                    padding: EdgeInsets.only(
-                        left: 60, right: 60, top: 10, bottom: 10),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSpace.big,
+                      vertical: AppSpace.small,
+                    ),
                     child: Text(
                       "Start",
                       style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
+                        fontSize: AppTextSize.xlarge,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
                     ),
                     color: Colors.white,
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                          style: BorderStyle.solid, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(50),
+                        style: BorderStyle.solid,
+                        color: Colors.grey,
+                      ),
+                      borderRadius: BorderRadius.circular(AppRadius.xlarge),
                     ),
                     onPressed: () {},
                   ),
                   SizedBox(
-                    height: 30,
+                    height: AppSpace.large,
                   ),
                   FlatButton(
                     onPressed: () {
@@ -94,7 +113,7 @@ class SignUpPage extends StatelessWidget {
                     child: Text(
                       'SIGN IN',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: AppTextSize.large,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
                         color: Colors.grey,
