@@ -93,7 +93,7 @@ class SignUpPage extends StatelessWidget {
                         style: BorderStyle.solid,
                         color: Colors.grey,
                       ),
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(AppRadius.xlarge),
                     ),
                     onPressed: () {},
                   ),
