@@ -1,12 +1,13 @@
-import 'package:chat_flutter/config/app_space.dart';
-import 'package:chat_flutter/providers/user.dart';
-import 'package:chat_flutter/ui/atoms/profile_image.dart';
-import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:chat_flutter/providers/user.dart';
+import 'package:chat_flutter/ui/atoms/profile_image.dart';
+import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
+
 import 'package:chat_flutter/model/user.dart';
 
+import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfileEditPage extends StatelessWidget {
@@ -52,20 +53,35 @@ class _ProfileEditPage extends StatelessWidget {
   const _ProfileEditPage({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _nameController = TextEditingController(
+      text: ModalRoute.of(context).settings.arguments,
+    );
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ProfileImage(image: user.imgUrl),
+          FlatButton(
+            onPressed: () {},
+            child: ProfileImage(image: user.imgUrl),
+          ),
           SizedBox(
             height: AppSpace.small,
           ),
-          Text(
-            user.name,
-            style: TextStyle(
-              fontSize: AppTextSize.xlarge,
-              fontWeight: FontWeight.w700,
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSpace.midium,
+            ),
+            child: TextField(
+              keyboardType: TextInputType.multiline,
+              minLines: 1,
+              maxLines: 1,
+              controller: _nameController,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: AppTextSize.xlarge,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
           SizedBox(

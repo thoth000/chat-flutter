@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
       future: userProvider.getUserById("userId"),
       builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
         if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Center(child: Text('Error: ${snapshot.error}'));
         }
         switch (snapshot.connectionState) {
           case ConnectionState.waiting: // データの取得まち
@@ -76,7 +76,11 @@ class _ProfilePage extends StatelessWidget {
                 ),
                 label: Text("編集する"),
                 onPressed: () {
-                  Navigator.pushNamed<void>(context, "/profileEditPage");
+                  Navigator.pushNamed<void>(
+                    context,
+                    "/profileEditPage",
+                    arguments: "test",
+                  );
                 },
                 color: Colors.green,
                 textColor: Colors.white,
