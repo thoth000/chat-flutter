@@ -76,7 +76,7 @@ class _ProfilePage extends StatelessWidget {
                 ),
                 label: Text("編集する"),
                 onPressed: () {
-                  Navigator.pushNamed<void>(context, "/profileEditPage");
+                  Navigator.pushNamed<void>(context, "/profileEditPage",arguments: "test");
                 },
                 color: Colors.green,
                 textColor: Colors.white,
