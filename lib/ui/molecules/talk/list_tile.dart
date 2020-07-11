@@ -11,7 +11,9 @@ class TalkPageListTile extends StatelessWidget {
     return FlatButton(
       onPressed: () {
         Navigator.pushNamed(
-          context,'/roomPage',arguments: room.name,
+          context,
+          '/roomPage',
+          arguments: room.name,
         );
       },
       child: SizedBox(

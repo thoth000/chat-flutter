@@ -7,7 +7,6 @@ import 'package:flutter/rendering.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class RoomPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final String name = ModalRoute.of(context).settings.arguments;
