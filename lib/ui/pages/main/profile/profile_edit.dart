@@ -1,7 +1,7 @@
+import 'package:chat_flutter/ui/pages/main/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:chat_flutter/providers/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 
@@ -14,12 +14,12 @@ class ProfileEditPage extends StatelessWidget {
   const ProfileEditPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
+    final _profileProvider = Provider.of<ProfileController>(context);
     return Scaffold(
       appBar: ProfilePageAppBar(),
       backgroundColor: Colors.white,
       body: FutureBuilder<User>(
-        future: userProvider.getUserById("userId"),
+        future: _profileProvider.getUserById("userId"),
         builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
