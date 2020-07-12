@@ -2,25 +2,16 @@ import 'package:chat_flutter/ui/molecules/home/app_bar.dart';
 import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:chat_flutter/ui/molecules/talk/app_bar.dart';
 import 'package:chat_flutter/ui/pages/main/home/home.dart';
+import 'package:chat_flutter/ui/pages/main/main_controller.dart';
 import 'package:chat_flutter/ui/pages/main/profile/profile.dart';
 import 'package:chat_flutter/ui/pages/main/talk/talk.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  int _currentIndex = 0;
-  void changePage(int index) {
-    setState(
-      () => _currentIndex = index,
-    );
-  }
-
+class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _mainController = Provider.of<MainController>(context);
     final List appBarList = [
       HomePageAppBar(),
       TalkPageAppBar(),
@@ -40,20 +31,21 @@ class _MainPageState extends State<MainPage> {
     ];
 
     return Scaffold(
-      appBar: appBarList[_currentIndex],
-      backgroundColor: backgroundColor[_currentIndex],
-      bottomNavigationBar: bottomNavigation(),
-      body: pages[_currentIndex],
+      appBar: appBarList[_mainController.currentIndex],
+      backgroundColor: backgroundColor[_mainController.currentIndex],
+      bottomNavigationBar: bottomNavigation(context),
+      body: pages[_mainController.currentIndex],
     );
   }
 
-  Widget bottomNavigation() {
+  Widget bottomNavigation(BuildContext context) {
+    final _mainController = Provider.of<MainController>(context);
     return BottomNavigationBar(
       backgroundColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      currentIndex: _currentIndex,
+      currentIndex: _mainController.currentIndex,
       items: [
         BottomNavigationBarItem(
           icon: Icon(
@@ -80,9 +72,9 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ],
-      onTap: (index) => setState(
-        () => _currentIndex = index,
-      ),
+      onTap: (index){
+        _mainController.changePage(index);
+      }
     );
   }
 }
