@@ -6,7 +6,7 @@ import 'package:chat_flutter/ui/pages/home/home.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_edit.dart';
 import 'package:chat_flutter/ui/pages/room/room.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
-import 'package:chat_flutter/ui/pages/sign_up.dart';
+import 'package:chat_flutter/ui/pages/sign_up/sign_up.dart';
 
 void main() {
   runApp(
