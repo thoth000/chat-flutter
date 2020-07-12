@@ -1,9 +1,9 @@
 import 'package:chat_flutter/ui/molecules/home/app_bar.dart';
 import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:chat_flutter/ui/molecules/talk/app_bar.dart';
-import 'package:chat_flutter/ui/pages/home.dart';
-import 'package:chat_flutter/ui/pages/profile.dart';
-import 'package:chat_flutter/ui/pages/talk.dart';
+import 'package:chat_flutter/ui/pages/main/home/home.dart';
+import 'package:chat_flutter/ui/pages/main/profile/profile.dart';
+import 'package:chat_flutter/ui/pages/main/talk/talk.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
