@@ -53,6 +53,7 @@ class _ProfileEditPage extends StatelessWidget {
   const _ProfileEditPage({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final _profileController = Provider.of<ProfileController>(context,listen: false);
     final TextEditingController _nameController = TextEditingController(
       text: ModalRoute.of(context).settings.arguments,
     );
@@ -97,6 +98,7 @@ class _ProfileEditPage extends StatelessWidget {
                 ),
                 label: Text("更新する"),
                 onPressed: () {
+                  _profileController.changeProfileInfo();
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,

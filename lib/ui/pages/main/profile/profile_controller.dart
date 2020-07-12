@@ -10,4 +10,8 @@ class ProfileController with ChangeNotifier{
     await Future.delayed(Duration(seconds: 1));
     return await Future.value(user);
   }
+
+  void changeProfileInfo(){
+    //Firebaseへの変更通知
+  }
 }
