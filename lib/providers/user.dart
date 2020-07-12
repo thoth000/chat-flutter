@@ -1,7 +1,7 @@
 import 'package:chat_flutter/services/user.dart';
 import 'package:flutter/material.dart';
 
-import '../model/user.dart';
+import 'package:chat_flutter/model/user.dart';
 
 class UserProvider with ChangeNotifier {
   UserProvider() {

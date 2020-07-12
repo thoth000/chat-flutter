@@ -1,6 +1,6 @@
 import 'package:chat_flutter/config/app_space.dart';
-import 'package:chat_flutter/providers/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
+import 'package:chat_flutter/ui/pages/main/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +12,9 @@ class ProfilePage extends StatelessWidget {
   const ProfilePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
+    final _profileController = Provider.of<ProfileController>(context);
     return FutureBuilder<User>(
-      future: userProvider.getUserById("userId"),
+      future: _profileController.getUserById("userId"),
       builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
         if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
