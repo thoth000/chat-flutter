@@ -1,21 +1,46 @@
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/home/list_tile.dart';
+import 'package:chat_flutter/ui/pages/main/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/model/group.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _homeController = Provider.of<HomeController>(context);
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          HomePageListTile(
-            name: 'name',
-            imgUrl: 'https://dot.asahi.com/S2000/upload/2019100100055_1.jpg',
-            isMe: true,
+          FutureBuilder(
+            future: _homeController.getMeById('test'),
+            builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+              if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              }
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting: // データの取得まち
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+
+                default:
+                  if (snapshot.hasData) {
+                    return HomePageListTile(
+                      name: snapshot.data.name,
+                      imgUrl: snapshot.data.imgUrl,
+                      isMe: true,
+                    );
+                  } else {
+                    return Center(
+                      child: Text("該当するユーザーがいません"),
+                    );
+                  }
+              }
+            },
           ),
           Container(
             constraints: BoxConstraints(
@@ -46,7 +71,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 FutureBuilder(
-                  future: _getGroupList(),
+                  future: _homeController.getGroupList(),
                   builder: (
                     BuildContext context,
                     AsyncSnapshot<List<Group>> snapshot,
@@ -120,7 +145,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 FutureBuilder(
-                  future: _getFriendList(),
+                  future: _homeController.getFriendList(),
                   builder: (
                     BuildContext context,
                     AsyncSnapshot<List<User>> snapshot,
@@ -184,57 +209,5 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<List<Group>> _getGroupList() async {
-    final List<Group> groupList = [
-      Group(
-        name: "Sport",
-        imgUrl: "https://prtimes.jp/i/24101/70/resize/d24101-70-320114-0.jpg",
-      ),
-      Group(
-        name: "Study",
-        imgUrl: "https://prtimes.jp/i/24101/70/resize/d24101-70-320114-0.jpg",
-      ),
-      Group(
-        name: "Hobby",
-        imgUrl: "https://prtimes.jp/i/24101/70/resize/d24101-70-320114-0.jpg",
-      ),
-    ];
-
-    await Future.delayed(Duration(seconds: 1));
-    return await Future.value(groupList);
-  }
-
-  Future<List<User>> _getFriendList() async {
-    final List<User> friendList = [
-      User(
-        name: "Alex",
-        imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
-        isMe: false,
-      ),
-      User(
-        name: "Alex2(笑)",
-        imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
-        isMe: false,
-      ),
-      User(
-        name: "Jack",
-        imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
-        isMe: false,
-      ),
-      User(
-        name: "Brian",
-        imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
-        isMe: false,
-      ),
-    ];
-
-    await Future.delayed(Duration(seconds: 3));
-    return await Future.value(friendList);
   }
 }
