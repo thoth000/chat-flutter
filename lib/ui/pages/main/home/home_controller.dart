@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 
 class HomeController with ChangeNotifier{
   HomeController();
-
-  Future<User> getMeById(String userId) async {
-    User user = User(name: "test", imgUrl: "https://dot.asahi.com/S2000/upload/2019100100055_1.jpg");
+  User user;
+  List<Group> groupList;
+  List<User> friendList;
+  Future<void> getMeById(String userId) async {
+    user = User(name: "test", imgUrl: "https://dot.asahi.com/S2000/upload/2019100100055_1.jpg");
 
     await Future.delayed(Duration(seconds: 1));
-    return await Future.value(user);
+    notifyListeners();
   }
 
-  Future<List<Group>> getGroupList() async {
-    final List<Group> groupList = [
+  Future<void> getGroupList() async {
+    groupList = [
       Group(
         name: "Sport",
         imgUrl: "https://prtimes.jp/i/24101/70/resize/d24101-70-320114-0.jpg",
@@ -29,11 +31,11 @@ class HomeController with ChangeNotifier{
     ];
 
     await Future.delayed(Duration(seconds: 1));
-    return await Future.value(groupList);
+    notifyListeners();
   }
 
-  Future<List<User>> getFriendList() async {
-    final List<User> friendList = [
+  Future<void> getFriendList() async {
+    friendList = [
       User(
         name: "Alex",
         imgUrl:
@@ -61,6 +63,6 @@ class HomeController with ChangeNotifier{
     ];
 
     await Future.delayed(Duration(seconds: 3));
-    return await Future.value(friendList);
+    notifyListeners();
   }
 }

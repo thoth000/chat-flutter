@@ -2,8 +2,6 @@ import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/home/list_tile.dart';
 import 'package:chat_flutter/ui/pages/main/home/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_flutter/model/user.dart';
-import 'package:chat_flutter/model/group.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +15,7 @@ class HomePage extends StatelessWidget {
         children: <Widget>[
           FutureBuilder(
             future: _homeController.getMeById('test'),
-            builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
               if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               }
@@ -30,8 +28,8 @@ class HomePage extends StatelessWidget {
                 default:
                   if (snapshot.hasData) {
                     return HomePageListTile(
-                      name: snapshot.data.name,
-                      imgUrl: snapshot.data.imgUrl,
+                      name: _homeController.user.name,
+                      imgUrl: _homeController.user.imgUrl,
                       isMe: true,
                     );
                   } else {
@@ -74,10 +72,10 @@ class HomePage extends StatelessWidget {
                   future: _homeController.getGroupList(),
                   builder: (
                     BuildContext context,
-                    AsyncSnapshot<List<Group>> snapshot,
+                    AsyncSnapshot<void> snapshot,
                   ) {
                     if (snapshot.hasData) {
-                      if (snapshot.data.length != 0) {
+                      if (_homeController.groupList.length != 0) {
                         return Container(
                           // ここのラップは適当にサイズ指定しているだけなので、レイアウトに合わせて変更する必要あり
                           height: 220,
@@ -92,14 +90,14 @@ class HomePage extends StatelessWidget {
                                   physics: ScrollPhysics(),
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
-                                  itemCount: snapshot.data.length,
+                                  itemCount: _homeController.groupList.length,
                                   itemBuilder: (
                                     BuildContext context,
                                     int index,
                                   ) {
                                     return HomePageListTile(
-                                      name: snapshot.data[index].name,
-                                      imgUrl: snapshot.data[index].imgUrl,
+                                      name: _homeController.groupList[index].name,
+                                      imgUrl: _homeController.groupList[index].imgUrl,
                                     );
                                   },
                                 ),
@@ -148,10 +146,10 @@ class HomePage extends StatelessWidget {
                   future: _homeController.getFriendList(),
                   builder: (
                     BuildContext context,
-                    AsyncSnapshot<List<User>> snapshot,
+                    AsyncSnapshot<void> snapshot,
                   ) {
                     if (snapshot.hasData) {
-                      if (snapshot.data.length != 0) {
+                      if (_homeController.friendList.length != 0) {
                         return Container(
                           // ここのラップは適当にサイズ指定しているだけなので、レイアウトに合わせて変更する必要あり
                           height: 220,
@@ -166,14 +164,14 @@ class HomePage extends StatelessWidget {
                                   physics: ScrollPhysics(),
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
-                                  itemCount: snapshot.data.length,
+                                  itemCount: _homeController.friendList.length,
                                   itemBuilder: (
                                     BuildContext context,
                                     int index,
                                   ) {
                                     return HomePageListTile(
-                                      name: snapshot.data[index].name,
-                                      imgUrl: snapshot.data[index].imgUrl,
+                                      name: _homeController.friendList[index].name,
+                                      imgUrl: _homeController.friendList[index].imgUrl,
                                     );
                                   },
                                 ),
