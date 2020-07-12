@@ -1,6 +1,8 @@
 import 'package:chat_flutter/ui/molecules/talk/list_tile.dart';
+import 'package:chat_flutter/ui/pages/main/talk/talk_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
+import 'package:provider/provider.dart';
 
 class TalkPage extends StatefulWidget {
   @override
@@ -10,8 +12,9 @@ class TalkPage extends StatefulWidget {
 class _TalkPageState extends State<TalkPage> {
   @override
   Widget build(BuildContext context) {
+    final _talkController = Provider.of<TalkController>(context);
     return FutureBuilder(
-      future: _getRoomList(),
+      future: _talkController.getRoomList(),
       builder: (
         BuildContext context,
         AsyncSnapshot<List<Room>> snapshot,
