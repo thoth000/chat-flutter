@@ -6,7 +6,7 @@ class HomeController with ChangeNotifier{
   HomeController();
 
   Future<User> getMeById(String userId) async {
-    User user = User(name: "test", imgUrl: "");
+    User user = User(name: "test", imgUrl: "https://dot.asahi.com/S2000/upload/2019100100055_1.jpg");
 
     await Future.delayed(Duration(seconds: 1));
     return await Future.value(user);
