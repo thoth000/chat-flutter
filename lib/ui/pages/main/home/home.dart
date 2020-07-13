@@ -7,15 +7,7 @@ import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage._({Key key}) : super(key:key);
-
-  static Widget wrapped(){
-    return new ChangeNotifierProvider<HomeController>(
-      create: (_) => HomeController(),
-      child: HomePage._(),
-    );
-  }
-
+  HomePage({Key key}) : super(key:key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

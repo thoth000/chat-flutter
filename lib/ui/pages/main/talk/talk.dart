@@ -4,14 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TalkPage extends StatelessWidget {
-  TalkPage._({Key key}) : super(key:key);
-
-  static Widget wrapped(){
-    return ChangeNotifierProvider<TalkController>(
-      create: (_) => TalkController(),
-      child: TalkPage._(),
-    );
-  }
+  TalkPage({Key key}) : super(key:key);
   @override
   Widget build(BuildContext context) {
     final _roomList = Provider.of<TalkController>(context).roomList;

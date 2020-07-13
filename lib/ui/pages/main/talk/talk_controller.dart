@@ -7,7 +7,7 @@ class TalkController with ChangeNotifier{
   }
   List<Room> roomList;
   void getRoomList() async {
-    final List<Room> roomList = [
+    roomList = [
       Room(
         name: "Sport",
         imgUrl: "https://prtimes.jp/i/24101/70/resize/d24101-70-320114-0.jpg",

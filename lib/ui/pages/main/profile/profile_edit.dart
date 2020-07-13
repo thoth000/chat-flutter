@@ -11,7 +11,15 @@ import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfileEditPage extends StatelessWidget {
-  const ProfileEditPage({Key key}) : super(key: key);
+  const ProfileEditPage._({Key key}) : super(key: key);
+
+  static Widget wrapped(){
+    return ChangeNotifierProvider<ProfileController>(
+      create: (_) => ProfileController(),
+      child: ProfileEditPage._(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final _user = Provider.of<ProfileController>(context, listen: false).user;

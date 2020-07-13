@@ -9,15 +9,7 @@ import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage._({Key key}) : super(key: key);
-
-  static Widget wrapped() {
-    return ChangeNotifierProvider<ProfileController>(
-      create: (_) => ProfileController(),
-      child: ProfilePage._(),
-    );
-  }
-
+  const ProfilePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _user = Provider.of<ProfileController>(context).user;
