@@ -19,11 +19,11 @@ class SignUpPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               left: AppSpace.midium,
               top: AppSpace.big,
             ),
-            child: Text(
+            child: const Text(
               'SIGN UP',
               style: TextStyle(
                 fontSize: AppTextSize.big,
@@ -31,12 +31,12 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: AppSpace.big,
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: AppSpace.midium,
                 top: AppSpace.xlarge,
                 right: AppSpace.midium,
@@ -96,7 +96,7 @@ class SignUpPage extends StatelessWidget {
                     ),
                     onPressed: () {},
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: AppSpace.large,
                   ),
                   FlatButton(
@@ -105,7 +105,7 @@ class SignUpPage extends StatelessWidget {
                         '/signInPage',
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'SIGN IN',
                       style: TextStyle(
                         fontSize: AppTextSize.large,
