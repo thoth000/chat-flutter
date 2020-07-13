@@ -12,11 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
-  MainPage._({Key key}) : super(key:key);
+  MainPage._({Key key}) : super(key: key);
 
-  static Widget wrapped(){
+  static Widget wrapped() {
     return MultiProvider(
-      providers:[
+      providers: [
         ChangeNotifierProvider<MainController>(
           create: (_) => MainController(),
         ),
@@ -66,40 +66,39 @@ class MainPage extends StatelessWidget {
   Widget bottomNavigation(BuildContext context) {
     final _controller = Provider.of<MainController>(context);
     return BottomNavigationBar(
-      backgroundColor: Colors.white,
-      type: BottomNavigationBarType.fixed,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      currentIndex: _controller.currentIndex,
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _controller.currentIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            title: Text(
+              "",
+            ),
           ),
-          title: Text(
-            "",
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.message,
+            ),
+            title: Text(
+              "",
+            ),
           ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.message,
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+            ),
+            title: Text(
+              "",
+            ),
           ),
-          title: Text(
-            "",
-          ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person,
-          ),
-          title: Text(
-            "",
-          ),
-        ),
-      ],
-      onTap: (index){
-        _controller.changePage(index);
-      }
-    );
+        ],
+        onTap: (index) {
+          _controller.changePage(index);
+        });
   }
 }

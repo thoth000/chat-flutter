@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TalkPage extends StatelessWidget {
-  TalkPage({Key key}) : super(key:key);
+  TalkPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _roomList = Provider.of<TalkController>(context).roomList;

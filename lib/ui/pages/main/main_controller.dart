@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MainController with ChangeNotifier{
+class MainController with ChangeNotifier {
   int currentIndex;
-  MainController(){
+  MainController() {
     currentIndex = 0;
   }
 
-  void changePage(int index){
+  void changePage(int index) {
     currentIndex = index;
     notifyListeners();
   }

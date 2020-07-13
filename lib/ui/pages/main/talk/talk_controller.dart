@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
 
-class TalkController with ChangeNotifier{
-  TalkController(){
+class TalkController with ChangeNotifier {
+  TalkController() {
     getRoomList();
   }
   List<Room> roomList;

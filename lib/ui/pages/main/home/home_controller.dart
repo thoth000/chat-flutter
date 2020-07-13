@@ -2,8 +2,8 @@ import 'package:chat_flutter/model/group.dart';
 import 'package:chat_flutter/model/user.dart';
 import 'package:flutter/material.dart';
 
-class HomeController with ChangeNotifier{
-  HomeController(){
+class HomeController with ChangeNotifier {
+  HomeController() {
     getMeById("userId");
     getGroupList();
     getFriendList();
@@ -13,7 +13,9 @@ class HomeController with ChangeNotifier{
   List<User> friendList;
 
   void getMeById(String userId) async {
-    user = User(name: "test", imgUrl: "https://dot.asahi.com/S2000/upload/2019100100055_1.jpg");
+    user = User(
+        name: "test",
+        imgUrl: "https://dot.asahi.com/S2000/upload/2019100100055_1.jpg");
     await Future.delayed(Duration(seconds: 1));
     notifyListeners();
   }

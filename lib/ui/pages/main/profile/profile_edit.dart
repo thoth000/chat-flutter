@@ -13,7 +13,7 @@ import 'package:chat_flutter/config/app_text_size.dart';
 class ProfileEditPage extends StatelessWidget {
   const ProfileEditPage._({Key key}) : super(key: key);
 
-  static Widget wrapped(){
+  static Widget wrapped() {
     return ChangeNotifierProvider<ProfileController>(
       create: (_) => ProfileController(),
       child: ProfileEditPage._(),
@@ -22,7 +22,7 @@ class ProfileEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _user = Provider.of<ProfileController>(context, listen: false).user;
+    final _user = Provider.of<ProfileController>(context).user;
     return Scaffold(
       appBar: ProfilePageAppBar(),
       backgroundColor: Colors.white,
@@ -43,7 +43,8 @@ class _ProfileEditPage extends StatelessWidget {
   const _ProfileEditPage({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _profileController = Provider.of<ProfileController>(context, listen: false);
+    final _profileController =
+        Provider.of<ProfileController>(context, listen: false);
     final TextEditingController _nameController = TextEditingController(
       text: ModalRoute.of(context).settings.arguments,
     );
@@ -87,8 +88,8 @@ class _ProfileEditPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 label: Text("更新する"),
-                onPressed: () {
-                  _profileController.changeProfileInfo();
+                onPressed: () async {
+                  _profileController.changeProfileInfo(_nameController.text);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,

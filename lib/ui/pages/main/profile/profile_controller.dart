@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 
-class ProfileController with ChangeNotifier{
-  ProfileController(){
+class ProfileController with ChangeNotifier {
+  ProfileController() {
     getUserById("testId");
+    print(user.name);
   }
   User user;
 
@@ -13,7 +14,8 @@ class ProfileController with ChangeNotifier{
     notifyListeners();
   }
 
-  void changeProfileInfo() async{
+  void changeProfileInfo(String s) async {
     //Firebaseへの変更通知
+    print(s);
   }
 }
