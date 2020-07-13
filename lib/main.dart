@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/mainPage',
       routes: {
-        '/mainPage': (context) => MainPage(),
+        '/mainPage': (context) => MainPage.wrapped(),
         '/signUpPage': (context) => SignUpPage(),
         '/signInPage': (context) => SignInPage(),
         '/roomPage': (context) => RoomPage(),

@@ -9,9 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
+  MainPage._({Key key}) : super(key:key);
+
+  static Widget wrapped(){
+    return new ChangeNotifierProvider<MainController>(
+      create: (_) => MainController(),
+      child: MainPage._(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _mainController = Provider.of<MainController>(context);
+    final _controller = Provider.of<MainController>(context);
     final List appBarList = [
       HomePageAppBar(),
       TalkPageAppBar(),
@@ -31,21 +40,21 @@ class MainPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: appBarList[_mainController.currentIndex],
-      backgroundColor: backgroundColor[_mainController.currentIndex],
+      appBar: appBarList[_controller.currentIndex],
+      backgroundColor: backgroundColor[_controller.currentIndex],
       bottomNavigationBar: bottomNavigation(context),
-      body: pages[_mainController.currentIndex],
+      body: pages[_controller.currentIndex],
     );
   }
 
   Widget bottomNavigation(BuildContext context) {
-    final _mainController = Provider.of<MainController>(context);
+    final _controller = Provider.of<MainController>(context);
     return BottomNavigationBar(
       backgroundColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      currentIndex: _mainController.currentIndex,
+      currentIndex: _controller.currentIndex,
       items: [
         BottomNavigationBarItem(
           icon: Icon(
@@ -73,7 +82,7 @@ class MainPage extends StatelessWidget {
         ),
       ],
       onTap: (index){
-        _mainController.changePage(index);
+        _controller.changePage(index);
       }
     );
   }
