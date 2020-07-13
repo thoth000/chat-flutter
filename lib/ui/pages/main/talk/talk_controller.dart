@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
 
 class TalkController with ChangeNotifier{
-  Future<List<Room>> getRoomList() async {
+  TalkController(){
+    getRoomList();
+  }
+  List<Room> roomList;
+  void getRoomList() async {
     final List<Room> roomList = [
       Room(
         name: "Sport",
@@ -23,8 +27,7 @@ class TalkController with ChangeNotifier{
         sendTime: "20:04",
       ),
     ];
-
     await Future.delayed(Duration(seconds: 1));
-    return await Future.value(roomList);
+    notifyListeners();
   }
 }

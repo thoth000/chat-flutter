@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   HomePage._({Key key}) : super(key:key);
 
   static Widget wrapped(){
-    return ChangeNotifierProvider<HomeController>(
+    return new ChangeNotifierProvider<HomeController>(
       create: (_) => HomeController(),
       child: HomePage._(),
     );
@@ -79,15 +79,15 @@ class HomePage extends StatelessWidget {
 class MyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _controller = Provider.of<HomeController>(context);
-    if (_controller.user == null) {
+    final _user = Provider.of<HomeController>(context).user;
+    if (_user == null) {
       return Center(
         child: CircularProgressIndicator(),
       );
     }
     return HomePageListTile(
-      name: _controller.user.name,
-      imgUrl: _controller.user.imgUrl,
+      name: _user.name,
+      imgUrl: _user.imgUrl,
       isMe: true,
     );
   }
@@ -96,8 +96,8 @@ class MyTile extends StatelessWidget {
 class GroupTileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _controller = Provider.of<HomeController>(context);
-    if (_controller.groupList == null) {
+    final _groupList = Provider.of<HomeController>(context).groupList;
+    if (_groupList == null) {
       return Center(
         child: CircularProgressIndicator(),
       );
@@ -115,14 +115,14 @@ class GroupTileList extends StatelessWidget {
               physics: ScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: _controller.groupList.length,
+              itemCount: _groupList.length,
               itemBuilder: (
                 BuildContext context,
                 int index,
               ) {
                 return HomePageListTile(
-                  name: _controller.groupList[index].name,
-                  imgUrl: _controller.groupList[index].imgUrl,
+                  name: _groupList[index].name,
+                  imgUrl: _groupList[index].imgUrl,
                 );
               },
             ),
@@ -136,8 +136,8 @@ class GroupTileList extends StatelessWidget {
 class FriendTileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _controller = Provider.of<HomeController>(context);
-    if (_controller.friendList == null) {
+    final _friendList = Provider.of<HomeController>(context).friendList;
+    if (_friendList == null) {
       return Center(
         child: CircularProgressIndicator(),
       );
@@ -156,14 +156,14 @@ class FriendTileList extends StatelessWidget {
                 physics: ScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: _controller.friendList.length,
+                itemCount: _friendList.length,
                 itemBuilder: (
                   BuildContext context,
                   int index,
                 ) {
                   return HomePageListTile(
-                    name: _controller.friendList[index].name,
-                    imgUrl: _controller.friendList[index].imgUrl,
+                    name: _friendList[index].name,
+                    imgUrl: _friendList[index].imgUrl,
                   );
                 },
               ),

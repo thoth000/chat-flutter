@@ -14,35 +14,17 @@ class ProfileEditPage extends StatelessWidget {
   const ProfileEditPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _profileProvider = Provider.of<ProfileController>(context);
+    final _user = Provider.of<ProfileController>(context, listen: false).user;
     return Scaffold(
       appBar: ProfilePageAppBar(),
       backgroundColor: Colors.white,
-      body: FutureBuilder<User>(
-        future: _profileProvider.getUserById("userId"),
-        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting: // データの取得まち
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-
-            default:
-              if (snapshot.hasData) {
-                return _ProfileEditPage(
-                  user: snapshot.data,
-                );
-              } else {
-                return Center(
-                  child: Text("該当するユーザーがいません"),
-                );
-              }
-          }
-        },
-      ),
+      body: (_user == null)
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : _ProfileEditPage(
+              user: _user,
+            ),
     );
   }
 }
@@ -53,7 +35,7 @@ class _ProfileEditPage extends StatelessWidget {
   const _ProfileEditPage({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _profileController = Provider.of<ProfileController>(context,listen: false);
+    final _profileController = Provider.of<ProfileController>(context, listen: false);
     final TextEditingController _nameController = TextEditingController(
       text: ModalRoute.of(context).settings.arguments,
     );

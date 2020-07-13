@@ -9,35 +9,25 @@ import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key}) : super(key: key);
+  const ProfilePage._({Key key}) : super(key: key);
+
+  static Widget wrapped() {
+    return ChangeNotifierProvider<ProfileController>(
+      create: (_) => ProfileController(),
+      child: ProfilePage._(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _profileController = Provider.of<ProfileController>(context);
-    return FutureBuilder<User>(
-      future: _profileController.getUserById("userId"),
-      builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
-        if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        }
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting: // データの取得まち
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-
-          default:
-            if (snapshot.hasData) {
-              return _ProfilePage(
-                user: snapshot.data,
-              );
-            } else {
-              return Center(
-                child: Text("該当するユーザーがいません"),
-              );
-            }
-        }
-      },
-    );
+    final _user = Provider.of<ProfileController>(context).user;
+    if (_user == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return _ProfilePage(user: _user);
+    }
   }
 }
 

@@ -35,8 +35,8 @@ class MainPage extends StatelessWidget {
 
     final List pages = [
       HomePage.wrapped(),
-      TalkPage(),
-      ProfilePage(),
+      TalkPage.wrapped(),
+      ProfilePage.wrapped(),
     ];
 
     return Scaffold(

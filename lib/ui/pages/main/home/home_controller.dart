@@ -11,6 +11,7 @@ class HomeController with ChangeNotifier{
   User user;
   List<Group> groupList;
   List<User> friendList;
+
   void getMeById(String userId) async {
     user = User(name: "test", imgUrl: "https://dot.asahi.com/S2000/upload/2019100100055_1.jpg");
     await Future.delayed(Duration(seconds: 1));
@@ -32,7 +33,6 @@ class HomeController with ChangeNotifier{
         imgUrl: "https://prtimes.jp/i/24101/70/resize/d24101-70-320114-0.jpg",
       ),
     ];
-
     await Future.delayed(Duration(seconds: 5));
     notifyListeners();
   }

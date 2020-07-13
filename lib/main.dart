@@ -13,10 +13,7 @@ import 'package:chat_flutter/ui/pages/sign_up.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: providers,
-      child: MyApp(),
-    ),
+    MyApp(),
   );
 }
 
@@ -36,7 +33,7 @@ class MyApp extends StatelessWidget {
         '/signUpPage': (context) => SignUpPage(),
         '/signInPage': (context) => SignInPage(),
         '/roomPage': (context) => RoomPage(),
-        '/profilePage': (context) => ProfilePage(),
+        '/profilePage': (context) => ProfilePage.wrapped(),
         '/profileEditPage': (context) => ProfileEditPage(),
         '/addFriendPage': (context) => AddFriendPage(),
         '/createGroupPage': (context) => CreateGroupPage(),
