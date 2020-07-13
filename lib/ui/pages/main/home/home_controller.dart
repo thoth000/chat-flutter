@@ -3,18 +3,21 @@ import 'package:chat_flutter/model/user.dart';
 import 'package:flutter/material.dart';
 
 class HomeController with ChangeNotifier{
-  HomeController();
+  HomeController(){
+    getMeById("userId");
+    getGroupList();
+    getFriendList();
+  }
   User user;
   List<Group> groupList;
   List<User> friendList;
-  Future<void> getMeById(String userId) async {
+  void getMeById(String userId) async {
     user = User(name: "test", imgUrl: "https://dot.asahi.com/S2000/upload/2019100100055_1.jpg");
-
     await Future.delayed(Duration(seconds: 1));
     notifyListeners();
   }
 
-  Future<void> getGroupList() async {
+  void getGroupList() async {
     groupList = [
       Group(
         name: "Sport",
@@ -30,11 +33,11 @@ class HomeController with ChangeNotifier{
       ),
     ];
 
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: 5));
     notifyListeners();
   }
 
-  Future<void> getFriendList() async {
+  void getFriendList() async {
     friendList = [
       User(
         name: "Alex",
@@ -61,8 +64,7 @@ class HomeController with ChangeNotifier{
         isMe: false,
       ),
     ];
-
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(Duration(seconds: 10));
     notifyListeners();
   }
 }

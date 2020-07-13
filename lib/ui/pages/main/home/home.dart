@@ -7,39 +7,21 @@ import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
+  HomePage._({Key key}) : super(key:key);
+
+  static Widget wrapped(){
+    return ChangeNotifierProvider<HomeController>(
+      create: (_) => HomeController(),
+      child: HomePage._(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _homeController = Provider.of<HomeController>(context);
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          FutureBuilder(
-            future: _homeController.getMeById('test'),
-            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-              if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
-              }
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting: // データの取得まち
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-
-                default:
-                  if (snapshot.hasData) {
-                    return HomePageListTile(
-                      name: _homeController.user.name,
-                      imgUrl: _homeController.user.imgUrl,
-                      isMe: true,
-                    );
-                  } else {
-                    return Center(
-                      child: Text("該当するユーザーがいません"),
-                    );
-                  }
-              }
-            },
-          ),
+          MyTile(),
           Container(
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height - 180,
@@ -68,65 +50,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                FutureBuilder(
-                  future: _homeController.getGroupList(),
-                  builder: (
-                    BuildContext context,
-                    AsyncSnapshot<void> snapshot,
-                  ) {
-                    if (snapshot.hasData) {
-                      if (_homeController.groupList.length != 0) {
-                        return Container(
-                          // ここのラップは適当にサイズ指定しているだけなので、レイアウトに合わせて変更する必要あり
-                          height: 220,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                SizedBox(
-                                  height: AppSpace.small,
-                                ),
-                                ListView.builder(
-                                  physics: ScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  itemCount: _homeController.groupList.length,
-                                  itemBuilder: (
-                                    BuildContext context,
-                                    int index,
-                                  ) {
-                                    return HomePageListTile(
-                                      name: _homeController.groupList[index].name,
-                                      imgUrl: _homeController.groupList[index].imgUrl,
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            left: AppSpace.large,
-                            top: AppSpace.small,
-                            bottom: AppSpace.small,
-                          ),
-                          child: Text(
-                            'グループがありません',
-                          ),
-                        );
-                      }
-                    } else if (snapshot.connectionState !=
-                        ConnectionState.done) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  },
-                ),
+                GroupTileList(),
                 Divider(
                   endIndent: AppSpace.big,
                 ),
@@ -142,70 +66,111 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                FutureBuilder(
-                  future: _homeController.getFriendList(),
-                  builder: (
-                    BuildContext context,
-                    AsyncSnapshot<void> snapshot,
-                  ) {
-                    if (snapshot.hasData) {
-                      if (_homeController.friendList.length != 0) {
-                        return Container(
-                          // ここのラップは適当にサイズ指定しているだけなので、レイアウトに合わせて変更する必要あり
-                          height: 220,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                SizedBox(
-                                  height: AppSpace.small,
-                                ),
-                                ListView.builder(
-                                  physics: ScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  itemCount: _homeController.friendList.length,
-                                  itemBuilder: (
-                                    BuildContext context,
-                                    int index,
-                                  ) {
-                                    return HomePageListTile(
-                                      name: _homeController.friendList[index].name,
-                                      imgUrl: _homeController.friendList[index].imgUrl,
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            left: AppSpace.large,
-                            top: AppSpace.small,
-                            bottom: AppSpace.small,
-                          ),
-                          child: Text(
-                            '友達がいません',
-                          ),
-                        );
-                      }
-                    } else if (snapshot.connectionState !=
-                        ConnectionState.done) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  },
-                ),
+                FriendTileList(),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+}
+
+class MyTile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final _controller = Provider.of<HomeController>(context);
+    if (_controller.user == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return HomePageListTile(
+      name: _controller.user.name,
+      imgUrl: _controller.user.imgUrl,
+      isMe: true,
+    );
+  }
+}
+
+class GroupTileList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final _controller = Provider.of<HomeController>(context);
+    if (_controller.groupList == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return Container(
+      height: 220,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: AppSpace.small,
+            ),
+            ListView.builder(
+              physics: ScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: _controller.groupList.length,
+              itemBuilder: (
+                BuildContext context,
+                int index,
+              ) {
+                return HomePageListTile(
+                  name: _controller.groupList[index].name,
+                  imgUrl: _controller.groupList[index].imgUrl,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FriendTileList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final _controller = Provider.of<HomeController>(context);
+    if (_controller.friendList == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return Container(
+        // ここのラップは適当にサイズ指定しているだけなので、レイアウトに合わせて変更する必要あり
+        height: 220,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: AppSpace.small,
+              ),
+              ListView.builder(
+                physics: ScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: _controller.friendList.length,
+                itemBuilder: (
+                  BuildContext context,
+                  int index,
+                ) {
+                  return HomePageListTile(
+                    name: _controller.friendList[index].name,
+                    imgUrl: _controller.friendList[index].imgUrl,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }

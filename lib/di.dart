@@ -14,9 +14,6 @@ List<SingleChildWidget> get providers {
     ChangeNotifierProvider<MainController>(
       create: (_) => MainController(),
     ),
-    ChangeNotifierProvider<HomeController>(
-      create: (_) => HomeController(),
-    ),
     ChangeNotifierProvider<TalkController>(
       create: (_) => TalkController(),
     ),
