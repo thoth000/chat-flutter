@@ -7,13 +7,12 @@ import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          MyTile(),
+          _MyTile(),
           Container(
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height - 180,
@@ -42,7 +41,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                GroupTileList(),
+                _GroupTileList(),
                 Divider(
                   endIndent: AppSpace.big,
                 ),
@@ -58,7 +57,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                FriendTileList(),
+                _FriendTileList(),
               ],
             ),
           ),
@@ -68,29 +67,29 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class MyTile extends StatelessWidget {
+class _MyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _user = Provider.of<HomeController>(context).user;
-    if (_user == null) {
-      return Center(
+    final user = Provider.of<HomeController>(context).user;
+    if (user == null) {
+      return const Center(
         child: CircularProgressIndicator(),
       );
     }
     return HomePageListTile(
-      name: _user.name,
-      imgUrl: _user.imgUrl,
+      name: user.name,
+      imgUrl: user.imgUrl,
       isMe: true,
     );
   }
 }
 
-class GroupTileList extends StatelessWidget {
+class _GroupTileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _groupList = Provider.of<HomeController>(context).groupList;
-    if (_groupList == null) {
-      return Center(
+    final groupList = Provider.of<HomeController>(context).groupList;
+    if (groupList == null) {
+      return const Center(
         child: CircularProgressIndicator(),
       );
     }
@@ -107,14 +106,14 @@ class GroupTileList extends StatelessWidget {
               physics: ScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: _groupList.length,
+              itemCount: groupList.length,
               itemBuilder: (
                 BuildContext context,
                 int index,
               ) {
                 return HomePageListTile(
-                  name: _groupList[index].name,
-                  imgUrl: _groupList[index].imgUrl,
+                  name: groupList[index].name,
+                  imgUrl: groupList[index].imgUrl,
                 );
               },
             ),
@@ -125,12 +124,12 @@ class GroupTileList extends StatelessWidget {
   }
 }
 
-class FriendTileList extends StatelessWidget {
+class _FriendTileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _friendList = Provider.of<HomeController>(context).friendList;
-    if (_friendList == null) {
-      return Center(
+    final friendList = Provider.of<HomeController>(context).friendList;
+    if (friendList == null) {
+      return const Center(
         child: CircularProgressIndicator(),
       );
     } else {
@@ -148,14 +147,14 @@ class FriendTileList extends StatelessWidget {
                 physics: ScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: _friendList.length,
+                itemCount: friendList.length,
                 itemBuilder: (
                   BuildContext context,
                   int index,
                 ) {
                   return HomePageListTile(
-                    name: _friendList[index].name,
-                    imgUrl: _friendList[index].imgUrl,
+                    name: friendList[index].name,
+                    imgUrl: friendList[index].imgUrl,
                   );
                 },
               ),

@@ -36,7 +36,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Provider.of<MainController>(context);
+    final controller = Provider.of<MainController>(context);
     final List appBarList = [
       HomePageAppBar(),
       TalkPageAppBar(),
@@ -56,22 +56,22 @@ class MainPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: appBarList[_controller.currentIndex],
-      backgroundColor: backgroundColor[_controller.currentIndex],
-      bottomNavigationBar: bottomNavigation(context),
-      body: pages[_controller.currentIndex],
+      appBar: appBarList[controller.currentIndex],
+      backgroundColor: backgroundColor[controller.currentIndex],
+      bottomNavigationBar: _bottomNavigation(context),
+      body: pages[controller.currentIndex],
     );
   }
 
-  Widget bottomNavigation(BuildContext context) {
-    final _controller = Provider.of<MainController>(context);
+  Widget _bottomNavigation(BuildContext context) {
+    final controller = Provider.of<MainController>(context);
     return BottomNavigationBar(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        currentIndex: _controller.currentIndex,
-        items: [
+        currentIndex: controller.currentIndex,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
@@ -98,7 +98,7 @@ class MainPage extends StatelessWidget {
           ),
         ],
         onTap: (index) {
-          _controller.changePage(index);
+          controller.changePage(index);
         });
   }
 }

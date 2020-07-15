@@ -9,16 +9,15 @@ import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _user = Provider.of<ProfileController>(context).user;
-    if (_user == null) {
-      return Center(
+    final user = Provider.of<ProfileController>(context).user;
+    if (user == null) {
+      return const Center(
         child: CircularProgressIndicator(),
       );
     } else {
-      return _ProfilePage(user: _user);
+      return _ProfilePage(user: user);
     }
   }
 }
@@ -56,7 +55,7 @@ class _ProfilePage extends StatelessWidget {
                   Icons.edit,
                   color: Colors.white,
                 ),
-                label: Text("編集する"),
+                label: const Text("編集する"),
                 onPressed: () {
                   Navigator.pushNamed<void>(
                     context,

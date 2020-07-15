@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TalkPage extends StatelessWidget {
-  TalkPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _roomList = Provider.of<TalkController>(context).roomList;
-    if (_roomList == null) {
-      return Center(
+    final roomList = Provider.of<TalkController>(context).roomList;
+    if (roomList == null) {
+      return const Center(
         child: CircularProgressIndicator(),
       );
     } else {
@@ -17,12 +16,12 @@ class TalkPage extends StatelessWidget {
         physics: ScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: _roomList.length,
+        itemCount: roomList.length,
         itemBuilder: (
           BuildContext context,
           int index,
         ) {
-          return TalkPageListTile(_roomList[index]);
+          return TalkPageListTile(roomList[index]);
         },
       );
     }

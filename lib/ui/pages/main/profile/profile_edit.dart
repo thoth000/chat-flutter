@@ -22,16 +22,16 @@ class ProfileEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _user = Provider.of<ProfileController>(context).user;
+    final user = Provider.of<ProfileController>(context).user;
     return Scaffold(
       appBar: ProfilePageAppBar(),
       backgroundColor: Colors.white,
-      body: (_user == null)
+      body: (user == null)
           ? Center(
               child: CircularProgressIndicator(),
             )
           : _ProfileEditPage(
-              user: _user,
+              user: user,
             ),
     );
   }
@@ -43,7 +43,7 @@ class _ProfileEditPage extends StatelessWidget {
   const _ProfileEditPage({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final _profileController =
+    final profileController =
         Provider.of<ProfileController>(context, listen: false);
     final TextEditingController _nameController = TextEditingController(
       text: ModalRoute.of(context).settings.arguments,
@@ -87,9 +87,9 @@ class _ProfileEditPage extends StatelessWidget {
                   Icons.arrow_upward,
                   color: Colors.white,
                 ),
-                label: Text("更新する"),
+                label: const Text("更新する"),
                 onPressed: () async {
-                  _profileController.changeProfileInfo(_nameController.text);
+                  profileController.changeProfileInfo(_nameController.text);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,
