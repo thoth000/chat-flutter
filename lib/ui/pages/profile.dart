@@ -52,7 +52,7 @@ class _ProfilePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ProfileImage(image: user.imgUrl),
+          ProfileImage(image: user.imgUrl,size:150,),
           SizedBox(
             height: AppSpace.small,
           ),

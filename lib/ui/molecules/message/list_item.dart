@@ -1,6 +1,7 @@
 import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
+import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
@@ -35,6 +36,10 @@ class MessageListItem extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          if (!message.isMe)
+            ProfileImage(
+              image: null,size: 40,
             ),
           Container(
             constraints: BoxConstraints(

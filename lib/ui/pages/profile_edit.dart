@@ -63,7 +63,7 @@ class _ProfileEditPage extends StatelessWidget {
         children: <Widget>[
           FlatButton(
             onPressed: () {},
-            child: ProfileImage(image: user.imgUrl),
+            child: ProfileImage(image: user.imgUrl,size: 150,),
           ),
           SizedBox(
             height: AppSpace.small,

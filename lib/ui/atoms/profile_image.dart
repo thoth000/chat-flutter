@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 class ProfileImage extends StatelessWidget {
   final String image;
+  final double size;
 
-  const ProfileImage({Key key, this.image}) : super(key: key);
+  const ProfileImage({Key key, this.image,this.size}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
-      height: 150,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
