@@ -1,7 +1,7 @@
+import 'package:chat_flutter/ui/pages/main/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:chat_flutter/providers/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 
@@ -11,38 +11,28 @@ import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfileEditPage extends StatelessWidget {
-  const ProfileEditPage({Key key}) : super(key: key);
+  const ProfileEditPage._({Key key}) : super(key: key);
+
+  static Widget wrapped() {
+    return ChangeNotifierProvider<ProfileController>(
+      create: (_) => ProfileController(),
+      child: ProfileEditPage._(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
+    final user = Provider.of<ProfileController>(context).user;
     return Scaffold(
       appBar: ProfilePageAppBar(),
       backgroundColor: Colors.white,
-      body: FutureBuilder<User>(
-        future: userProvider.getUserById("userId"),
-        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting: // データの取得まち
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-
-            default:
-              if (snapshot.hasData) {
-                return _ProfileEditPage(
-                  user: snapshot.data,
-                );
-              } else {
-                return Center(
-                  child: Text("該当するユーザーがいません"),
-                );
-              }
-          }
-        },
-      ),
+      body: (user == null)
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : _ProfileEditPage(
+              user: user,
+            ),
     );
   }
 }
@@ -53,6 +43,8 @@ class _ProfileEditPage extends StatelessWidget {
   const _ProfileEditPage({Key key, this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final profileController =
+        Provider.of<ProfileController>(context, listen: false);
     final TextEditingController _nameController = TextEditingController(
       text: ModalRoute.of(context).settings.arguments,
     );
@@ -91,12 +83,13 @@ class _ProfileEditPage extends StatelessWidget {
             child: Container(
               width: 150,
               child: RaisedButton.icon(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_upward,
                   color: Colors.white,
                 ),
-                label: Text("更新する"),
-                onPressed: () {
+                label: const Text("更新する"),
+                onPressed: () async {
+                  profileController.changeProfileInfo(_nameController.text);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,
