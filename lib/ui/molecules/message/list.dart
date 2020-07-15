@@ -15,7 +15,7 @@ class MessageList extends StatelessWidget {
           if (snapshot.hasData) {
             if (snapshot.data.length != 0) {
               return ListView.builder(
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: snapshot.data.length,
@@ -30,7 +30,7 @@ class MessageList extends StatelessWidget {
               return Container();
             }
           } else if (snapshot.connectionState != ConnectionState.done) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
@@ -44,20 +44,20 @@ class MessageList extends StatelessWidget {
   Future<List<Message>> _getMessageList() async {
     final List<Message> messageList = [
       Message(
-        message: "amusement park!!!",
-        sendTime: "23:00",
+        message: 'amusement park!!!',
+        sendTime: '23:00',
         isMe: true,
         isRead: true,
       ),
       Message(
-        message: "make it possible with canon",
-        sendTime: "23:03",
+        message: 'make it possible with canon',
+        sendTime: '23:03',
         isMe: false,
         isRead: true,
       ),
       Message(
-        message: "あなたと、コンビに、ファミリーマート",
-        sendTime: "23:07",
+        message: 'あなたと、コンビに、ファミリーマート',
+        sendTime: '23:07',
         isMe: true,
         isRead: false,
       ),

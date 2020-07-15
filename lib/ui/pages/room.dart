@@ -9,19 +9,19 @@ import 'package:chat_flutter/config/app_text_size.dart';
 class RoomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final String name = ModalRoute.of(context).settings.arguments;
+    final String name = ModalRoute.of(context).settings.arguments.toString();
     final TextEditingController _controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Color(0xff707070),
         ),
         title: Text(
           name,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xff707070),
           ),
         ),
@@ -55,7 +55,7 @@ class RoomPage extends StatelessWidget {
                   maxLines: 4,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(),
+                      borderSide: const BorderSide(),
                       borderRadius: BorderRadius.circular(AppRadius.midium),
                     ),
                     contentPadding: EdgeInsets.all(
