@@ -28,7 +28,6 @@ class FriendTileList extends StatelessWidget {
               ),
               ListView.builder(
                 physics: ScrollPhysics(),
-                scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: friendList.length,
                 itemBuilder: (

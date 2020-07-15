@@ -26,8 +26,7 @@ class GroupTileList extends StatelessWidget {
               height: AppSpace.small,
             ),
             ListView.builder(
-              physics: ScrollPhysics(),
-              scrollDirection: Axis.vertical,
+              physics: const ScrollPhysics(),
               shrinkWrap: true,
               itemCount: groupList.length,
               itemBuilder: (
