@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:chat_flutter/config/app_space.dart';
 
 import 'package:chat_flutter/ui/molecules/home/my_tile.dart';

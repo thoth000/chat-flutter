@@ -7,7 +7,6 @@ import 'package:chat_flutter/ui/molecules/home/list_tile.dart';
 
 import 'package:chat_flutter/ui/pages/main/home/home_controller.dart';
 
-
 class FriendTileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
