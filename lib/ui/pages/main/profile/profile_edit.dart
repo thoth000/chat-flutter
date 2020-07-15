@@ -27,7 +27,7 @@ class ProfileEditPage extends StatelessWidget {
       appBar: ProfilePageAppBar(),
       backgroundColor: Colors.white,
       body: (user == null)
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : _ProfileEditPage(
@@ -83,7 +83,7 @@ class _ProfileEditPage extends StatelessWidget {
             child: Container(
               width: 150,
               child: RaisedButton.icon(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_upward,
                   color: Colors.white,
                 ),

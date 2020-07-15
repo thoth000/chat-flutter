@@ -51,7 +51,7 @@ class _ProfilePage extends StatelessWidget {
             child: Container(
               width: 150,
               child: RaisedButton.icon(
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   color: Colors.white,
                 ),
