@@ -13,7 +13,7 @@ class TalkPage extends StatelessWidget {
       );
     } else {
       return ListView.builder(
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: roomList.length,
