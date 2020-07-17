@@ -19,12 +19,12 @@ class AddFriendPage extends StatelessWidget {
           child: TextField(
             controller: _textEditingController,
             //autofocus: true,
-            decoration: InputDecoration(
-              hintText: "IDを入力",
+            decoration: const InputDecoration(
+              hintText: 'IDを入力',
             ),
           ),
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Color(0xff707070),
         ),
         actions: <Widget>[
@@ -46,7 +46,7 @@ class AddFriendPage extends StatelessWidget {
           if (snapshot.hasData) {
             if (snapshot.data.length != 0) {
               return ListView.builder(
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: snapshot.data.length,
@@ -58,14 +58,14 @@ class AddFriendPage extends StatelessWidget {
                 },
               );
             } else {
-              return Center(
+              return const Center(
                 child: Text(
-                  "友達が見つかりません",
+                  '友達が見つかりません',
                 ),
               );
             }
           } else if (snapshot.connectionState != ConnectionState.done) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
@@ -79,31 +79,31 @@ class AddFriendPage extends StatelessWidget {
   Future<List<User>> _getUserList() async {
     final List<User> userList = [
       User(
-        name: "Alex",
+        name: 'Alex',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Alex2(笑)",
+        name: 'Alex2(笑)',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Jack",
+        name: 'Jack',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Brian",
+        name: 'Brian',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
     ];
-    await Future.delayed(Duration(seconds: 5));
-    return await Future.value(userList);
+    await Future<dynamic>.delayed(const Duration(seconds: 5));
+    return Future.value(userList);
   }
 }

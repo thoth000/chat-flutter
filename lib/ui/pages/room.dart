@@ -71,9 +71,7 @@ class RoomPage extends StatelessWidget {
                 width: AppSpace.xsmall,
               ),
               IconButton(
-                onPressed: () {
-                  _controller.clear();
-                },
+                onPressed: _controller.clear,
                 icon: Icon(
                   Icons.send,
                 ),

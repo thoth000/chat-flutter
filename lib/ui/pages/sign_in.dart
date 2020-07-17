@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class SignInPage extends StatelessWidget {
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
+  final TextEditingController emailTextController = TextEditingController();
+  final TextEditingController passwordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class SignInPage extends StatelessWidget {
                       vertical: AppSpace.small,
                     ),
                     child: Text(
-                      "Start",
+                      'Start',
                       style: TextStyle(
                         fontSize: AppTextSize.xlarge,
                         fontWeight: FontWeight.bold,

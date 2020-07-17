@@ -14,13 +14,13 @@ class CreateGroupPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
-        title: Text(
-          "Group",
+        title: const Text(
+          'Group',
           style: TextStyle(
             color: Color(0xff707070),
           ),
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Color(0xff707070),
         ),
         actions: <Widget>[
@@ -48,8 +48,8 @@ class CreateGroupPage extends StatelessWidget {
                   width: 100,
                   child: CircleAvatar(
                     radius: double.infinity,
-                    backgroundImage: NetworkImage(
-                        "https://wired.jp/app/uploads/2019/10/dog-unsolicited.jpg"),
+                    backgroundImage: const NetworkImage(
+                        'https://wired.jp/app/uploads/2019/10/dog-unsolicited.jpg'),
                   ),
                 ),
               ),
@@ -74,7 +74,7 @@ class CreateGroupPage extends StatelessWidget {
                     left: AppSpace.midium,
                   ),
                   child: Text(
-                    "members",
+                    'members',
                     style: TextStyle(
                       fontSize: AppTextSize.small,
                       fontWeight: FontWeight.bold,
@@ -91,7 +91,7 @@ class CreateGroupPage extends StatelessWidget {
                       return Container(
                         height: 280, //4人分
                         child: ListView.builder(
-                          physics: ScrollPhysics(),
+                          physics: const ScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           itemCount: snapshot.data.length,
@@ -107,7 +107,7 @@ class CreateGroupPage extends StatelessWidget {
                       return Container();
                     }
                   } else if (snapshot.connectionState != ConnectionState.done) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else {
@@ -125,43 +125,43 @@ class CreateGroupPage extends StatelessWidget {
   Future<List<User>> _getMemberList() async {
     final List<User> memberList = [
       User(
-        name: "Alex",
+        name: 'Alex',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Alex2",
+        name: 'Alex2',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Jack",
+        name: 'Jack',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Brian",
+        name: 'Brian',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Dog",
+        name: 'Dog',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
       User(
-        name: "Cat",
+        name: 'Cat',
         imgUrl:
-            "https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg",
+            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
         isMe: false,
       ),
     ];
-    await Future.delayed(Duration(seconds: 3));
-    return await Future.value(memberList);
+    await Future<dynamic>.delayed(const Duration(seconds: 3));
+    return Future.value(memberList);
   }
 }
