@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
-  MainPage._({Key key}) : super(key: key);
+  const MainPage._({Key key}) : super(key: key);
 
   static Widget wrapped() {
     return MultiProvider(
@@ -37,19 +37,19 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<MainController>(context);
-    final List appBarList = [
+    final List<PreferredSizeWidget> appBarList = [
       HomePageAppBar(),
       TalkPageAppBar(),
       ProfilePageAppBar(),
     ];
 
     final List<Color> backgroundColor = [
-      Color(0xffEEEEEE),
+      const Color(0xffEEEEEE),
       Colors.white,
       Colors.white,
     ];
 
-    final List pages = [
+    final List<StatelessWidget> pages = [
       HomePage(),
       TalkPage(),
       ProfilePage(),
@@ -66,39 +66,38 @@ class MainPage extends StatelessWidget {
   Widget _bottomNavigation(BuildContext context) {
     final controller = Provider.of<MainController>(context);
     return BottomNavigationBar(
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: controller.currentIndex,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
-            title: Text(
-              "",
-            ),
+      backgroundColor: Colors.white,
+      type: BottomNavigationBarType.fixed,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      currentIndex: controller.currentIndex,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.home,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.message,
-            ),
-            title: Text(
-              "",
-            ),
+          title: Text(
+            '',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-            ),
-            title: Text(
-              "",
-            ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.message,
           ),
-        ],
-        onTap: (index) {
-          controller.changePage(index);
-        });
+          title: Text(
+            '',
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.person,
+          ),
+          title: Text(
+            '',
+          ),
+        ),
+      ],
+      onTap: controller.changePage,
+    );
   }
 }
