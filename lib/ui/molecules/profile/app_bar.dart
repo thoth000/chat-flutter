@@ -7,15 +7,15 @@ class ProfilePageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 1.0,
+      elevation: 1,
       backgroundColor: Colors.white,
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Color(0xff707070),
       ),
       title: Text(
-        "Profile",
+        'Profile',
         style: TextStyle(
-          color: Color(0xff707070),
+          color: const Color(0xff707070),
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -24,7 +24,7 @@ class ProfilePageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: Icon(
             Icons.more_vert,
           ),
-          color: Color(0xff707070),
+          color: const Color(0xff707070),
           onPressed: () {},
         ),
       ],

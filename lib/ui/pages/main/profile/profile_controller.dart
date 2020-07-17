@@ -3,14 +3,14 @@ import 'package:chat_flutter/model/user.dart';
 
 class ProfileController with ChangeNotifier {
   ProfileController() {
-    getUserById("testId");
+    getUserById('testId');
     print(user.name);
   }
   User user;
 
   void getUserById(String userId) async {
-    user = User(name: "test", imgUrl: "");
-    await Future.delayed(Duration(seconds: 1));
+    user = User(name: 'test', imgUrl: '');
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
     notifyListeners();
   }
 

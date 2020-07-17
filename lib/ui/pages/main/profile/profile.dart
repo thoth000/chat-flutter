@@ -58,11 +58,11 @@ class _ProfilePage extends StatelessWidget {
                   Icons.edit,
                   color: Colors.white,
                 ),
-                label: const Text("編集する"),
+                label: const Text('編集する'),
                 onPressed: () {
                   Navigator.pushNamed<void>(
                     context,
-                    "/profileEditPage",
+                    '/profileEditPage',
                     arguments: user.name,
                   );
                 },
