@@ -39,7 +39,8 @@ class MessageListItem extends StatelessWidget {
             ),
           if (!message.isMe)
             const ProfileImage(
-              image: null,size: 40,
+              image: null,
+              size: 40,
             ),
           Container(
             constraints: BoxConstraints(
