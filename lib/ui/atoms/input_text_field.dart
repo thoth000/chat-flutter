@@ -44,7 +44,7 @@ class InputTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppRadius.xsmall),
             borderSide: const BorderSide(),
           ),
-          contentPadding: EdgeInsets.all(AppSpace.small),
+          contentPadding: const EdgeInsets.all(AppSpace.small),
         ),
       ),
     );
