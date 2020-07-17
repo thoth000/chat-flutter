@@ -38,7 +38,7 @@ class CreateGroupPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: AppSpace.midium,
               ),
               FlatButton(
@@ -70,7 +70,7 @@ class CreateGroupPage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: AppSpace.midium,
                   ),
                   child: Text(

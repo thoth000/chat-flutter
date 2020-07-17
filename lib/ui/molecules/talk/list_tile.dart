@@ -20,7 +20,7 @@ class TalkPageListTile extends StatelessWidget {
       },
       child: SizedBox(
         child: Padding(
-          padding: EdgeInsets.all(AppSpace.small),
+          padding: const EdgeInsets.all(AppSpace.small),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[

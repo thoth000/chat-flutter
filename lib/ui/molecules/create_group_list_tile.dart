@@ -41,7 +41,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
                 backgroundImage: NetworkImage(widget.imgUrl),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSpace.midium,
             ),
             Expanded(
