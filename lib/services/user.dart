@@ -6,9 +6,9 @@ class UserService implements UserInterface {
 
   @override
   Future<User> getUserById(String userId) async {
-    User user = User(name: "test", imgUrl: "");
+    final User user = User(name: 'test', imgUrl: '');
 
-    await Future.delayed(Duration(seconds: 1));
-    return await Future.value(user);
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
+    return Future.value(user);
   }
 }

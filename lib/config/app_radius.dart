@@ -1,7 +1,7 @@
 class AppRadius {
-  static final xsmall = 5.0;
-  static final small = 10.0;
-  static final midium = 20.0;
-  static final large = 30.0;
-  static final xlarge = 50.0;
+  static const xsmall = 5;
+  static const small = 10;
+  static const midium = 20;
+  static const large = 30;
+  static const xlarge = 50;
 }
