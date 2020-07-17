@@ -30,7 +30,7 @@ class MainPage extends StatelessWidget {
           create: (_) => ProfileController(),
         ),
       ],
-      child: MainPage._(),
+      child: const MainPage._(),
     );
   }
 

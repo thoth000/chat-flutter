@@ -12,7 +12,7 @@ class HomeController with ChangeNotifier {
   List<Group> groupList;
   List<User> friendList;
 
-  void getMeById(String userId) async {
+  Future<void> getMeById(String userId) async {
     user = User(
       name: 'test',
       imgUrl: 'https://dot.asahi.com/S2000/upload/2019100100055_1.jpg',

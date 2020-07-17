@@ -8,13 +8,13 @@ class ProfileController with ChangeNotifier {
   }
   User user;
 
-  void getUserById(String userId) async {
+  Future<void> getUserById(String userId) async {
     user = User(name: 'test', imgUrl: '');
     await Future<dynamic>.delayed(const Duration(seconds: 1));
     notifyListeners();
   }
 
-  void changeProfileInfo(String s) async {
+  Future<void> changeProfileInfo(String s) async {
     //Firebaseへの変更通知
     print(s);
   }

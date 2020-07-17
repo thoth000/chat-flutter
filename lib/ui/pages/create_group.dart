@@ -43,7 +43,7 @@ class CreateGroupPage extends StatelessWidget {
               ),
               FlatButton(
                 onPressed: () {},
-                child: SizedBox(
+                child: const SizedBox(
                   height: 100,
                   width: 100,
                   child: CircleAvatar(

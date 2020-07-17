@@ -7,12 +7,12 @@ class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 1.0,
+      elevation: 1,
       backgroundColor: Colors.white,
       title: Text(
-        "Talk",
+        'Talk',
         style: TextStyle(
-          color: Color(0xff707070),
+          color: const Color(0xff707070),
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -21,7 +21,7 @@ class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: Icon(
             Icons.more_vert,
           ),
-          color: Color(0xff707070),
+          color: const Color(0xff707070),
           onPressed: () {},
         ),
       ],

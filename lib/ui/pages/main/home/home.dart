@@ -28,11 +28,11 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: AppSpace.midium,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: AppSpace.midium,
                   ),
                   child: Text(
@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                   endIndent: AppSpace.big,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: AppSpace.midium,
                   ),
                   child: Text(

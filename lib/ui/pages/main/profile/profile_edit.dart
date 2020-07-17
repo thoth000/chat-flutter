@@ -60,11 +60,11 @@ class _ProfileEditPage extends StatelessWidget {
               size: 150,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: AppSpace.small,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: AppSpace.midium,
             ),
             child: TextField(

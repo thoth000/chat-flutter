@@ -44,7 +44,7 @@ class SignUpPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(),
-                borderRadius: BorderRadius.vertical(
+                borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(AppRadius.large),
                 ),
               ),

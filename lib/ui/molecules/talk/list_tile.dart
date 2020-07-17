@@ -5,7 +5,9 @@ import 'package:chat_flutter/model/room.dart';
 
 class TalkPageListTile extends StatelessWidget {
   final Room room;
-  TalkPageListTile(this.room);
+
+  const TalkPageListTile(this.room);
+
   @override
   Widget build(BuildContext context) {
     return FlatButton(
@@ -30,7 +32,7 @@ class TalkPageListTile extends StatelessWidget {
                   backgroundImage: NetworkImage(room.imgUrl),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: AppSpace.midium,
               ),
               SizedBox(

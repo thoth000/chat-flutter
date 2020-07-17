@@ -53,7 +53,7 @@ class MessageListItem extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.small),
-              color: message.isMe ? Colors.blue : Color(0xffEEEEEE),
+              color: message.isMe ? Colors.blue : const Color(0xffEEEEEE),
             ),
             padding: EdgeInsets.all(AppSpace.small),
             child: Text(

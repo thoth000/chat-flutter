@@ -37,7 +37,7 @@ class _ProfilePage extends StatelessWidget {
             image: user.imgUrl,
             size: 150,
           ),
-          SizedBox(
+          const SizedBox(
             height: AppSpace.small,
           ),
           Text(

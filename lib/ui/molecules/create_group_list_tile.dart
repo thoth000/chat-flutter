@@ -29,7 +29,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
     return FlatButton(
       onPressed: select,
       child: Padding(
-        padding: EdgeInsets.all(AppSpace.small),
+        padding: const EdgeInsets.all(AppSpace.small),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[

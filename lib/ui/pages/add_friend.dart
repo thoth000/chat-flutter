@@ -13,7 +13,7 @@ class AddFriendPage extends StatelessWidget {
         elevation: 1,
         backgroundColor: Colors.white,
         title: Container(
-          margin: EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             vertical: AppSpace.xsmall,
           ),
           child: TextField(

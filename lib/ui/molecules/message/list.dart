@@ -63,7 +63,7 @@ class MessageList extends StatelessWidget {
       ),
     ];
 
-    await Future.delayed(Duration(seconds: 1));
-    return await Future.value(messageList);
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
+    return Future.value(messageList);
   }
 }

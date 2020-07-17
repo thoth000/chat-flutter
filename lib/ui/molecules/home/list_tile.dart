@@ -34,7 +34,7 @@ class HomePageListTile extends StatelessWidget {
                 backgroundImage: NetworkImage(imgUrl),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSpace.midium,
             ),
             Flexible(
