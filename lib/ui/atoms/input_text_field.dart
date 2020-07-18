@@ -7,11 +7,11 @@ class InputTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextInputType keyboardType;
-  final Function onChanged;
+  final Function(String) onChanged;
   final TextEditingController controller;
   final int maxLines;
 
-  InputTextField({
+  const InputTextField({
     this.hintText,
     this.keyboardType,
     this.obscureText,
@@ -38,13 +38,13 @@ class InputTextField extends StatelessWidget {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppRadius.xsmall),
-            borderSide: BorderSide(),
+            borderSide: const BorderSide(),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppRadius.xsmall),
-            borderSide: BorderSide(),
+            borderSide: const BorderSide(),
           ),
-          contentPadding: EdgeInsets.all(AppSpace.small),
+          contentPadding: const EdgeInsets.all(AppSpace.small),
         ),
       ),
     );

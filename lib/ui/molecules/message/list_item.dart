@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class MessageListItem extends StatelessWidget {
-  final Message message;
   MessageListItem(this.message);
+  final Message message;
   @override
   Widget build(BuildContext context) {
     //isMeは頻繁に使うし変化しないから、ここで定義するのは？
@@ -24,7 +24,7 @@ class MessageListItem extends StatelessWidget {
             Column(
               children: <Widget>[
                 Text(
-                  (message.isRead) ? "既読" : "",
+                  (message.isRead) ? '既読' : '',
                   style: TextStyle(
                     fontSize: AppTextSize.xsmall,
                   ),
@@ -38,7 +38,7 @@ class MessageListItem extends StatelessWidget {
               ],
             ),
           if (!message.isMe)
-            ProfileImage(
+            const ProfileImage(
               image: null,
               size: 40,
             ),
@@ -51,9 +51,9 @@ class MessageListItem extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.small),
-              color: message.isMe ? Colors.blue : Color(0xffEEEEEE),
+              color: message.isMe ? Colors.blue : const Color(0xffEEEEEE),
             ),
-            padding: EdgeInsets.all(AppSpace.small),
+            padding: const EdgeInsets.all(AppSpace.small),
             child: Text(
               message.message,
               softWrap: true,

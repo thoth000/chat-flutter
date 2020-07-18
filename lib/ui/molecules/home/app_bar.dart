@@ -7,12 +7,12 @@ class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 1.0,
-      backgroundColor: Color(0xffEEEEEE),
+      elevation: 1,
+      backgroundColor: const Color(0xffEEEEEE),
       title: Text(
-        "Chat",
+        'Chat',
         style: TextStyle(
-          color: Color(0xff707070),
+          color: const Color(0xff707070),
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -21,7 +21,7 @@ class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: Icon(
             Icons.person_add,
           ),
-          color: Color(0xff707070),
+          color: const Color(0xff707070),
           onPressed: () {
             Navigator.pushNamed(context, '/addFriendPage');
           },
@@ -30,7 +30,7 @@ class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: Icon(
             Icons.group_add,
           ),
-          color: Color(0xff707070),
+          color: const Color(0xff707070),
           onPressed: () {
             Navigator.pushNamed(context, '/createGroupPage');
           },

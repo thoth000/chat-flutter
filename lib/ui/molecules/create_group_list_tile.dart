@@ -6,10 +6,12 @@ import 'package:chat_flutter/config/app_text_size.dart';
 class CreateGroupListTile extends StatefulWidget {
   final String name;
   final String imgUrl;
-  CreateGroupListTile({
+
+  const CreateGroupListTile({
     this.name,
     this.imgUrl,
   });
+
   @override
   _CreateGroupListTileState createState() => _CreateGroupListTileState();
 }
@@ -25,11 +27,9 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () {
-        select();
-      },
+      onPressed: select,
       child: Padding(
-        padding: EdgeInsets.all(AppSpace.small),
+        padding: const EdgeInsets.all(AppSpace.small),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -41,7 +41,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
                 backgroundImage: NetworkImage(widget.imgUrl),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSpace.midium,
             ),
             Expanded(

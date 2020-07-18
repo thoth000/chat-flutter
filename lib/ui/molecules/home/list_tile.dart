@@ -7,11 +7,13 @@ class HomePageListTile extends StatelessWidget {
   final String name;
   final String imgUrl;
   final bool isMe;
-  HomePageListTile({
+
+  const HomePageListTile({
     this.name,
     this.imgUrl,
     this.isMe = false, //デフォルトでfalseに設定
   });
+
   @override
   Widget build(BuildContext context) {
     return FlatButton(
@@ -32,7 +34,7 @@ class HomePageListTile extends StatelessWidget {
                 backgroundImage: NetworkImage(imgUrl),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSpace.midium,
             ),
             Flexible(

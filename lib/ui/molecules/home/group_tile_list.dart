@@ -22,7 +22,7 @@ class GroupTileList extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: AppSpace.small,
             ),
             ListView.builder(

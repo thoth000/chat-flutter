@@ -1,4 +1,5 @@
 # https://pub.dev/packages/pedantic_mono
+
 include: package:pedantic_mono/analysis_options.yaml
 
 linter:
@@ -11,3 +12,4 @@ linter:
     non_constant_identifier_names: false
     avoid_single_cascade_in_expression_statements: false
     constant_identifier_names: false
+    sort_constructors_first: false

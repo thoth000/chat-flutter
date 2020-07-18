@@ -44,7 +44,7 @@ class RoomPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 width: AppSpace.small,
               ),
               Expanded(
@@ -58,7 +58,7 @@ class RoomPage extends StatelessWidget {
                       borderSide: const BorderSide(),
                       borderRadius: BorderRadius.circular(AppRadius.midium),
                     ),
-                    contentPadding: EdgeInsets.all(
+                    contentPadding: const EdgeInsets.all(
                       AppSpace.small,
                     ),
                   ),
@@ -71,9 +71,7 @@ class RoomPage extends StatelessWidget {
                 width: AppSpace.xsmall,
               ),
               IconButton(
-                onPressed: () {
-                  _controller.clear();
-                },
+                onPressed: _controller.clear,
                 icon: Icon(
                   Icons.send,
                 ),

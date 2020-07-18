@@ -6,10 +6,12 @@ import 'package:chat_flutter/config/app_text_size.dart';
 class AddFriendListTile extends StatelessWidget {
   final String name;
   final String imgUrl;
-  AddFriendListTile({
+
+  const AddFriendListTile({
     this.name,
     this.imgUrl,
   });
+
   @override
   Widget build(BuildContext context) {
     return FlatButton(

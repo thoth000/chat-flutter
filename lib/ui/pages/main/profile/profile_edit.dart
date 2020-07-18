@@ -16,7 +16,7 @@ class ProfileEditPage extends StatelessWidget {
   static Widget wrapped() {
     return ChangeNotifierProvider<ProfileController>(
       create: (_) => ProfileController(),
-      child: ProfileEditPage._(),
+      child: const ProfileEditPage._(),
     );
   }
 
@@ -46,7 +46,7 @@ class _ProfileEditPage extends StatelessWidget {
     final profileController =
         Provider.of<ProfileController>(context, listen: false);
     final TextEditingController _nameController = TextEditingController(
-      text: ModalRoute.of(context).settings.arguments,
+      text: ModalRoute.of<String>(context).settings.arguments.toString(),
     );
     return SafeArea(
       child: Column(
@@ -60,11 +60,11 @@ class _ProfileEditPage extends StatelessWidget {
               size: 150,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: AppSpace.small,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: AppSpace.midium,
             ),
             child: TextField(
@@ -90,7 +90,7 @@ class _ProfileEditPage extends StatelessWidget {
                   Icons.arrow_upward,
                   color: Colors.white,
                 ),
-                label: const Text("更新する"),
+                label: const Text('更新する'),
                 onPressed: () async {
                   profileController.changeProfileInfo(_nameController.text);
                   Navigator.of(context).pop();
