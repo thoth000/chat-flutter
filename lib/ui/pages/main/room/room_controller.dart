@@ -2,11 +2,13 @@ import 'package:chat_flutter/model/message.dart';
 import 'package:flutter/material.dart';
 
 class RoomController extends ChangeNotifier {
-  RoomController() {}
+  RoomController() {
+    getMessageList();
+  }
   List<Message> messageList;
-  String inputMessage;
+  TextEditingController textController = TextEditingController();
 
-  Future<void> getMessageList() {
+  Future<void> getMessageList() async {
     /// TODO Firebaseからの取得に置き換える
     messageList = [
       Message(
@@ -28,5 +30,13 @@ class RoomController extends ChangeNotifier {
         isRead: false,
       ),
     ];
+    await Future<dynamic>.delayed(const Duration(seconds: 2));
+    notifyListeners();
+  }
+
+  void sendMessage() {
+    /// TODO Firebaseへの処理に置き換える
+    textController.clear();
+    notifyListeners();
   }
 }
