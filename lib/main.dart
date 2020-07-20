@@ -4,7 +4,7 @@ import 'package:chat_flutter/ui/pages/add_friend.dart';
 import 'package:chat_flutter/ui/pages/create_group.dart';
 import 'package:chat_flutter/ui/pages/main/main.dart';
 import 'package:chat_flutter/ui/pages/main/profile/profile_edit.dart';
-import 'package:chat_flutter/ui/pages/room.dart';
+import 'package:chat_flutter/ui/pages/main/room/room.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
 import 'package:chat_flutter/ui/pages/sign_up.dart';
 
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/mainPage': (context) => MainPage.wrapped(),
         '/signUpPage': (context) => SignUpPage(),
         '/signInPage': (context) => SignInPage(),
-        '/roomPage': (context) => RoomPage(),
+        '/roomPage': (context) => RoomPage.wrapped(),
         '/profileEditPage': (context) => ProfileEditPage.wrapped(),
         '/addFriendPage': (context) => AddFriendPage(),
         '/createGroupPage': (context) => CreateGroupPage(),
