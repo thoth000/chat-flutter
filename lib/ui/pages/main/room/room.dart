@@ -20,6 +20,7 @@ class RoomPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final String name = ModalRoute.of(context).settings.arguments.toString();
     final roomController = Provider.of<RoomController>(context, listen: false);
+    final TextEditingController textController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -56,12 +57,17 @@ class RoomPage extends StatelessWidget {
               const SizedBox(
                 width: AppSpace.small,
               ),
-              InputMessageTextField(),
+              InputMessageTextField(
+                roomTextController: textController,
+              ),
               SizedBox(
                 width: AppSpace.xsmall,
               ),
               IconButton(
-                onPressed: roomController.sendMessage,
+                onPressed: () async {
+                  await roomController.sendMessage(textController.text);
+                  textController.clear();
+                },
                 icon: Icon(
                   Icons.send,
                 ),

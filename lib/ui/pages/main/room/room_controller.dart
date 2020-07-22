@@ -6,7 +6,6 @@ class RoomController extends ChangeNotifier {
     getMessageList();
   }
   List<Message> messageList;
-  TextEditingController textController = TextEditingController();
 
   Future<void> getMessageList() async {
     /// TODO Firebaseからの取得に置き換える
@@ -34,9 +33,8 @@ class RoomController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void sendMessage() {
+  Future<void> sendMessage(String message) {
     /// TODO Firebaseへの処理に置き換える
-    textController.clear();
     notifyListeners();
   }
 }
