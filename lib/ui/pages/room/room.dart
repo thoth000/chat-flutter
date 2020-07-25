@@ -11,7 +11,7 @@ class RoomPage extends StatelessWidget {
 
   static Widget wrapped() {
     return ChangeNotifierProvider<RoomController>(
-      create: (_) => new RoomController(),
+      create: (_) => RoomController(),
       child: const RoomPage._(),
     );
   }
