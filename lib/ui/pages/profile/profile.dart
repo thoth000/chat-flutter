@@ -60,10 +60,8 @@ class _ProfilePage extends StatelessWidget {
                 ),
                 label: const Text('編集する'),
                 onPressed: () {
-                  Navigator.pushNamed<void>(
-                    context,
-                    '/profileEditPage',
-                    arguments: user.name,
+                  Navigator.of(context).pushNamed(
+                    '/profileEditPage'
                   );
                 },
                 color: Colors.green,

@@ -1,70 +1,81 @@
+import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
+import 'package:chat_flutter/ui/molecules/talk/app_bar.dart';
+import 'package:chat_flutter/ui/pages/home/home_controller.dart';
+import 'package:chat_flutter/ui/pages/profile/profile.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
+import 'package:chat_flutter/ui/pages/talk/talk.dart';
+import 'package:chat_flutter/ui/pages/talk/talk_controller.dart';
 import 'package:flutter/material.dart';
-
-import 'package:chat_flutter/config/app_space.dart';
-
-import 'package:chat_flutter/ui/molecules/home/my_tile.dart';
-import 'package:chat_flutter/ui/molecules/home/friend_tile_list.dart';
-import 'package:chat_flutter/ui/molecules/home/group_tile_list.dart';
-
-import 'package:chat_flutter/config/app_text_size.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage._({Key key}) : super(key: key);
+
+  static Widget wrapped() {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<HomeController>(
+          create: (_) => HomeController(),
+        ),
+        ChangeNotifierProvider<TalkController>(
+          create: (_) => TalkController(),
+        ),
+        ChangeNotifierProvider<ProfileController>(
+          create: (_) => ProfileController(),
+        ),
+      ],
+      child: const HomePage._(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          MyTile(),
-          Container(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height - 180,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(20),
-              ),
-              color: Colors.white,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(
-                  height: AppSpace.midium,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: AppSpace.midium,
-                  ),
-                  child: Text(
-                    'Groups',
-                    style: TextStyle(
-                      fontSize: AppTextSize.small,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                GroupTileList(),
-                Divider(
-                  endIndent: AppSpace.big,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: AppSpace.midium,
-                  ),
-                  child: Text(
-                    'Friends',
-                    style: TextStyle(
-                      fontSize: AppTextSize.small,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                FriendTileList(),
-              ],
-            ),
+    final controller = Provider.of<HomeController>(context);
+    final List<PreferredSizeWidget> appBarList = [
+      TalkPageAppBar(),
+      ProfilePageAppBar(),
+    ];
+
+    final List<StatelessWidget> pages = [
+      TalkPage(),
+      ProfilePage(),
+    ];
+
+    return Scaffold(
+      appBar: appBarList[controller.currentIndex],
+      backgroundColor: Colors.white,
+      bottomNavigationBar: _bottomNavigation(context),
+      body: pages[controller.currentIndex],
+    );
+  }
+
+  Widget _bottomNavigation(BuildContext context) {
+    final controller = Provider.of<HomeController>(context);
+    return BottomNavigationBar(
+      backgroundColor: Colors.white,
+      type: BottomNavigationBarType.fixed,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      currentIndex: controller.currentIndex,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.message,
           ),
-        ],
-      ),
+          title: Text(
+            '',
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.person,
+          ),
+          title: Text(
+            '',
+          ),
+        ),
+      ],
+      onTap: controller.changePage,
     );
   }
 }
