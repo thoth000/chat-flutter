@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:chat_flutter/ui/molecules/home/list_tile.dart';
 
-import 'package:chat_flutter/ui/pages/main/home/home_controller.dart';
+import 'package:chat_flutter/ui/pages/home/home_controller.dart';
 
 class MyTile extends StatelessWidget {
   @override

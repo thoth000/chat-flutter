@@ -1,4 +1,4 @@
-import 'package:chat_flutter/ui/pages/main/profile/profile_controller.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
-import 'package:chat_flutter/ui/pages/main/profile/profile_controller.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
