@@ -46,7 +46,7 @@ class _ProfileEditPage extends StatelessWidget {
     final profileController =
         Provider.of<ProfileController>(context, listen: false);
     final TextEditingController _nameController = TextEditingController(
-      text: ModalRoute.of<String>(context).settings.arguments.toString(),
+      text: ModalRoute.of(context).settings.arguments.toString(),
     );
     return SafeArea(
       child: Column(
