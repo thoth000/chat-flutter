@@ -1,4 +1,4 @@
-import 'package:chat_flutter/ui/pages/main/profile/profile_controller.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +46,7 @@ class _ProfileEditPage extends StatelessWidget {
     final profileController =
         Provider.of<ProfileController>(context, listen: false);
     final TextEditingController _nameController = TextEditingController(
-      text: ModalRoute.of<String>(context).settings.arguments.toString(),
+      text: ModalRoute.of(context).settings.arguments.toString(),
     );
     return SafeArea(
       child: Column(

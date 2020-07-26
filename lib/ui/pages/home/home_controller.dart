@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MainController with ChangeNotifier {
+class HomeController with ChangeNotifier {
   int currentIndex;
-  MainController() {
+  HomeController() {
     currentIndex = 0;
   }
 

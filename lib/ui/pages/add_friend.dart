@@ -31,7 +31,6 @@ class AddFriendPage extends StatelessWidget {
           IconButton(
             onPressed: () {
               //searchの処理
-              print(_textEditingController.text);
             },
             icon: Icon(Icons.search),
           ),

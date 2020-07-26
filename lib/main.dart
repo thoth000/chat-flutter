@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/ui/pages/add_friend.dart';
 import 'package:chat_flutter/ui/pages/create_group.dart';
-import 'package:chat_flutter/ui/pages/main/main.dart';
-import 'package:chat_flutter/ui/pages/main/profile/profile_edit.dart';
-import 'package:chat_flutter/ui/pages/main/room/room.dart';
+import 'package:chat_flutter/ui/pages/home/home.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_edit.dart';
+import 'package:chat_flutter/ui/pages/room/room.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
 import 'package:chat_flutter/ui/pages/sign_up.dart';
 
@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/mainPage',
+      initialRoute: '/homePage',
       routes: {
-        '/mainPage': (context) => MainPage.wrapped(),
+        '/homePage': (context) => HomePage.wrapped(),
         '/signUpPage': (context) => SignUpPage(),
         '/signInPage': (context) => SignInPage(),
         '/roomPage': (context) => RoomPage.wrapped(),

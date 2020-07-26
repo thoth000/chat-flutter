@@ -1,7 +1,7 @@
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
-import 'package:chat_flutter/ui/pages/main/room/room_controller.dart';
+import 'package:chat_flutter/ui/pages/room/room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
