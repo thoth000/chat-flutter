@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class MessageListItem extends StatelessWidget {
-  MessageListItem(this.message);
+  const MessageListItem(this.message);
   final Message message;
   @override
   Widget build(BuildContext context) {

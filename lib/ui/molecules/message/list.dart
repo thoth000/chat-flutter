@@ -11,7 +11,7 @@ class MessageList extends StatelessWidget {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    } else if (messageList.length == 0) {
+    } else if (messageList.isEmpty) {
       return Container();
     } else {
       return Expanded(
