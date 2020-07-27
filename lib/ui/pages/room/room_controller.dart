@@ -1,4 +1,5 @@
 import 'package:chat_flutter/model/message.dart';
+import 'package:chat_flutter/services/messgae_service.dart';
 import 'package:flutter/material.dart';
 
 class RoomController extends ChangeNotifier {
@@ -6,6 +7,7 @@ class RoomController extends ChangeNotifier {
     getMessageList();
   }
   List<Message> messageList;
+  final MessageService _messageService = MessageService();
 
   Future<void> getMessageList() async {
     /// TODO Firebaseからの取得に置き換える
@@ -33,8 +35,11 @@ class RoomController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> sendMessage(String message) {
-    /// TODO Firebaseへの処理に置き換える
+  Future<void> sendMessage(String message, String roomId) async {
+    // ローカルに保存してそこから取得する？
+    const String userId = 'userId';
+
+    await _messageService.sendMessage(message, roomId, userId);
     notifyListeners();
   }
 }
