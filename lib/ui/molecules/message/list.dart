@@ -8,9 +8,7 @@ class MessageList extends StatelessWidget {
   Widget build(BuildContext context) {
     final messageList = Provider.of<RoomController>(context).messageList;
     if (messageList == null) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return Container();
     } else if (messageList.isEmpty) {
       return Container();
     } else {

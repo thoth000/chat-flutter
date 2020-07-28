@@ -20,6 +20,7 @@ class FirebaseMessageService {
   Future<List<Map<String, dynamic>>> getMessageData(String roomId) async {
     final QuerySnapshot querySnapshot = await _db
         .collection('message/v1/rooms/$roomId/transcripts')
+        .orderBy('createdAt', descending: false)
         .getDocuments();
     final List<Map<String, dynamic>> messageDataList = [];
     querySnapshot.documents.forEach((doc) {

@@ -5,4 +5,5 @@ class AppSpace {
   static const double large = 30;
   static const double xlarge = 40;
   static const double big = 60;
+  static const double xBig = 70;
 }
