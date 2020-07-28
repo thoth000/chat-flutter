@@ -1,4 +1,4 @@
-import 'package:chat_flutter/ui/molecules/message/list_item.dart';
+import 'package:chat_flutter/ui/molecules/message/message_list_item.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

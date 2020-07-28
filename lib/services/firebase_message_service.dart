@@ -5,10 +5,10 @@ class FirebaseMessageService {
   final Firestore _db = Firestore.instance;
 
   Future<void> setMessageData(Message message) async {
-    final Map<String, String> messageData = {
+    final messageData = {
       'from': message.senderId,
       'to': message.roomId,
-      'text': message.message,
+      'text': message.text,
       'createdAt': message.sendTime,
     };
     await _db
@@ -17,5 +17,14 @@ class FirebaseMessageService {
         .setData(messageData);
   }
 
-  Future<void> getMessageData(String roomId) {}
+  Future<List<Map<String, dynamic>>> getMessageData(String roomId) async {
+    final QuerySnapshot querySnapshot = await _db
+        .collection('message/v1/rooms/$roomId/transcripts')
+        .getDocuments();
+    final List<Map<String, dynamic>> messageDataList = [];
+    querySnapshot.documents.forEach((doc) {
+      messageDataList.add(doc.data);
+    });
+    return messageDataList;
+  }
 }
