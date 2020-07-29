@@ -1,33 +1,21 @@
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/model/user.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
 
-class CreateGroupListTile extends StatefulWidget {
-  final String name;
-  final String imgUrl;
+class CreateGroupListTile extends StatelessWidget {
+  final User user;
+  final void onPressed;
 
   const CreateGroupListTile({
-    this.name,
-    this.imgUrl,
+    this.user,
+    this.onPressed,
   });
-
-  @override
-  _CreateGroupListTileState createState() => _CreateGroupListTileState();
-}
-
-class _CreateGroupListTileState extends State<CreateGroupListTile> {
-  bool _isSelect = false;
-  void select() {
-    setState(() {
-      _isSelect = !_isSelect;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: select,
+      onPressed: () => onPressed,
       child: Padding(
         padding: const EdgeInsets.all(AppSpace.small),
         child: Row(
@@ -38,7 +26,7 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
               width: 50,
               child: CircleAvatar(
                 radius: double.infinity,
-                backgroundImage: NetworkImage(widget.imgUrl),
+                backgroundImage: NetworkImage(user.imgUrl),
               ),
             ),
             const SizedBox(
@@ -46,16 +34,12 @@ class _CreateGroupListTileState extends State<CreateGroupListTile> {
             ),
             Expanded(
               child: Text(
-                widget.name,
+                user.name,
                 style: TextStyle(
                   fontSize: AppTextSize.midium,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            Icon(
-              _isSelect ? Icons.check_box : Icons.check_box_outline_blank,
-              color: _isSelect ? Colors.blue : null,
             ),
           ],
         ),
