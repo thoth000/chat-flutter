@@ -1,5 +1,5 @@
 import 'package:chat_flutter/config/app_space.dart';
-import 'package:chat_flutter/ui/molecules/create_group_list_tile.dart';
+import 'package:chat_flutter/ui/molecules/create_room_list_tile.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
@@ -107,9 +107,8 @@ class MemberList extends StatelessWidget {
     return ListView.builder(
       itemCount: userList.length,
       itemBuilder: (BuildContext context, int index) {
-        return CreateGroupListTile(
+        return CreateRoomListTile(
           user: userList[index],
-          onPressed: null,
         );
       },
     );

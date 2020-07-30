@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
 
-class CreateGroupListTile extends StatelessWidget {
+class CreateRoomListTile extends StatelessWidget {
   final User user;
-  final void onPressed;
 
-  const CreateGroupListTile({
+  const CreateRoomListTile({
     this.user,
-    this.onPressed,
   });
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () => onPressed,
+      //userをメンバーに追加する処理
+      //ただcreate_room.dartでも使われているため迷い
+      onPressed: (){},
       child: Padding(
         padding: const EdgeInsets.all(AppSpace.small),
         child: Row(

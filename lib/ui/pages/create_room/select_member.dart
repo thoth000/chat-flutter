@@ -71,7 +71,6 @@ class SearchedUserList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return CreateRoomListTile(
           user: userList[index],
-          onPressed: controller.addMember(userList[index]),
         );
       },
     );
