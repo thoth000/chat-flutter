@@ -3,16 +3,7 @@ import 'package:chat_flutter/services/messgae_service.dart';
 import 'package:flutter/material.dart';
 
 class RoomController extends ChangeNotifier {
-  RoomController() {
-    getMessageList();
-  }
-  List<Message> messageList;
   final MessageService _messageService = MessageService();
-
-  Future<void> getMessageList() async {
-    messageList = await _messageService.getMessage('roomId');
-    notifyListeners();
-  }
 
   Future<void> sendMessage(String message, String roomId) async {
     // ローカルに保存してそこから取得する？
@@ -20,5 +11,9 @@ class RoomController extends ChangeNotifier {
 
     await _messageService.sendMessage(message, roomId, userId);
     notifyListeners();
+  }
+
+  Stream<List<Message>> messageList(String roomId) {
+    return _messageService.getMessage(roomId);
   }
 }

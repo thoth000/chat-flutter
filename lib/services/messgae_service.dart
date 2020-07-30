@@ -15,12 +15,7 @@ class MessageService implements MessageInterface {
   }
 
   @override
-  Future<List<Message>> getMessage(String roomId) async {
-    final messageDataList =
-        await FirebaseMessageService().getMessageData(roomId);
-    final List<Message> messageList = [];
-    messageDataList
-        .forEach((json) => {messageList.add(Message.fromJson(json))});
-    return messageList;
+  Stream<List<Message>> getMessage(String roomId) {
+    return FirebaseMessageService().getMessageData(roomId);
   }
 }

@@ -17,15 +17,15 @@ class FirebaseMessageService {
         .setData(messageData);
   }
 
-  Future<List<Map<String, dynamic>>> getMessageData(String roomId) async {
-    final QuerySnapshot querySnapshot = await _db
+  Stream<List<Message>> getMessageData(String roomId) {
+    final Stream<QuerySnapshot> querySnapshot = _db
         .collection('message/v1/rooms/$roomId/transcripts')
         .orderBy('createdAt', descending: false)
-        .getDocuments();
-    final List<Map<String, dynamic>> messageDataList = [];
-    querySnapshot.documents.forEach((doc) {
-      messageDataList.add(doc.data);
+        .snapshots();
+    return querySnapshot.map((snapshot) {
+      return snapshot.documents.map((doc) {
+        return Message.fromJson(doc.data);
+      }).toList();
     });
-    return messageDataList;
   }
 }

@@ -1,9 +1,10 @@
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/model/message.dart';
 import 'package:chat_flutter/model/room.dart';
+import 'package:chat_flutter/services/firebase_message_service.dart';
 import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -52,14 +53,11 @@ class RoomPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              StreamBuilder<QuerySnapshot>(
-                  stream: Firestore.instance
-                      .collection('message/v1/rooms/${room.id}/transcripts')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    roomController.getMessageList();
-                    return MessageList();
-                  }),
+              StreamProvider<List<Message>>(
+                create: (_) => roomController.messageList(room.id),
+                initialData: const [],
+                child: MessageList(),
+              ),
               const SizedBox(
                 height: AppSpace.xBig,
               ),
