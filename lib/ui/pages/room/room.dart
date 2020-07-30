@@ -1,7 +1,7 @@
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
 import 'package:chat_flutter/model/room.dart';
-import 'package:chat_flutter/services/firebase_message_service.dart';
+import 'package:chat_flutter/services/messgae_service.dart';
 import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
@@ -12,9 +12,10 @@ import 'package:provider/provider.dart';
 class RoomPage extends StatelessWidget {
   const RoomPage._({Key key}) : super(key: key);
 
-  static Widget wrapped() {
+  static Widget wrapped(BuildContext context) {
     return ChangeNotifierProvider<RoomController>(
-      create: (_) => RoomController(),
+      create: (_) => RoomController(
+          messageService: Provider.of<MessageService>(context, listen: false)),
       child: const RoomPage._(),
     );
   }

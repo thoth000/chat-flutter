@@ -1,3 +1,4 @@
+import 'package:chat_flutter/services/messgae_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/ui/pages/add_friend.dart';
@@ -7,11 +8,13 @@ import 'package:chat_flutter/ui/pages/profile/profile_edit.dart';
 import 'package:chat_flutter/ui/pages/room/room.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
 import 'package:chat_flutter/ui/pages/sign_up.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    MyApp(),
-  );
+  runApp(Provider.value(
+    value: MessageService(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/homePage': (context) => HomePage.wrapped(),
         '/signUpPage': (context) => SignUpPage(),
         '/signInPage': (context) => SignInPage(),
-        '/roomPage': (context) => RoomPage.wrapped(),
+        '/roomPage': RoomPage.wrapped,
         '/profileEditPage': (context) => ProfileEditPage.wrapped(),
         '/addFriendPage': (context) => AddFriendPage(),
         '/createGroupPage': (context) => CreateGroupPage(),
