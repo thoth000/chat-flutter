@@ -2,9 +2,8 @@ import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
+import 'package:chat_flutter/util/common_func_util.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
 
@@ -32,7 +31,7 @@ class MessageListItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  dateTimeToString(message.sendTime),
+                  CommonFuncUtil.dateTimeToString(message.sendTime),
                   style: TextStyle(
                     fontSize: AppTextSize.xsmall,
                   ),
@@ -67,7 +66,7 @@ class MessageListItem extends StatelessWidget {
           ),
           if (!message.isMe)
             Text(
-              dateTimeToString(message.sendTime),
+              CommonFuncUtil.dateTimeToString(message.sendTime),
               style: TextStyle(
                 fontSize: AppTextSize.xsmall,
               ),
@@ -75,12 +74,5 @@ class MessageListItem extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String dateTimeToString(DateTime date) {
-    initializeDateFormatting('ja_JP');
-    final formatter = DateFormat('HH:ss', 'ja_JP');
-    final formatted = formatter.format(date);
-    return formatted;
   }
 }
