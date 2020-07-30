@@ -16,6 +16,7 @@ class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
+      leading: Container(),
       actions: <Widget>[
         IconButton(
           icon: Icon(
