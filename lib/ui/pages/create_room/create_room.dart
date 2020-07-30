@@ -1,5 +1,5 @@
 import 'package:chat_flutter/config/app_space.dart';
-import 'package:chat_flutter/ui/molecules/create_room_list_tile.dart';
+import 'package:chat_flutter/ui/molecules/create_room/room_member_list.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -91,25 +91,10 @@ class CreateRoomPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: MemberList(),
+            child: RoomMemberList(),
           ),
         ],
       ),
-    );
-  }
-}
-
-class MemberList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final userList = Provider.of<CreateRoomController>(context).members;
-    return ListView.builder(
-      itemCount: userList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return CreateRoomListTile(
-          user: userList[index],
-        );
-      },
     );
   }
 }

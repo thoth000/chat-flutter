@@ -1,5 +1,5 @@
-import 'package:chat_flutter/config/app_space.dart';
-import 'package:chat_flutter/ui/molecules/create_room_list_tile.dart';
+import 'package:chat_flutter/ui/molecules/create_room/member_list.dart';
+import 'package:chat_flutter/ui/molecules/create_room/searced_user_list.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -52,59 +52,11 @@ class SelectMemberPage extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(child: SearchedUserList()),
+          Expanded(
+            child: SearchedUserList(),
+          ),
           MemberList(),
         ],
-      ),
-    );
-  }
-}
-
-class SearchedUserList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final controller =
-        Provider.of<CreateRoomController>(context, listen: false);
-    final userList = Provider.of<CreateRoomController>(context).searchedUser;
-    return ListView.builder(
-      itemCount: userList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return CreateRoomListTile(
-          user: userList[index],
-        );
-      },
-    );
-  }
-}
-
-class MemberList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final userList = Provider.of<CreateRoomController>(context).members;
-    return SizedBox(
-      height: 60,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: userList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 40,
-            margin: EdgeInsets.all(AppSpace.small),
-            child: FlatButton(
-              onPressed: () {},
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-              ),
-              color: Colors.blue,
-              child: Text(
-                userList[index].name,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          );
-        },
       ),
     );
   }
