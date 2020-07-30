@@ -1,5 +1,5 @@
 import 'package:chat_flutter/config/app_space.dart';
-import 'package:chat_flutter/ui/molecules/create_group_list_tile.dart';
+import 'package:chat_flutter/ui/molecules/create_room_list_tile.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,10 @@ class SelectMemberPage extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Color(0xff707070),
         ),
-        title: const Text('メンバーを選択',style: TextStyle(color: Color(0xff707070)),),
+        title: const Text(
+          'メンバーを選択',
+          style: TextStyle(color: Color(0xff707070)),
+        ),
         actions: <Widget>[
           FlatButton(
             child: const Text('次へ'),
@@ -60,12 +63,13 @@ class SelectMemberPage extends StatelessWidget {
 class SearchedUserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<CreateRoomController>(context,listen: false);
+    final controller =
+        Provider.of<CreateRoomController>(context, listen: false);
     final userList = Provider.of<CreateRoomController>(context).searchedUser;
     return ListView.builder(
       itemCount: userList.length,
       itemBuilder: (BuildContext context, int index) {
-        return CreateGroupListTile(
+        return CreateRoomListTile(
           user: userList[index],
           onPressed: controller.addMember(userList[index]),
         );
@@ -88,9 +92,9 @@ class MemberList extends StatelessWidget {
             height: 40,
             margin: EdgeInsets.all(AppSpace.small),
             child: FlatButton(
-              onPressed: (){},
+              onPressed: () {},
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(5),
               ),
               color: Colors.blue,
               child: Text(

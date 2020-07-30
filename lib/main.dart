@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         '/roomPage': (context) => RoomPage.wrapped(),
         '/profileEditPage': (context) => ProfileEditPage.wrapped(),
         '/addFriendPage': (context) => AddFriendPage(),
-        '/selectMemberPage':(context) => SelectMemberPage.wrapped(),
+        '/selectMemberPage': (context) => SelectMemberPage.wrapped(),
         '/createGroupPage': (context) => CreateRoomPage.wrapped(),
       },
     );
