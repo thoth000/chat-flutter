@@ -1,7 +1,7 @@
+import 'package:chat_flutter/ui/pages/create_room/select_member.dart';
 import 'package:flutter/material.dart';
 
-import 'package:chat_flutter/ui/pages/add_friend.dart';
-import 'package:chat_flutter/ui/pages/create_group.dart';
+import 'package:chat_flutter/ui/pages/create_room/create_room.dart';
 import 'package:chat_flutter/ui/pages/home/home.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_edit.dart';
 import 'package:chat_flutter/ui/pages/room/room.dart';
@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
         '/signInPage': (context) => SignInPage(),
         '/roomPage': (context) => RoomPage.wrapped(),
         '/profileEditPage': (context) => ProfileEditPage.wrapped(),
-        '/addFriendPage': (context) => AddFriendPage(),
-        '/createGroupPage': (context) => CreateGroupPage(),
+        '/selectMemberPage': (context) => SelectMemberPage.wrapped(),
+        '/createGroupPage': (context) => CreateRoomPage.wrapped(),
       },
     );
   }

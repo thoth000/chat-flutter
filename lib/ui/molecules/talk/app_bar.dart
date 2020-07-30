@@ -16,15 +16,20 @@ class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
+      leading: Container(),
       actions: <Widget>[
         IconButton(
           icon: Icon(
-            Icons.more_vert,
+            Icons.add_comment,
           ),
-          color: const Color(0xff707070),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/selectMemberPage');
+          },
         ),
       ],
+      iconTheme: const IconThemeData(
+        color: Color(0xff707070),
+      ),
     );
   }
 }

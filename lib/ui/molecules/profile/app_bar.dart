@@ -19,15 +19,7 @@ class ProfilePageAppBar extends StatelessWidget with PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.more_vert,
-          ),
-          color: const Color(0xff707070),
-          onPressed: () {},
-        ),
-      ],
+      leading: Container(),
     );
   }
 }
