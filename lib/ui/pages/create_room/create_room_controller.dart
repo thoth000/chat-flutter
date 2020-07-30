@@ -49,8 +49,6 @@ class CreateRoomController with ChangeNotifier {
           'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
     ),
   ];
-  String roomName;
-  //画像
 
   void addMember(User user) {
     //memberに既にいるか判定

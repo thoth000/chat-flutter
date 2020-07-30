@@ -2,7 +2,6 @@ import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/ui/molecules/create_room_list_tile.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_flutter/model/user.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
 import 'package:provider/provider.dart';

@@ -22,12 +22,14 @@ class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: Icon(
             Icons.add_comment,
           ),
-          color: const Color(0xff707070),
           onPressed: () {
             Navigator.pushNamed(context, '/selectMemberPage');
           },
         ),
       ],
+      iconTheme: const IconThemeData(
+        color: Color(0xff707070),
+      ),
     );
   }
 }
