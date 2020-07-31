@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/signUpPage': (context) => SignUpPage.wrapped(Provider.of<Authenticator>(context, listen: false)),
         '/signInPage': (context) => SignInPage(),
         '/roomPage': (context) => RoomPage.wrapped(),
-        '/profileEditPage': (context) => ProfileEditPage.wrapped(),
+        '/profileEditPage': ProfileEditPage.wrapped,
         '/selectMemberPage': (context) => SelectMemberPage.wrapped(),
         '/createGroupPage': (context) => CreateRoomPage.wrapped(),
       },

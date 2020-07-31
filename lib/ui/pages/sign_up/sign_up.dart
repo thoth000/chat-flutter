@@ -101,16 +101,22 @@ class SignUpPage extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(AppRadius.xlarge),
                     ),
-                    onPressed: controller.signUp,
+                    onPressed: () async {
+                      try {
+                        await controller.signUp();
+                        await Navigator.pushNamed(context, '/homePage');
+                      } on Exception catch (e) {
+                        // TODO: error handling
+                        debugPrint(e.toString());
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: AppSpace.large,
                   ),
                   FlatButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(
-                        '/signInPage',
-                      );
+                      Navigator.pushNamed(context, '/signInPage');
                     },
                     child: const Text(
                       'SIGN IN',

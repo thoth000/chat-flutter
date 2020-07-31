@@ -99,7 +99,7 @@ class SignInPage extends StatelessWidget {
                   ),
                   FlatButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/signUpPage');
                     },
                     child: Text(
                       'SIGN UP',

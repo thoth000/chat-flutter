@@ -11,24 +11,23 @@ class Authenticator {
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseUser = BehaviorSubject<FirebaseUser>();
   final _isSignIn = BehaviorSubject<bool>();
-
-  Future<FirebaseUser> fetchFirebaseUser() => _firebaseAuth.currentUser();
-
+  
   ValueStream<FirebaseUser> get firebaseUser => _firebaseUser;
   ValueStream<bool> get isSignIn => _isSignIn;
 
+  Future<FirebaseUser> fetchFirebaseUser() => _firebaseAuth.currentUser();
+
   Future<FirebaseUser> signUp(String email, String password) async {
-    final current = await _firebaseAuth.currentUser();
+    final current = await fetchFirebaseUser();
     if (current != null) {
       return current;
     }
-
     final authResult = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
     return authResult?.user;
   }
 
   Future<FirebaseUser> signIn(String email, String password) async {
-    final current = await _firebaseAuth.currentUser();
+    final current = await fetchFirebaseUser();
     if (current != null) {
       return current;
     }

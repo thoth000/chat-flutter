@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           create: (_) => TalkController(),
         ),
         ChangeNotifierProvider<ProfileController>(
-          create: (_) => ProfileController(),
+          create: (_) => ProfileController(Provider.of<Authenticator>(context, listen: false)),
         ),
       ],
       child: const HomePage._(),
