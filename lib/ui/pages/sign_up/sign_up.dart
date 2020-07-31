@@ -13,7 +13,7 @@ class SignUpPage extends StatelessWidget {
 
   static Widget wrapped(Authenticator authenticator) {
     return ChangeNotifierProvider<SignUpController>(
-        create: (_) => SignUpController(authenticator), child: SignUpPage._());
+        create: (_) => SignUpController(authenticator), child: const SignUpPage._());
   }
 
   @override
@@ -101,9 +101,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(AppRadius.xlarge),
                     ),
-                    onPressed: () {
-                      controller.signUp();
-                    },
+                    onPressed: controller.signUp,
                   ),
                   const SizedBox(
                     height: AppSpace.large,

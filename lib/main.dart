@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/homePage',
+      initialRoute: Provider.of<Authenticator>(context, listen: false).isSignIn.value ? '/homePage' : '/signUpPage',
       routes: {
-        '/homePage': (context) => HomePage.wrapped(),
+        '/homePage': HomePage.wrapped,
         '/signUpPage': (context) => SignUpPage.wrapped(Provider.of<Authenticator>(context, listen: false)),
         '/signInPage': (context) => SignInPage(),
         '/roomPage': (context) => RoomPage.wrapped(),

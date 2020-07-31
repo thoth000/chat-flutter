@@ -4,9 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 class SignUpController with ChangeNotifier {
   SignUpController(this.authenticator) {
-    authenticator.firebaseUser.listen((user) {
-      _firebaseUser = user;
-    });
     nameTextController.addListener(() {
       _name = nameTextController.text;
     });
@@ -19,19 +16,18 @@ class SignUpController with ChangeNotifier {
   }
 
   final Authenticator authenticator;
-  FirebaseUser _firebaseUser;
 
-  final nameTextController = TextEditingController();
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
+  final TextEditingController nameTextController = TextEditingController();
+  final TextEditingController emailTextController = TextEditingController();
+  final TextEditingController passwordTextController = TextEditingController();
 
   String _name;
   String _email;
   String _password;
 
-//  String get name => _name;
-//  String get email => _email;
-//  String get password => _password;
+  String get name => _name;
+  String get email => _email;
+  String get password => _password;
 
   Future<void> signUp() async {
     await authenticator.signUp(_email, _password);
