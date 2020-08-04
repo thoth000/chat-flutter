@@ -1,17 +1,24 @@
 import 'package:chat_flutter/ui/pages/create_room/select_member.dart';
+import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:flutter/material.dart';
-
 import 'package:chat_flutter/ui/pages/create_room/create_room.dart';
 import 'package:chat_flutter/ui/pages/home/home.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_edit.dart';
 import 'package:chat_flutter/ui/pages/room/room.dart';
 import 'package:chat_flutter/ui/pages/sign_in.dart';
-import 'package:chat_flutter/ui/pages/sign_up.dart';
+import 'package:chat_flutter/ui/pages/sign_up/sign_up.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    MyApp(),
-  );
+  runApp(MultiProvider(
+    providers: [
+      Provider<Authenticator>(
+        create: (_) => Authenticator(),
+        dispose: (_, authenticator) => authenticator.dispose(),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,13 +31,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/homePage',
+      initialRoute: Provider.of<Authenticator>(context, listen: false).isSignIn.value ? '/homePage' : '/signUpPage',
       routes: {
-        '/homePage': (context) => HomePage.wrapped(),
-        '/signUpPage': (context) => SignUpPage(),
+        '/homePage': HomePage.wrapped,
+        '/signUpPage': (context) => SignUpPage.wrapped(Provider.of<Authenticator>(context, listen: false)),
         '/signInPage': (context) => SignInPage(),
         '/roomPage': (context) => RoomPage.wrapped(),
-        '/profileEditPage': (context) => ProfileEditPage.wrapped(),
+        '/profileEditPage': ProfileEditPage.wrapped,
         '/selectMemberPage': (context) => SelectMemberPage.wrapped(),
         '/createGroupPage': (context) => CreateRoomPage.wrapped(),
       },
