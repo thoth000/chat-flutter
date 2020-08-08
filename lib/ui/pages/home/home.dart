@@ -1,3 +1,4 @@
+import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:chat_flutter/ui/molecules/talk/app_bar.dart';
 import 'package:chat_flutter/ui/pages/home/home_controller.dart';
@@ -11,17 +12,19 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   const HomePage._({Key key}) : super(key: key);
 
-  static Widget wrapped() {
+  static Widget wrapped(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<HomeController>(
-          create: (_) => HomeController(),
+          create: (_) => HomeController(
+            Provider.of<Authenticator>(context, listen: false),
+          ),
         ),
         ChangeNotifierProvider<TalkController>(
           create: (_) => TalkController(),
         ),
         ChangeNotifierProvider<ProfileController>(
-          create: (_) => ProfileController(),
+          create: (_) => ProfileController(Provider.of<Authenticator>(context, listen: false)),
         ),
       ],
       child: const HomePage._(),

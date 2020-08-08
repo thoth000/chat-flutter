@@ -1,23 +1,23 @@
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/model/user.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
 
-class AddFriendListTile extends StatelessWidget {
-  final String name;
-  final String imgUrl;
+class CreateRoomListTile extends StatelessWidget {
+  final User user;
 
-  const AddFriendListTile({
-    this.name,
-    this.imgUrl,
+  const CreateRoomListTile({
+    this.user,
   });
-
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () {},
+      //userをメンバーに追加する処理
+      //ただcreate_room.dartでも使われているため迷い
+      onPressed: (){},
       child: Padding(
-        padding: EdgeInsets.all(AppSpace.small),
+        padding: const EdgeInsets.all(AppSpace.small),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -26,20 +26,19 @@ class AddFriendListTile extends StatelessWidget {
               width: 50,
               child: CircleAvatar(
                 radius: double.infinity,
-                backgroundImage: NetworkImage(imgUrl),
+                backgroundImage: NetworkImage(user.imgUrl),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: AppSpace.midium,
             ),
-            Flexible(
+            Expanded(
               child: Text(
-                name,
+                user.name,
                 style: TextStyle(
                   fontSize: AppTextSize.midium,
                   fontWeight: FontWeight.bold,
                 ),
-                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

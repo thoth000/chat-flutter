@@ -26,6 +26,7 @@ class _ProfilePage extends StatelessWidget {
   final User user;
 
   const _ProfilePage({Key key, this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -65,6 +66,24 @@ class _ProfilePage extends StatelessWidget {
                     '/profileEditPage',
                     arguments: user.name,
                   );
+                },
+                color: Colors.green,
+                textColor: Colors.white,
+              ),
+            ),
+          ),
+          Center(
+            child: Container(
+              width: 150,
+              child: RaisedButton.icon(
+                icon: const Icon(
+                  Icons.album,
+                  color: Colors.white,
+                ),
+                label: const Text('ログアウト'),
+                onPressed: () async {
+                  await Provider.of<ProfileController>(context, listen: false).signOut();
+                  await Navigator.pushNamed<void>(context, '/signInPage');
                 },
                 color: Colors.green,
                 textColor: Colors.white,
