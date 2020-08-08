@@ -2,12 +2,13 @@ import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
+import 'package:chat_flutter/util/common_func_util.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class MessageListItem extends StatelessWidget {
-  MessageListItem(this.message);
+  const MessageListItem(this.message);
   final Message message;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class MessageListItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  message.sendTime,
+                  CommonFuncUtil.dateTimeToString(message.sendTime),
                   style: TextStyle(
                     fontSize: AppTextSize.xsmall,
                   ),
@@ -55,7 +56,7 @@ class MessageListItem extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(AppSpace.small),
             child: Text(
-              message.message,
+              message.text,
               softWrap: true,
               style: TextStyle(
                 fontSize: AppTextSize.midium,
@@ -65,7 +66,7 @@ class MessageListItem extends StatelessWidget {
           ),
           if (!message.isMe)
             Text(
-              message.sendTime,
+              CommonFuncUtil.dateTimeToString(message.sendTime),
               style: TextStyle(
                 fontSize: AppTextSize.xsmall,
               ),

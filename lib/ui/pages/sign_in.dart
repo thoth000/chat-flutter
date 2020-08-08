@@ -44,7 +44,7 @@ class SignInPage extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(),
                 borderRadius: const BorderRadius.vertical(
-                  top: const Radius.circular(AppRadius.large),
+                  top: Radius.circular(AppRadius.large),
                 ),
               ),
               child: Column(

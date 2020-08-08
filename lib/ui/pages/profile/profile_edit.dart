@@ -93,7 +93,7 @@ class _ProfileEditPage extends StatelessWidget {
                 ),
                 label: const Text('更新する'),
                 onPressed: () async {
-                  profileController.changeProfileInfo(_nameController.text);
+                  await profileController.changeProfileInfo(_nameController.text);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,

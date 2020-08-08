@@ -1,4 +1,7 @@
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/model/message.dart';
+import 'package:chat_flutter/model/room.dart';
+import 'package:chat_flutter/services/messgae_service.dart';
 import 'package:chat_flutter/ui/molecules/message/list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
@@ -9,16 +12,17 @@ import 'package:provider/provider.dart';
 class RoomPage extends StatelessWidget {
   const RoomPage._({Key key}) : super(key: key);
 
-  static Widget wrapped() {
+  static Widget wrapped(BuildContext context) {
     return ChangeNotifierProvider<RoomController>(
-      create: (_) => RoomController(),
+      create: (_) => RoomController(
+          messageService: Provider.of<MessageService>(context, listen: false)),
       child: const RoomPage._(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final String name = ModalRoute.of(context).settings.arguments.toString();
+    final Room room = ModalRoute.of(context).settings.arguments as Room;
     final roomController = Provider.of<RoomController>(context, listen: false);
     final TextEditingController textController = TextEditingController();
     return Scaffold(
@@ -29,7 +33,7 @@ class RoomPage extends StatelessWidget {
           color: Color(0xff707070),
         ),
         title: Text(
-          name,
+          room.name,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             color: Color(0xff707070),
@@ -44,38 +48,59 @@ class RoomPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          MessageList(),
-          SizedBox(
-            height: AppSpace.xsmall,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
+              StreamProvider<List<Message>>(
+                create: (_) => roomController.messageList(room.id),
+                initialData: const [],
+                child: MessageList(),
+              ),
               const SizedBox(
-                width: AppSpace.small,
-              ),
-              InputMessageTextField(
-                roomTextController: textController,
-              ),
-              SizedBox(
-                width: AppSpace.xsmall,
-              ),
-              IconButton(
-                onPressed: () async {
-                  await roomController.sendMessage(textController.text);
-                  textController.clear();
-                },
-                icon: Icon(
-                  Icons.send,
-                ),
+                height: AppSpace.xBig,
               ),
             ],
           ),
-          SizedBox(
-            height: AppSpace.xsmall,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    const SizedBox(
+                      width: AppSpace.small,
+                    ),
+                    InputMessageTextField(
+                      roomTextController: textController,
+                    ),
+                    SizedBox(
+                      width: AppSpace.xsmall,
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        await roomController.sendMessage(
+                          textController.text,
+                          'roomId',
+                        );
+                        textController.clear();
+                      },
+                      icon: Icon(
+                        Icons.send,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: AppSpace.midium,
+                ),
+              ],
+            ),
           ),
         ],
       ),

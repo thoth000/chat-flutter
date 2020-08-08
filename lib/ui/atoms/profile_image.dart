@@ -13,7 +13,7 @@ class ProfileImage extends StatelessWidget {
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: const AssetImage(
+          image: AssetImage(
             'assets/images/avatar.JPG',
           ),
         ),

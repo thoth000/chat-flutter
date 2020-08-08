@@ -1,17 +1,15 @@
-import 'package:chat_flutter/ui/molecules/message/list_item.dart';
-import 'package:chat_flutter/ui/pages/room/room_controller.dart';
+import 'package:chat_flutter/model/message.dart';
+import 'package:chat_flutter/ui/molecules/message/message_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MessageList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final messageList = Provider.of<RoomController>(context).messageList;
+    final messageList = Provider.of<List<Message>>(context);
     if (messageList == null) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    } else if (messageList.length == 0) {
+      return Container();
+    } else if (messageList.isEmpty) {
       return Container();
     } else {
       return Expanded(

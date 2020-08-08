@@ -15,7 +15,7 @@ class TalkPageListTile extends StatelessWidget {
         Navigator.pushNamed(
           context,
           '/roomPage',
-          arguments: room.name,
+          arguments: room,
         );
       },
       child: SizedBox(
