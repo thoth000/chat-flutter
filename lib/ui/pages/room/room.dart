@@ -85,7 +85,9 @@ class RoomPage extends StatelessWidget {
                     IconButton(
                       onPressed: () async {
                         await roomController.sendMessage(
-                            textController.text, 'roomId');
+                          textController.text,
+                          'roomId',
+                        );
                         textController.clear();
                       },
                       icon: Icon(
