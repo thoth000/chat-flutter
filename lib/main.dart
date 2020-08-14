@@ -1,6 +1,7 @@
 import 'package:chat_flutter/services/messgae_service.dart';
 import 'package:chat_flutter/ui/pages/create_room/select_member.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/ui/pages/sign_in/sign_in.dart';
 import 'package:chat_flutter/ui/pages/sign_up/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/homePage': HomePage.wrapped,
         '/signUpPage': (context) => SignUpPage.wrapped(Provider.of<Authenticator>(context, listen: false)),
+        '/signInPage': (context) => SignInPage.wrapped(Provider.of<Authenticator>(context, listen: false)),
         '/roomPage': RoomPage.wrapped,
         '/profileEditPage': ProfileEditPage.wrapped,
         '/selectMemberPage': (context) => SelectMemberPage.wrapped(),

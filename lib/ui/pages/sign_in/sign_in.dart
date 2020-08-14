@@ -1,16 +1,26 @@
 import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/atoms/input_text_field.dart';
+import 'package:chat_flutter/ui/pages/sign_in/sign_in_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chat_flutter/config/app_text_size.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
-  final TextEditingController emailTextController = TextEditingController();
-  final TextEditingController passwordTextController = TextEditingController();
+  const SignInPage._();
+
+  static Widget wrapped(Authenticator authenticator) {
+    return ChangeNotifierProvider<SignInController>(
+      create: (_) => SignInController(authenticator),
+      child: const SignInPage._(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<SignInController>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white70,
       body: Column(
@@ -54,13 +64,13 @@ class SignInPage extends StatelessWidget {
                       InputTextField(
                         hintText: 'email',
                         keyboardType: TextInputType.text,
-                        controller: emailTextController,
+                        controller: controller.emailTextController,
                       ),
                       InputTextField(
                         hintText: 'password',
                         keyboardType: TextInputType.text,
                         obscureText: true,
-                        controller: passwordTextController,
+                        controller: controller.passwordTextController,
                       ),
                       SizedBox(
                         height: AppSpace.big,
@@ -92,7 +102,10 @@ class SignInPage extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(AppRadius.xlarge),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await controller.signIn();
+                      await Navigator.pushNamed(context, '/homePage');
+                    },
                   ),
                   SizedBox(
                     height: AppSpace.large,

@@ -13,7 +13,9 @@ class SignUpPage extends StatelessWidget {
 
   static Widget wrapped(Authenticator authenticator) {
     return ChangeNotifierProvider<SignUpController>(
-        create: (_) => SignUpController(authenticator), child: const SignUpPage._());
+      create: (_) => SignUpController(authenticator),
+      child: const SignUpPage._(),
+    );
   }
 
   @override
