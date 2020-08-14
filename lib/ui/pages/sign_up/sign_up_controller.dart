@@ -35,7 +35,6 @@ class SignUpController with ChangeNotifier {
     final FirebaseUser user = await authenticator.signUp(_email, _password);
     if(user!=null){
       await firebaseUserService.setUserData(name, user.uid);
-      print(user.uid);
     }
   }
 
