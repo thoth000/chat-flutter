@@ -26,7 +26,18 @@ class ProfileEditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<ProfileController>(context).user;
     return Scaffold(
-      appBar: ProfilePageAppBar(),
+      appBar: AppBar(
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+            color: Color(0xff707070),
+          ),
+        ),
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(
+          color: Color(0xff707070),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: (user.name == null)
           ? const Center(
@@ -55,7 +66,9 @@ class _ProfileEditPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const ImageButton(),
+          const ImageButton(
+            size: 150,
+          ),
           const SizedBox(
             height: AppSpace.small,
           ),
@@ -104,53 +117,48 @@ class _ProfileEditPage extends StatelessWidget {
 }
 
 class ImageButton extends StatelessWidget {
-  const ImageButton({Key key, this.image, this.size}) : super(key: key);
-  final String image;
+  const ImageButton({Key key, this.size}) : super(key: key);
   final double size;
 
   @override
   Widget build(BuildContext context) {
     final profileController = Provider.of<ProfileController>(context);
+    return FlatButton(
+      onPressed: profileController.selectProfileImage,
+      child: child(profileController),
+    );
+  }
+
+  Widget child(ProfileController profileController) {
     if (profileController.image != null) {
       return SizedBox(
         width: size,
         height: size,
-        child: FlatButton(
-          onPressed: profileController.selectProfileImage,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Image.file(
-            profileController.image,
-          ),
+        child: CircleAvatar(
+          backgroundImage: FileImage(profileController.image),
         ),
       );
-    } else if (profileController.user.imgUrl != null) {
-      print(profileController.user.imgUrl+'image');
-      return SizedBox(
+    } else if (profileController.user.imgUrl != '') {
+      return Container(
         width: size,
         height: size,
-        child: FlatButton(
-          onPressed: profileController.selectProfileImage,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Image.network(
-            profileController.user.imgUrl,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(profileController.user.imgUrl),
           ),
         ),
       );
     } else {
-      return SizedBox(
+      return Container(
         width: size,
         height: size,
-        child: FlatButton(
-          onPressed: profileController.selectProfileImage,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Image.asset(
-            'assets/images/avatar.JPG',
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('assets/images/avatar.JPG'),
           ),
         ),
       );

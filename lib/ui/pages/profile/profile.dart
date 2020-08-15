@@ -64,6 +64,7 @@ class _ProfilePage extends StatelessWidget {
                   Navigator.pushNamed<void>(
                     context,
                     '/profileEditPage',
+                    arguments: user.name,
                   );
                 },
                 color: Colors.green,

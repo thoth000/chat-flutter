@@ -18,6 +18,8 @@ class ProfileController with ChangeNotifier {
 
   Future<void> getUserById(String userId) async {
     user = await firebaseUserService.getUserData(userId);
+    print(user.name);
+    print(user.imgUrl);
     notifyListeners();
   }
 
@@ -30,6 +32,8 @@ class ProfileController with ChangeNotifier {
   }
 
   Future<void> changeProfileInfo(String name) async {
+    user.name = name;
+    notifyListeners();
     //Firebaseへの変更通知
   }
 

@@ -11,8 +11,13 @@ class FirebaseUserService {
     await _db.collection('message/v1/users').document('$uid').setData(userData);
   }
 
-  Future<User> getUserData(String uid) {
-    final result = _db.collection('message/v1/users').document('$uid').get();
-    return result.then((value) => User.fromJson(value.data));
+  Future<User> getUserData(String uid) async {
+    final DocumentSnapshot result = await _db.collection('message/v1/users').document('$uid').get();
+    final Map<String, dynamic> user = result.data;
+    print(result.data);
+    return User(
+      name: user['name'].toString(),
+      imgUrl: user['profileImageURL'].toString(),
+    );
   }
 }
