@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/services/firebase_storage_service.dart';
 import 'package:chat_flutter/services/firebase_user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
@@ -32,11 +33,15 @@ class ProfileController with ChangeNotifier {
   }
 
   Future<void> changeProfileInfo(String name) async {
-    print(name);
-    user.name = name;
-    notifyListeners();
+    final FirebaseStorageService firebaseStorageService = FirebaseStorageService();
     //Firebaseへの変更通知
-
+    //TODO:uid指定で画像を保存すれば被らない。天才
+    final String imgUrl = await firebaseStorageService.uploadImage(image,'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
+    user = User(
+      name: name,
+      imgUrl: imgUrl,
+    );
+    notifyListeners();
   }
 
 
