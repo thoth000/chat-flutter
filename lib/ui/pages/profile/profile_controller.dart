@@ -1,4 +1,5 @@
 import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/services/firebase_user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 
@@ -8,10 +9,10 @@ class ProfileController with ChangeNotifier {
   }
   User user;
   Authenticator authenticator;
+  FirebaseUserService firebaseUserService = FirebaseUserService();
 
   Future<void> getUserById(String userId) async {
-    user = User(name: 'test', imgUrl: '');
-    await Future<dynamic>.delayed(const Duration(seconds: 1));
+    user = await firebaseUserService.getUserData(userId);
     notifyListeners();
   }
 
