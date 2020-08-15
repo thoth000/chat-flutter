@@ -1,4 +1,6 @@
 import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/services/firebase_user_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 class SignUpController with ChangeNotifier {
@@ -15,6 +17,7 @@ class SignUpController with ChangeNotifier {
   }
 
   final Authenticator authenticator;
+  final FirebaseUserService firebaseUserService = FirebaseUserService();
 
   final TextEditingController nameTextController = TextEditingController();
   final TextEditingController emailTextController = TextEditingController();
@@ -29,7 +32,10 @@ class SignUpController with ChangeNotifier {
   String get password => _password;
 
   Future<void> signUp() async {
-    await authenticator.signUp(_email, _password);
+    final FirebaseUser user = await authenticator.signUp(_email, _password);
+    if(user!=null){
+      await firebaseUserService.setUserData(name, user.uid);
+    }
   }
 
   @override
