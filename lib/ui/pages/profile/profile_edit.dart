@@ -16,7 +16,8 @@ class ProfileEditPage extends StatelessWidget {
 
   static Widget wrapped(BuildContext context) {
     return ChangeNotifierProvider<ProfileController>(
-      create: (_) => ProfileController(Provider.of<Authenticator>(context, listen: false)),
+      create: (_) =>
+          ProfileController(Provider.of<Authenticator>(context, listen: false)),
       child: const ProfileEditPage._(),
     );
   }
@@ -27,7 +28,7 @@ class ProfileEditPage extends StatelessWidget {
     return Scaffold(
       appBar: ProfilePageAppBar(),
       backgroundColor: Colors.white,
-      body: (user == null)
+      body: (user.name == null)
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -54,13 +55,7 @@ class _ProfileEditPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          FlatButton(
-            onPressed: () {},
-            child: ProfileImage(
-              image: user.imgUrl,
-              size: 150,
-            ),
-          ),
+          const ImageButton(),
           const SizedBox(
             height: AppSpace.small,
           ),
@@ -93,7 +88,8 @@ class _ProfileEditPage extends StatelessWidget {
                 ),
                 label: const Text('更新する'),
                 onPressed: () async {
-                  await profileController.changeProfileInfo(_nameController.text);
+                  await profileController
+                      .changeProfileInfo(_nameController.text);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,
@@ -104,5 +100,60 @@ class _ProfileEditPage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class ImageButton extends StatelessWidget {
+  const ImageButton({Key key, this.image, this.size}) : super(key: key);
+  final String image;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final profileController = Provider.of<ProfileController>(context);
+    if (profileController.image != null) {
+      return SizedBox(
+        width: size,
+        height: size,
+        child: FlatButton(
+          onPressed: profileController.selectProfileImage,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Image.file(
+            profileController.image,
+          ),
+        ),
+      );
+    } else if (profileController.user.imgUrl != null) {
+      print(profileController.user.imgUrl+'image');
+      return SizedBox(
+        width: size,
+        height: size,
+        child: FlatButton(
+          onPressed: profileController.selectProfileImage,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Image.network(
+            profileController.user.imgUrl,
+          ),
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: size,
+        height: size,
+        child: FlatButton(
+          onPressed: profileController.selectProfileImage,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: Image.asset(
+            'assets/images/avatar.JPG',
+          ),
+        ),
+      );
+    }
   }
 }
