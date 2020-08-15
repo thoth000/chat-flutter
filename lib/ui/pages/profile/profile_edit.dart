@@ -39,7 +39,7 @@ class ProfileEditPage extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.white,
-      body: (user.name == null)
+      body: (user == null)
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -54,11 +54,12 @@ class _ProfileEditPage extends StatelessWidget {
   final User user;
 
   const _ProfileEditPage({Key key, this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final profileController =
         Provider.of<ProfileController>(context, listen: false);
-    final TextEditingController _nameController = TextEditingController(
+    final TextEditingController nameController = TextEditingController(
       text: ModalRoute.of(context).settings.arguments.toString(),
     );
     return SafeArea(
@@ -80,7 +81,7 @@ class _ProfileEditPage extends StatelessWidget {
               keyboardType: TextInputType.multiline,
               minLines: 1,
               maxLines: 1,
-              controller: _nameController,
+              controller: nameController,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: AppTextSize.xlarge,
@@ -101,8 +102,9 @@ class _ProfileEditPage extends StatelessWidget {
                 ),
                 label: const Text('更新する'),
                 onPressed: () async {
+                  print(nameController.text);
                   await profileController
-                      .changeProfileInfo(_nameController.text);
+                      .changeProfileInfo(nameController.text);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,

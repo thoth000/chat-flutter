@@ -32,9 +32,11 @@ class ProfileController with ChangeNotifier {
   }
 
   Future<void> changeProfileInfo(String name) async {
+    print(name);
     user.name = name;
     notifyListeners();
     //Firebaseへの変更通知
+
   }
 
 
