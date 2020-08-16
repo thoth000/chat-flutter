@@ -44,8 +44,8 @@ class ProfileController with ChangeNotifier {
       print('imgUrl : $imgUrl');
       await firebaseUserService.updateUserData(
           name, imgUrl, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
-          image=null;
-          notifyListeners();
+      image = null;
+      notifyListeners();
       return;
     }
     await firebaseUserService.updateUserData(
