@@ -27,7 +27,6 @@ class ProfileController with ChangeNotifier {
     final selectImage = await imagePicker.getImage(source: ImageSource.gallery);
     if (selectImage != null) {
       image = File(selectImage.path);
-      user.imgUrl = selectImage.path;
       notifyListeners();
     }
   }
@@ -37,19 +36,29 @@ class ProfileController with ChangeNotifier {
         FirebaseStorageService();
     final FirebaseUserService firebaseUserService = FirebaseUserService();
     //Firebaseへの変更通知
-    //TODO:uid指定で画像を保存すれば被らない。天才
+    //uid指定で画像を保存すれば被らない。天才
     if (image != null) {
       final String imgUrl = await firebaseStorageService.uploadImage(
           image, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
       print('imgUrl : $imgUrl');
       await firebaseUserService.updateUserData(
           name, imgUrl, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
+
       image = null;
+      user = User(
+        name: name,
+        imgUrl: imgUrl,
+      );
       notifyListeners();
       return;
     }
     await firebaseUserService.updateUserData(
         name, '', 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
+    user = User(
+      name: name,
+      imgUrl: user.imgUrl,
+    );
+    notifyListeners();
   }
 
   Future<void> signOut() async {
