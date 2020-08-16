@@ -39,11 +39,13 @@ class ProfileController with ChangeNotifier {
     //Firebaseへの変更通知
     //TODO:uid指定で画像を保存すれば被らない。天才
     if (image != null) {
-      String imgUrl = await firebaseStorageService.uploadImage(
+      final String imgUrl = await firebaseStorageService.uploadImage(
           image, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
       print('imgUrl : $imgUrl');
       await firebaseUserService.updateUserData(
           name, imgUrl, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
+          image=null;
+          notifyListeners();
       return;
     }
     await firebaseUserService.updateUserData(
