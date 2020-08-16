@@ -60,7 +60,7 @@ class _ProfileEditPage extends StatelessWidget {
     final profileController =
         Provider.of<ProfileController>(context, listen: false);
     final TextEditingController nameController = TextEditingController(
-      text: ModalRoute.of(context).settings.arguments.toString(),
+      text: user.name,
     );
     return SafeArea(
       child: Column(
@@ -102,7 +102,6 @@ class _ProfileEditPage extends StatelessWidget {
                 ),
                 label: const Text('更新する'),
                 onPressed: () async {
-                  print(nameController.text);
                   await profileController
                       .changeProfileInfo(nameController.text);
                   Navigator.of(context).pop();

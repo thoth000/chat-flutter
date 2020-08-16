@@ -19,33 +19,38 @@ class ProfileController with ChangeNotifier {
 
   Future<void> getUserById(String userId) async {
     user = await firebaseUserService.getUserData(userId);
-    print(user.name);
-    print(user.imgUrl);
     notifyListeners();
   }
 
-  Future<void> selectProfileImage() async{
+  Future<void> selectProfileImage() async {
     final imagePicker = ImagePicker();
     final selectImage = await imagePicker.getImage(source: ImageSource.gallery);
-    image = File(selectImage.path);
-    user.imgUrl=selectImage.path;
-    notifyListeners();
+    if (selectImage != null) {
+      image = File(selectImage.path);
+      user.imgUrl = selectImage.path;
+      notifyListeners();
+    }
   }
 
   Future<void> changeProfileInfo(String name) async {
-    final FirebaseStorageService firebaseStorageService = FirebaseStorageService();
+    final FirebaseStorageService firebaseStorageService =
+        FirebaseStorageService();
+    final FirebaseUserService firebaseUserService = FirebaseUserService();
     //Firebaseへの変更通知
     //TODO:uid指定で画像を保存すれば被らない。天才
-    final String imgUrl = await firebaseStorageService.uploadImage(image,'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
-    user = User(
-      name: name,
-      imgUrl: imgUrl,
-    );
-    notifyListeners();
+    if (image != null) {
+      String imgUrl = await firebaseStorageService.uploadImage(
+          image, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
+      print('imgUrl : $imgUrl');
+      await firebaseUserService.updateUserData(
+          name, imgUrl, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
+      return;
+    }
+    await firebaseUserService.updateUserData(
+        name, '', 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
   }
 
-
-  Future<void> signOut() async{
+  Future<void> signOut() async {
     await authenticator.signOut();
   }
 }

@@ -90,6 +90,10 @@ class _ProfilePage extends StatelessWidget {
               ),
             ),
           ),
+          RaisedButton(
+            child: Text('更新'),
+            onPressed: () => Provider.of<ProfileController>(context,listen: false).getUserById('Kh2FY47Y0kak7zWB9bE7zY7FkCH3'),
+          ),
         ],
       ),
     );
