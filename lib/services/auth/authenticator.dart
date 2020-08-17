@@ -25,7 +25,9 @@ class Authenticator {
       return current;
     }
     final authResult = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
+      email: email,
+      password: password,
+    );
     return authResult?.user;
   }
 
@@ -36,12 +38,19 @@ class Authenticator {
     }
 
     final authResult = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+      email: email,
+      password: password,
+    );
     return authResult?.user;
   }
 
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+  }
+
+  Future<String> getUid() async {
+    final current = await fetchFirebaseUser();
+    return current.uid;
   }
 
   void dispose() {

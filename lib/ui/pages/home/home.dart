@@ -17,7 +17,10 @@ class HomePage extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<HomeController>(
           create: (_) => HomeController(
-            Provider.of<Authenticator>(context, listen: false),
+            Provider.of<Authenticator>(
+              context,
+              listen: false,
+            ),
           ),
         ),
         ChangeNotifierProvider<TalkController>(
@@ -25,7 +28,11 @@ class HomePage extends StatelessWidget {
         ),
         ChangeNotifierProvider<ProfileController>(
           create: (_) => ProfileController(
-              Provider.of<Authenticator>(context, listen: false)),
+            Provider.of<Authenticator>(
+              context,
+              listen: false,
+            ),
+          ),
         ),
       ],
       child: const HomePage._(),

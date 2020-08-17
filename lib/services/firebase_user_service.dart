@@ -13,7 +13,7 @@ class FirebaseUserService {
 
   Future<void> updateUserData(String name, String imgUrl, String uid) async {
     Map<String, String> userData;
-    if (imgUrl == '') {
+    if (imgUrl.isEmpty) {
       userData = {
         'name': name,
       };
@@ -33,9 +33,6 @@ class FirebaseUserService {
     final DocumentSnapshot result =
         await _db.collection('message/v1/users').document('$uid').get();
     final Map<String, dynamic> user = result.data;
-    return User(
-      name: user['name'].toString(),
-      imgUrl: user['profileImageURL'].toString(),
-    );
+    return User.fromJson(user);
   }
 }

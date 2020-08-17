@@ -16,8 +16,12 @@ class ProfileEditPage extends StatelessWidget {
 
   static Widget wrapped(BuildContext context) {
     return ChangeNotifierProvider<ProfileController>(
-      create: (_) =>
-          ProfileController(Provider.of<Authenticator>(context, listen: false)),
+      create: (_) => ProfileController(
+        Provider.of<Authenticator>(
+          context,
+          listen: false,
+        ),
+      ),
       child: const ProfileEditPage._(),
     );
   }
