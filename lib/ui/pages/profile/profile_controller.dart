@@ -31,33 +31,28 @@ class ProfileController with ChangeNotifier {
     }
   }
 
+  void notifySelectImage(String imagePath) {
+    image = File(imagePath);
+    notifyListeners();
+  }
+
   Future<void> changeProfileInfo(String name) async {
     final FirebaseStorageService firebaseStorageService =
         FirebaseStorageService();
     final FirebaseUserService firebaseUserService = FirebaseUserService();
-    //Firebaseへの変更通知
-    //uid指定で画像を保存すれば被らない。天才
+    user.name = name;
     if (image != null) {
-      final String imgUrl = await firebaseStorageService.uploadImage(
-          image, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
-      print('imgUrl : $imgUrl');
-      await firebaseUserService.updateUserData(
-          name, imgUrl, 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
-
-      image = null;
-      user = User(
-        name: name,
-        imgUrl: imgUrl,
+      user.imgUrl = await firebaseStorageService.uploadImage(
+        image,
+        'Kh2FY47Y0kak7zWB9bE7zY7FkCH3',
       );
-      notifyListeners();
-      return;
     }
     await firebaseUserService.updateUserData(
-        name, '', 'Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
-    user = User(
-      name: name,
-      imgUrl: user.imgUrl,
+      user.name,
+      user.imgUrl,
+      'Kh2FY47Y0kak7zWB9bE7zY7FkCH3',
     );
+    image = null;
     notifyListeners();
   }
 

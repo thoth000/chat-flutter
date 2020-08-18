@@ -34,8 +34,7 @@ class _ProfilePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ProfileImage(
-            image: user.imgUrl,
+          const ProfileImage(
             size: 150,
           ),
           const SizedBox(
@@ -43,16 +42,16 @@ class _ProfilePage extends StatelessWidget {
           ),
           Text(
             user.name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: AppTextSize.xlarge,
               fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: AppSpace.large,
           ),
           Center(
-            child: Container(
+            child: SizedBox(
               width: 150,
               child: RaisedButton.icon(
                 icon: const Icon(
@@ -73,7 +72,7 @@ class _ProfilePage extends StatelessWidget {
             ),
           ),
           Center(
-            child: Container(
+            child: SizedBox(
               width: 150,
               child: RaisedButton.icon(
                 icon: const Icon(
@@ -92,7 +91,7 @@ class _ProfilePage extends StatelessWidget {
             ),
           ),
           RaisedButton(
-            child: Text('更新'),
+            child: const Text('更新'),
             onPressed: () =>
                 Provider.of<ProfileController>(context, listen: false)
                     .getUserById('Kh2FY47Y0kak7zWB9bE7zY7FkCH3'),

@@ -1,10 +1,10 @@
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
-import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 
 import 'package:chat_flutter/model/user.dart';
 
@@ -71,8 +71,24 @@ class _ProfileEditPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const ImageButton(
-            size: 150,
+          FlatButton(
+            onPressed: () async {
+              final imagePicker = ImagePicker();
+              final selectImage = await imagePicker.getImage(
+                source: ImageSource.gallery,
+              );
+              if (selectImage != null) {
+                Provider.of<ProfileController>(
+                  context,
+                  listen: false,
+                ).notifySelectImage(
+                  selectImage.path,
+                );
+              }
+            },
+            child: const ProfileImage(
+              size: 150,
+            ),
           ),
           const SizedBox(
             height: AppSpace.small,
@@ -87,17 +103,17 @@ class _ProfileEditPage extends StatelessWidget {
               maxLines: 1,
               controller: nameController,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: AppTextSize.xlarge,
                 fontWeight: FontWeight.w700,
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: AppSpace.large,
           ),
           Center(
-            child: Container(
+            child: SizedBox(
               width: 150,
               child: RaisedButton.icon(
                 icon: const Icon(
@@ -118,55 +134,5 @@ class _ProfileEditPage extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class ImageButton extends StatelessWidget {
-  const ImageButton({Key key, this.size}) : super(key: key);
-  final double size;
-
-  @override
-  Widget build(BuildContext context) {
-    final profileController = Provider.of<ProfileController>(context);
-    return FlatButton(
-      onPressed: profileController.selectProfileImage,
-      child: child(profileController),
-    );
-  }
-
-  Widget child(ProfileController profileController) {
-    if (profileController.image != null) {
-      return SizedBox(
-        width: size,
-        height: size,
-        child: CircleAvatar(
-          backgroundImage: FileImage(profileController.image),
-        ),
-      );
-    } else if (profileController.user.imgUrl != '') {
-      return Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(profileController.user.imgUrl),
-          ),
-        ),
-      );
-    } else {
-      return Container(
-        width: size,
-        height: size,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/images/avatar.JPG'),
-          ),
-        ),
-      );
-    }
   }
 }

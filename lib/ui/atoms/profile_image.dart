@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfileImage extends StatelessWidget {
-  const ProfileImage({Key key, this.image, this.size}) : super(key: key);
-  final String image;
+  const ProfileImage({Key key, this.size}) : super(key: key);
   final double size;
 
   @override
