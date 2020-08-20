@@ -26,6 +26,6 @@ class FirebaseUserService {
     final DocumentSnapshot result =
         await _db.collection('message/v1/users').document('$uid').get();
     final Map<String, dynamic> user = result.data;
-    return User.fromJson(user);
+    return User.fromJson(user, uid);
   }
 }

@@ -9,15 +9,15 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfileController with ChangeNotifier {
   ProfileController(this.authenticator) {
-    //TODO:仮ID削除
-    getUserById('Kh2FY47Y0kak7zWB9bE7zY7FkCH3');
+    getUserById();
   }
   User user;
   File image;
   Authenticator authenticator;
   FirebaseUserService firebaseUserService = FirebaseUserService();
 
-  Future<void> getUserById(String userId) async {
+  Future<void> getUserById() async {
+    final String userId = await authenticator.getUid();
     user = await firebaseUserService.getUserData(userId);
     notifyListeners();
   }
@@ -44,13 +44,13 @@ class ProfileController with ChangeNotifier {
     if (image != null) {
       user.imgUrl = await firebaseStorageService.uploadImage(
         image,
-        'Kh2FY47Y0kak7zWB9bE7zY7FkCH3',
+        user.id,
       );
     }
     await firebaseUserService.updateUserData(
       user.name,
       user.imgUrl,
-      'Kh2FY47Y0kak7zWB9bE7zY7FkCH3',
+      user.id,
     );
     image = null;
     notifyListeners();
