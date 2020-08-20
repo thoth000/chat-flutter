@@ -10,8 +10,8 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      name: json['text'].toString(),
-      imgUrl: json['profileImgURL'].toString(),
+      name: json['name'].toString(),
+      imgUrl: json['profileImageURL'].toString(),
     );
   }
 }
