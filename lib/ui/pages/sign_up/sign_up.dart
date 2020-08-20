@@ -87,7 +87,7 @@ class SignUpPage extends StatelessWidget {
                       vertical: AppSpace.small,
                     ),
                     child: const Text(
-                      "Start",
+                      'Start',
                       style: TextStyle(
                         fontSize: AppTextSize.xlarge,
                         fontWeight: FontWeight.bold,

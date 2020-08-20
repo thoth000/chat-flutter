@@ -6,8 +6,6 @@ import 'package:provider/provider.dart';
 class SearchedUserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final controller =
-        Provider.of<CreateRoomController>(context, listen: false);
     final userList = Provider.of<CreateRoomController>(context).searchedUser;
     return ListView.builder(
       itemCount: userList.length,

@@ -5,13 +5,15 @@ class Authenticator {
   Authenticator() {
     _isSignIn.value = firebaseUser.value != null;
     _firebaseAuth.onAuthStateChanged.pipe(_firebaseUser);
-    _firebaseAuth.onAuthStateChanged.map((firebaseUser) => firebaseUser != null).pipe(_isSignIn);
+    _firebaseAuth.onAuthStateChanged
+        .map((firebaseUser) => firebaseUser != null)
+        .pipe(_isSignIn);
   }
 
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseUser = BehaviorSubject<FirebaseUser>();
   final _isSignIn = BehaviorSubject<bool>();
-  
+
   ValueStream<FirebaseUser> get firebaseUser => _firebaseUser;
   ValueStream<bool> get isSignIn => _isSignIn;
 
@@ -22,7 +24,10 @@ class Authenticator {
     if (current != null) {
       return current;
     }
-    final authResult = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+    final authResult = await _firebaseAuth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
     return authResult?.user;
   }
 
@@ -32,12 +37,20 @@ class Authenticator {
       return current;
     }
 
-    final authResult = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    final authResult = await _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
     return authResult?.user;
   }
 
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+  }
+
+  Future<String> getUid() async {
+    final current = await fetchFirebaseUser();
+    return current.uid;
   }
 
   void dispose() {

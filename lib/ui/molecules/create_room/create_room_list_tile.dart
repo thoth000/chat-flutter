@@ -15,7 +15,7 @@ class CreateRoomListTile extends StatelessWidget {
     return FlatButton(
       //userをメンバーに追加する処理
       //ただcreate_room.dartでも使われているため迷い
-      onPressed: (){},
+      onPressed: () {},
       child: Padding(
         padding: const EdgeInsets.all(AppSpace.small),
         child: Row(

@@ -33,7 +33,7 @@ class SignUpController with ChangeNotifier {
 
   Future<void> signUp() async {
     final FirebaseUser user = await authenticator.signUp(_email, _password);
-    if(user!=null){
+    if (user != null) {
       await firebaseUserService.setUserData(name, user.uid);
     }
   }

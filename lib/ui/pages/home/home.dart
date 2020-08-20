@@ -17,14 +17,22 @@ class HomePage extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<HomeController>(
           create: (_) => HomeController(
-            Provider.of<Authenticator>(context, listen: false),
+            Provider.of<Authenticator>(
+              context,
+              listen: false,
+            ),
           ),
         ),
         ChangeNotifierProvider<TalkController>(
           create: (_) => TalkController(),
         ),
         ChangeNotifierProvider<ProfileController>(
-          create: (_) => ProfileController(Provider.of<Authenticator>(context, listen: false)),
+          create: (_) => ProfileController(
+            Provider.of<Authenticator>(
+              context,
+              listen: false,
+            ),
+          ),
         ),
       ],
       child: const HomePage._(),

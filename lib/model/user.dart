@@ -7,4 +7,11 @@ class User {
     this.imgUrl,
     this.isMe,
   });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      name: json['name'].toString(),
+      imgUrl: json['profileImageURL'].toString(),
+    );
+  }
 }
