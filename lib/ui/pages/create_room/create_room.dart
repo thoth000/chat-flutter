@@ -56,7 +56,7 @@ class CreateRoomPage extends StatelessWidget {
               width: 100,
               child: CircleAvatar(
                 radius: double.infinity,
-                backgroundImage: const NetworkImage(
+                backgroundImage: NetworkImage(
                     'https://wired.jp/app/uploads/2019/10/dog-unsolicited.jpg'),
               ),
             ),
