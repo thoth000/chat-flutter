@@ -3,7 +3,6 @@ import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
 import 'package:chat_flutter/ui/molecules/talk/app_bar.dart';
 import 'package:chat_flutter/ui/pages/home/home_controller.dart';
 import 'package:chat_flutter/ui/pages/profile/profile.dart';
-import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:chat_flutter/ui/pages/talk/talk.dart';
 import 'package:chat_flutter/ui/pages/talk/talk_controller.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +24,6 @@ class HomePage extends StatelessWidget {
         ),
         ChangeNotifierProvider<TalkController>(
           create: (_) => TalkController(),
-        ),
-        ChangeNotifierProvider<ProfileController>(
-          create: (_) => ProfileController(
-            Provider.of<Authenticator>(
-              context,
-              listen: false,
-            ),
-          ),
         ),
       ],
       child: const HomePage._(),

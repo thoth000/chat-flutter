@@ -1,31 +1,13 @@
-import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
-
-import 'package:chat_flutter/model/user.dart';
-
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfileEditPage extends StatelessWidget {
-  const ProfileEditPage._({Key key}) : super(key: key);
-
-  static Widget wrapped(BuildContext context) {
-    return ChangeNotifierProvider<ProfileController>(
-      create: (_) => ProfileController(
-        Provider.of<Authenticator>(
-          context,
-          listen: false,
-        ),
-      ),
-      child: const ProfileEditPage._(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<ProfileController>(context).user;

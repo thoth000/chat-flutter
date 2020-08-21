@@ -9,15 +9,16 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileController = Provider.of<ProfileController>(context);
-    if (profileController.image != null) {
+    if (profileController.selectedImageFile != null) {
       return SizedBox(
         width: size,
         height: size,
         child: CircleAvatar(
-          backgroundImage: FileImage(profileController.image),
+          backgroundImage: FileImage(profileController.selectedImageFile),
         ),
       );
-    } else if (profileController.user.imgUrl != '') {
+    } else if (profileController.user.imgUrl != '' &&
+        profileController.user.imgUrl != null) {
       return Container(
         width: size,
         height: size,

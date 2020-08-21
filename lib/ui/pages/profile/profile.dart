@@ -1,11 +1,9 @@
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:chat_flutter/model/user.dart';
-
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -63,7 +61,6 @@ class _ProfilePage extends StatelessWidget {
                   Navigator.pushNamed<void>(
                     context,
                     '/profileEditPage',
-                    arguments: user.name,
                   );
                 },
                 color: Colors.green,
@@ -89,12 +86,6 @@ class _ProfilePage extends StatelessWidget {
                 textColor: Colors.white,
               ),
             ),
-          ),
-          RaisedButton(
-            child: const Text('更新'),
-            onPressed: () =>
-                Provider.of<ProfileController>(context, listen: false)
-                    .getUserById('Kh2FY47Y0kak7zWB9bE7zY7FkCH3'),
           ),
         ],
       ),
