@@ -24,7 +24,8 @@ class ProfileController with ChangeNotifier {
 
   Future<void> selectProfileImage() async {
     final imagePicker = ImagePicker();
-    final selectedImage = await imagePicker.getImage(source: ImageSource.gallery);
+    final selectedImage =
+        await imagePicker.getImage(source: ImageSource.gallery);
     if (selectedImage != null) {
       selectedImageFile = File(selectedImage.path);
       notifyListeners();

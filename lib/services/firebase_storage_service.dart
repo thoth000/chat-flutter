@@ -7,9 +7,12 @@ class FirebaseStorageService {
   Future<String> uploadImage(File file, String uid) async {
     final StorageReference ref = _storage.ref().child(uid);
     final StorageUploadTask uploadTask = ref.putFile(file);
-    final dynamic downLoadUrl =
-        await (await uploadTask.onComplete).ref.getDownloadURL();
+
+    await uploadTask.onComplete;
+
+    final dynamic downLoadUrl = await ref.getDownloadURL();
     final String downLoadUrlString = downLoadUrl.toString();
+
     return downLoadUrlString;
   }
 }
