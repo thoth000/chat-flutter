@@ -67,8 +67,7 @@ class _ProfileEditPage extends StatelessWidget {
                 );
               }
             },
-            child: ProfileImage(
-              profileController: profileController,
+            child: const ProfileImage(
               size: 150,
             ),
           ),

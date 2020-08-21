@@ -1,4 +1,5 @@
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,21 +9,21 @@ import 'package:chat_flutter/config/app_text_size.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final profileController = Provider.of<ProfileController>(context);
-    if (profileController.user == null) {
+    final user = Provider.of<ProfileController>(context).user;
+    if (user == null) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     } else {
-      return _ProfilePage(controller: profileController);
+      return _ProfilePage(user: user);
     }
   }
 }
 
 class _ProfilePage extends StatelessWidget {
-  final ProfileController controller;
+  final User user;
 
-  const _ProfilePage({Key key, this.controller}) : super(key: key);
+  const _ProfilePage({Key key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +32,14 @@ class _ProfilePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          ProfileImage(
-            profileController: controller,
+          const ProfileImage(
             size: 150,
           ),
           const SizedBox(
             height: AppSpace.small,
           ),
           Text(
-            controller.user.name,
+            user.name,
             style: const TextStyle(
               fontSize: AppTextSize.xlarge,
               fontWeight: FontWeight.w700,

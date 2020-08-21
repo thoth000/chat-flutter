@@ -1,14 +1,14 @@
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileImage extends StatelessWidget {
-  const ProfileImage({Key key, this.size, this.profileController})
-      : super(key: key);
+  const ProfileImage({Key key, this.size}) : super(key: key);
   final double size;
-  final ProfileController profileController;
 
   @override
   Widget build(BuildContext context) {
+    final profileController = Provider.of<ProfileController>(context);
     if (profileController.selectedImageFile != null) {
       return SizedBox(
         width: size,
