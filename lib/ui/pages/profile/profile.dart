@@ -3,29 +3,26 @@ import 'package:chat_flutter/ui/atoms/profile_image.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:chat_flutter/model/user.dart';
-
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<ProfileController>(context).user;
-    if (user == null) {
+    final profileController = Provider.of<ProfileController>(context);
+    if (profileController.user == null) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     } else {
-      return _ProfilePage(user: user);
+      return _ProfilePage(controller: profileController);
     }
   }
 }
 
 class _ProfilePage extends StatelessWidget {
-  final User user;
+  final ProfileController controller;
 
-  const _ProfilePage({Key key, this.user}) : super(key: key);
+  const _ProfilePage({Key key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +31,15 @@ class _ProfilePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const ProfileImage(
+          ProfileImage(
+            profileController: controller,
             size: 150,
           ),
           const SizedBox(
             height: AppSpace.small,
           ),
           Text(
-            user.name,
+            controller.user.name,
             style: const TextStyle(
               fontSize: AppTextSize.xlarge,
               fontWeight: FontWeight.w700,
@@ -63,7 +61,6 @@ class _ProfilePage extends StatelessWidget {
                   Navigator.pushNamed<void>(
                     context,
                     '/profileEditPage',
-                    arguments: user.name,
                   );
                 },
                 color: Colors.green,
@@ -91,11 +88,10 @@ class _ProfilePage extends StatelessWidget {
             ),
           ),
           RaisedButton(
-            child: const Text('更新'),
-            onPressed: () =>
-                Provider.of<ProfileController>(context, listen: false)
-                    .getUserById(),
-          ),
+              child: const Text('更新'),
+              onPressed: () =>
+                  Provider.of<ProfileController>(context, listen: false)
+                      .getUserById),
         ],
       ),
     );

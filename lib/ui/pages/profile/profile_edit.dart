@@ -1,34 +1,15 @@
-import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-
 import 'package:chat_flutter/ui/atoms/profile_image.dart';
-
-import 'package:chat_flutter/model/user.dart';
-
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class ProfileEditPage extends StatelessWidget {
-  const ProfileEditPage._({Key key}) : super(key: key);
-
-  static Widget wrapped(BuildContext context) {
-    return ChangeNotifierProvider<ProfileController>(
-      create: (_) => ProfileController(
-        Provider.of<Authenticator>(
-          context,
-          listen: false,
-        ),
-      ),
-      child: const ProfileEditPage._(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<ProfileController>(context).user;
+    final controller = Provider.of<ProfileController>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -43,28 +24,28 @@ class ProfileEditPage extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.white,
-      body: (user == null)
+      body: (controller.user == null)
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : _ProfileEditPage(
-              user: user,
+              controller: controller,
             ),
     );
   }
 }
 
 class _ProfileEditPage extends StatelessWidget {
-  final User user;
+  final ProfileController controller;
 
-  const _ProfileEditPage({Key key, this.user}) : super(key: key);
+  const _ProfileEditPage({Key key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final profileController =
         Provider.of<ProfileController>(context, listen: false);
     final TextEditingController nameController = TextEditingController(
-      text: user.name,
+      text: controller.user.name,
     );
     return SafeArea(
       child: Column(
@@ -86,7 +67,8 @@ class _ProfileEditPage extends StatelessWidget {
                 );
               }
             },
-            child: const ProfileImage(
+            child: ProfileImage(
+              profileController: profileController,
               size: 150,
             ),
           ),
