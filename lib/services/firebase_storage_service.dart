@@ -10,9 +10,9 @@ class FirebaseStorageService {
 
     await uploadTask.onComplete;
 
-    final dynamic downLoadUrl = await ref.getDownloadURL();
-    final String downLoadUrlString = downLoadUrl.toString();
+    final dynamic downloadUrl = await ref.getDownloadURL();
+    final String downloadUrlString = downloadUrl.toString();
 
-    return downLoadUrlString;
+    return downloadUrlString;
   }
 }
