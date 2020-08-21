@@ -29,7 +29,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // AuthenticatorをProvideしたかったので、MultiProviderではできなかった
+    // Authenticatorをコンストラクタで渡したかったので、MultiProviderではできなかった
     return ChangeNotifierProvider(
       create: (_) => ProfileController(
         Provider.of<Authenticator>(
