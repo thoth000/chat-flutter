@@ -1,3 +1,4 @@
+import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,7 +10,7 @@ import 'package:chat_flutter/config/app_text_size.dart';
 class ProfileEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<ProfileController>(context);
+    final user = Provider.of<ProfileController>(context).user;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -24,28 +25,28 @@ class ProfileEditPage extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.white,
-      body: (controller.user == null)
+      body: (user == null)
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : _ProfileEditPage(
-              controller: controller,
+              user: user,
             ),
     );
   }
 }
 
 class _ProfileEditPage extends StatelessWidget {
-  final ProfileController controller;
+  final User user;
 
-  const _ProfileEditPage({Key key, this.controller}) : super(key: key);
+  const _ProfileEditPage({Key key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final profileController =
         Provider.of<ProfileController>(context, listen: false);
     final TextEditingController nameController = TextEditingController(
-      text: controller.user.name,
+      text: user.name,
     );
     return SafeArea(
       child: Column(
