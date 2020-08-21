@@ -39,7 +39,6 @@ class ProfileController with ChangeNotifier {
   Future<void> changeProfileInfo(String name) async {
     final FirebaseStorageService firebaseStorageService =
         FirebaseStorageService();
-    final FirebaseUserService firebaseUserService = FirebaseUserService();
     user.name = name;
     if (image != null) {
       user.imgUrl = await firebaseStorageService.uploadImage(
@@ -47,11 +46,7 @@ class ProfileController with ChangeNotifier {
         user.id,
       );
     }
-    await firebaseUserService.updateUserData(
-      user.name,
-      user.imgUrl,
-      user.id,
-    );
+    await firebaseUserService.updateUserData(user);
     image = null;
     notifyListeners();
   }

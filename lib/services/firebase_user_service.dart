@@ -11,14 +11,14 @@ class FirebaseUserService {
     await _db.collection('message/v1/users').document('$uid').setData(userData);
   }
 
-  Future<void> updateUserData(String name, String imgUrl, String uid) async {
+  Future<void> updateUserData(User user) async {
     final Map<String, String> userData = {
-      'name': name,
-      'profileImageURL': imgUrl,
+      'name': user.name,
+      'profileImageURL': user.imgUrl,
     };
     await _db
         .collection('message/v1/users')
-        .document('$uid')
+        .document(user.id)
         .updateData(userData);
   }
 
