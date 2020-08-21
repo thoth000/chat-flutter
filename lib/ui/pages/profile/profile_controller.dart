@@ -12,7 +12,7 @@ class ProfileController with ChangeNotifier {
     getUserById();
   }
   User user;
-  File image;
+  File selectedImageFile;
   Authenticator authenticator;
   FirebaseUserService firebaseUserService = FirebaseUserService();
 
@@ -24,30 +24,28 @@ class ProfileController with ChangeNotifier {
 
   Future<void> selectProfileImage() async {
     final imagePicker = ImagePicker();
-    final selectImage = await imagePicker.getImage(source: ImageSource.gallery);
-    if (selectImage != null) {
-      image = File(selectImage.path);
+    final selectedImage = await imagePicker.getImage(source: ImageSource.gallery);
+    if (selectedImage != null) {
+      selectedImageFile = File(selectedImage.path);
       notifyListeners();
     }
   }
 
   void notifySelectImage(String imagePath) {
-    image = File(imagePath);
+    selectedImageFile = File(imagePath);
     notifyListeners();
   }
 
   Future<void> changeProfileInfo(String name) async {
-    final FirebaseStorageService firebaseStorageService =
-        FirebaseStorageService();
     user.name = name;
-    if (image != null) {
-      user.imgUrl = await firebaseStorageService.uploadImage(
-        image,
+    if (selectedImageFile != null) {
+      user.imgUrl = await FirebaseStorageService().uploadImage(
+        selectedImageFile,
         user.id,
       );
     }
     await firebaseUserService.updateUserData(user);
-    image = null;
+    selectedImageFile = null;
     notifyListeners();
   }
 
