@@ -1,4 +1,5 @@
 import 'package:chat_flutter/config/app_space.dart';
+import 'package:chat_flutter/model/user.dart';
 import 'package:chat_flutter/ui/molecules/create_room/room_member_list.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room_controller.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,8 @@ class CreateRoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<User> members =
+        ModalRoute.of(context).settings.arguments as List<User>;
     final TextEditingController _textEditingController =
         TextEditingController();
     return Scaffold(
@@ -91,7 +94,9 @@ class CreateRoomPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: RoomMemberList(),
+            child: RoomMemberList(
+              members: members,
+            ),
           ),
         ],
       ),
