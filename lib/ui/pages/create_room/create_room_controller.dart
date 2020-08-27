@@ -27,7 +27,7 @@ class CreateRoomController with ChangeNotifier {
     }).toList();
 
     // 自分のIDを追加
-    final myId = await authenticator.getUid();
+    final String myId = await authenticator.getUid();
     memberIdList.add(myId);
 
     room = Room(
