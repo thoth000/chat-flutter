@@ -1,5 +1,7 @@
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/user.dart';
+import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/ui/molecules/create_room/room_image.dart';
 import 'package:chat_flutter/ui/molecules/create_room/room_member_list.dart';
 import 'package:chat_flutter/ui/pages/create_room/create_room_controller.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +11,9 @@ import 'package:provider/provider.dart';
 
 class CreateRoomPage extends StatelessWidget {
   const CreateRoomPage._({Key key}) : super(key: key);
-  static Widget wrapped() {
+  static Widget wrapped(Authenticator authenticator) {
     return ChangeNotifierProvider<CreateRoomController>(
-      create: (_) => CreateRoomController(),
+      create: (_) => CreateRoomController(authenticator: authenticator),
       child: const CreateRoomPage._(),
     );
   }
@@ -37,9 +39,13 @@ class CreateRoomPage extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               //room作成
-              Navigator.pushReplacementNamed(context, '/homePage');
+              await Provider.of<CreateRoomController>(
+                context,
+                listen: false,
+              ).createRoom(members, _textEditingController.text);
+              await Navigator.pushReplacementNamed(context, '/homePage');
             },
             icon: Icon(
               Icons.check,
@@ -53,15 +59,14 @@ class CreateRoomPage extends StatelessWidget {
             height: AppSpace.midium,
           ),
           FlatButton(
-            onPressed: () {},
-            child: const SizedBox(
-              height: 100,
-              width: 100,
-              child: CircleAvatar(
-                radius: double.infinity,
-                backgroundImage: NetworkImage(
-                    'https://wired.jp/app/uploads/2019/10/dog-unsolicited.jpg'),
-              ),
+            onPressed: () async {
+              await Provider.of<CreateRoomController>(
+                context,
+                listen: false,
+              ).selectProfileImage();
+            },
+            child: const RoomImage(
+              size: 100,
             ),
           ),
           SizedBox(
