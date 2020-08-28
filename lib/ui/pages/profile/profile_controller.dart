@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat_flutter/model/storage_type.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/services/firebase_storage_service.dart';
 import 'package:chat_flutter/services/firebase_user_service.dart';
@@ -43,6 +44,7 @@ class ProfileController with ChangeNotifier {
       user.imgUrl = await FirebaseStorageService().uploadImage(
         selectedImageFile,
         user.id,
+        StorageType.user,
       );
     }
     await firebaseUserService.updateUserData(user);

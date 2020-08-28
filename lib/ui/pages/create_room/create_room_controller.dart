@@ -1,72 +1,53 @@
+import 'dart:io';
+
+import 'package:chat_flutter/model/room.dart';
+import 'package:chat_flutter/model/storage_type.dart';
+import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/services/firebase_room_service.dart';
+import 'package:chat_flutter/services/firebase_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateRoomController with ChangeNotifier {
-  //検索時にユーザデータを取得しているのでユーザのリストにする。
-  //メンバー判定用にidも合った方がいいかも
-  List<User> members = [
-    User(
-      name: 'Alex',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-    User(
-      name: 'Alex2',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-    User(
-      name: 'Jack',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-    User(
-      name: 'Brian',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-  ];
+  CreateRoomController({this.authenticator});
 
-  List<User> searchedUser = [
-    User(
-      name: 'Alex',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-    User(
-      name: 'Alex2',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-    User(
-      name: 'Jack',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-    User(
-      name: 'Brian',
-      imgUrl:
-          'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-    ),
-  ];
+  File selectedImageFile;
+  Room room = Room();
+  final Authenticator authenticator;
 
-  void addMember(User user) {
-    //memberに既にいるか判定
-    members.add(user);
-    notifyListeners();
+  Future<void> createRoom(List<User> members, String roomName) async {
+    final imagePath = selectedImageFile != null
+        ? await FirebaseStorageService()
+            .uploadImage(selectedImageFile, 'sss', StorageType.room)
+        : '';
+
+    final List<String> memberIdList = members.map((member) {
+      return member.id;
+    }).toList();
+
+    // 自分のIDを追加
+    final String myId = await authenticator.getUid();
+    memberIdList.add(myId);
+
+    room = Room(
+      name: roomName,
+      members: memberIdList,
+      imgUrl: imagePath,
+      // 初めはブランクで入れておく
+      lastMessage: '',
+    );
+
+    await FirebaseRoomService().setRoomData(room);
   }
 
-  void removeMember(int index) {
-    //memberから削除
-  }
-
-  void searchUser(String id) {
-    //idサーチ
-    //searchedUserにadd
-  }
-
-  void createRoom(List<String> member, String roomName) {
-    //firebaseにRoom登録
-    //各メンバーにroomオプションを追加
+  Future<void> selectProfileImage() async {
+    final imagePicker = ImagePicker();
+    final selectedImage =
+        await imagePicker.getImage(source: ImageSource.gallery);
+    if (selectedImage != null) {
+      selectedImageFile = File(selectedImage.path);
+      notifyListeners();
+    }
   }
 }
