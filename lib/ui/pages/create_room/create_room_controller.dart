@@ -15,6 +15,7 @@ class CreateRoomController with ChangeNotifier {
   File selectedImageFile;
   Room room = Room();
   final Authenticator authenticator;
+  final FirebaseRoomService _firebaseRoomService = FirebaseRoomService();
 
   Future<void> createRoom(List<User> members, String roomName) async {
     final imagePath = selectedImageFile != null
@@ -38,7 +39,9 @@ class CreateRoomController with ChangeNotifier {
       lastMessage: '',
     );
 
-    await FirebaseRoomService().setRoomData(room);
+    final String roomId = await _firebaseRoomService.setRoomData(room);
+
+    await _firebaseRoomService.setRoomSetting(myId, roomId);
   }
 
   Future<void> selectProfileImage() async {
