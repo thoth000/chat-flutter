@@ -1,3 +1,4 @@
+import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/molecules/create_room/member_list.dart';
 import 'package:chat_flutter/ui/molecules/create_room/searced_user_list.dart';
 import 'package:chat_flutter/ui/pages/create_room/select_member_controller.dart';
@@ -6,9 +7,9 @@ import 'package:provider/provider.dart';
 
 class SelectMemberPage extends StatelessWidget {
   const SelectMemberPage._({Key key}) : super(key: key);
-  static Widget wrapped() {
+  static Widget wrapped(Authenticator authenticator) {
     return ChangeNotifierProvider<SelectMemberController>(
-      create: (_) => SelectMemberController(),
+      create: (_) => SelectMemberController(authenticator),
       child: const SelectMemberPage._(),
     );
   }

@@ -7,18 +7,22 @@ class SearchedUserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<SelectMemberController>(context);
-    return ListView.builder(
-      itemCount: controller.searchedUserList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return FlatButton(
-          onPressed: () {
-            controller.addMember(controller.searchedUserList[index]);
-          },
-          child: CreateRoomListTile(
-            user: controller.searchedUserList[index],
-          ),
-        );
-      },
-    );
+    if (controller.searchedUserList.isEmpty) {
+      return Container();
+    } else {
+      return ListView.builder(
+        itemCount: controller.searchedUserList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return FlatButton(
+            onPressed: () {
+              controller.addMember(controller.searchedUserList[index]);
+            },
+            child: CreateRoomListTile(
+              user: controller.searchedUserList[index],
+            ),
+          );
+        },
+      );
+    }
   }
 }
