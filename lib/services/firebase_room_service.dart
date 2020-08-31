@@ -23,6 +23,7 @@ class FirebaseRoomService {
 
     await _db
         .collection('message/v1/users/$userId/room_setting')
-        .add(settingData);
+        .document(roomId)
+        .setData(settingData);
   }
 }
