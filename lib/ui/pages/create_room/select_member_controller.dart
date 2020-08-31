@@ -1,13 +1,16 @@
 import 'package:chat_flutter/model/user.dart';
+import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/services/firebase_user_service.dart';
 import 'package:flutter/material.dart';
 
 class SelectMemberController extends ChangeNotifier {
-  SelectMemberController() {
-    getUser();
+  SelectMemberController(this.authenticator) {
+    getAllUserExceptMe();
   }
 
   List<User> members = [];
-  List<User> searchedUserList;
+  List<User> searchedUserList = [];
+  final Authenticator authenticator;
 
   void addMember(User user) {
     for (final member in members) {
@@ -24,33 +27,13 @@ class SelectMemberController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getUser() {
-    searchedUserList = [
-      User(
-        id: 'sss',
-        name: 'Alex',
-        imgUrl:
-            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-      ),
-      User(
-        id: 'ttt',
-        name: 'Alex2',
-        imgUrl:
-            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-      ),
-      User(
-        id: '444',
-        name: 'Jack',
-        imgUrl:
-            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-      ),
-      User(
-        id: 'eee',
-        name: 'Brian',
-        imgUrl:
-            'https://pbs.twimg.com/profile_images/581025665727655936/9CnwZZ6j.jpg',
-      ),
-    ];
+  Future<void> getAllUserExceptMe() async {
+    final List<User> allUserList = await FirebaseUserService().getAllUser();
+    // 自分のIDを除く
+    final String myId = await authenticator.getUid();
+    searchedUserList = allUserList.where((user) => user.id != myId).toList();
+
+    notifyListeners();
   }
 
   void searchUser(String id) {}

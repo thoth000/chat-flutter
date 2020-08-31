@@ -28,4 +28,14 @@ class FirebaseUserService {
     final Map<String, dynamic> user = result.data;
     return User.fromJson(user, uid);
   }
+
+  Future<List<User>> getAllUser() async {
+    final QuerySnapshot result =
+        await _db.collection('message/v1/users').getDocuments();
+
+    return result.documents.map((doc) {
+      final Map<String, dynamic> user = doc.data;
+      return User.fromJson(user, doc.documentID);
+    }).toList();
+  }
 }
