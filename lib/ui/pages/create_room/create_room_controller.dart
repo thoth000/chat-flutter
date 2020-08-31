@@ -41,7 +41,10 @@ class CreateRoomController with ChangeNotifier {
 
     final String roomId = await _firebaseRoomService.setRoomData(room);
 
-    await _firebaseRoomService.setRoomSetting(myId, roomId);
+    // メンバー全員のroom_settingを作成(Cloud Functionsで実装する？)
+    memberIdList.forEach((userId) async {
+      await _firebaseRoomService.setRoomSetting(userId, roomId);
+    });
   }
 
   Future<void> selectProfileImage() async {
