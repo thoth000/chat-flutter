@@ -55,7 +55,8 @@ class MyApp extends StatelessWidget {
               Provider.of<Authenticator>(context, listen: false)),
           '/roomPage': RoomPage.wrapped,
           '/profileEditPage': (context) => ProfileEditPage(),
-          '/selectMemberPage': (context) => SelectMemberPage.wrapped(),
+          '/selectMemberPage': (context) => SelectMemberPage.wrapped(
+              Provider.of<Authenticator>(context, listen: false)),
           '/createGroupPage': (context) => CreateRoomPage.wrapped(
               Provider.of<Authenticator>(context, listen: false)),
         },
