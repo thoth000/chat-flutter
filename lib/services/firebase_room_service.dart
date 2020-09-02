@@ -27,7 +27,7 @@ class FirebaseRoomService {
         .setData(settingData);
   }
 
-  Future getStreamSnapshot(String uid) async {
+  /*Future getStreamSnapshot(String uid) async {
     final QuerySnapshot querySnapshot = await _db
         .collection('message/v1/users/$uid/room_setting')
         .getDocuments();
@@ -40,5 +40,17 @@ class FirebaseRoomService {
       return Room.fromJson(room.data, roomId);
     }).toList();
     return roomList;
+  }*/
+  Stream<List<Future<Room>>> getStreamSnapshot(String uid) {
+    final Stream<QuerySnapshot> querySnapshot = _db
+        .collection('message/v1/users/$uid/room_setting')
+        .snapshots();
+    return querySnapshot.map((snapshot) {
+      return snapshot.documents.map((doc) {
+        return _db.collection('message/v1/rooms').document(doc.documentID).get().then((roomDoc) {
+          return Room.fromJson(roomDoc.data, doc.documentID);
+        });
+      }).toList();
+    });
   }
 }

@@ -23,7 +23,12 @@ class HomePage extends StatelessWidget {
           ),
         ),
         ChangeNotifierProvider<TalkController>(
-          create: (_) => TalkController(),
+          create: (_) => TalkController(
+            Provider.of<Authenticator>(
+              context,
+              listen: false,
+            ),
+          ),
         ),
       ],
       child: const HomePage._(),
