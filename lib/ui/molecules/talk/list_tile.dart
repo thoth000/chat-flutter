@@ -4,84 +4,92 @@ import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
 
 class TalkPageListTile extends StatelessWidget {
-  final Room room;
+  final Future<Room> room;
 
   const TalkPageListTile(this.room);
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: () {
-        Navigator.pushNamed(
-          context,
-          '/roomPage',
-          arguments: room,
-        );
-      },
-      child: SizedBox(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpace.small),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: 60,
-                width: 60,
-                child: CircleAvatar(
-                  radius: double.infinity,
-                  backgroundImage: NetworkImage(room.imgUrl),
-                ),
-              ),
-              const SizedBox(
-                width: AppSpace.midium,
-              ),
-              SizedBox(
-                height: 60,
-                width: MediaQuery.of(context).size.width - 135,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+    return FutureBuilder(
+      future: room,
+      builder: (BuildContext context, AsyncSnapshot<Room> snapshot) {
+        if(!snapshot.hasData){
+          return Container();
+        }
+        return FlatButton(
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              '/roomPage',
+              arguments: snapshot.data,
+            );
+          },
+          child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.all(AppSpace.small),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: CircleAvatar(
+                      radius: double.infinity,
+                      backgroundImage: NetworkImage(snapshot.data.imgUrl),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: AppSpace.midium,
+                  ),
+                  SizedBox(
+                    height: 60,
+                    width: MediaQuery.of(context).size.width - 135,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Flexible(
+                              child: Text(
+                                snapshot.data.name,
+                                style: const TextStyle(
+                                  fontSize: AppTextSize.midium,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Text(
+                              snapshot.data.sendTime,
+                              style: const TextStyle(
+                                fontSize: AppTextSize.xsmall,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
                         Flexible(
                           child: Text(
-                            room.name,
-                            style: TextStyle(
-                              fontSize: AppTextSize.midium,
-                              fontWeight: FontWeight.bold,
+                            snapshot.data.lastMessage,
+                            style: const TextStyle(
+                              fontSize: AppTextSize.small,
+                              color: Colors.grey,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        Text(
-                          room.sendTime,
-                          style: TextStyle(
-                            fontSize: AppTextSize.xsmall,
-                            color: Colors.grey,
-                          ),
-                        ),
                       ],
                     ),
-                    Flexible(
-                      child: Text(
-                        room.lastMessage,
-                        style: TextStyle(
-                          fontSize: AppTextSize.small,
-                          color: Colors.grey,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

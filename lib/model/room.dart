@@ -19,8 +19,8 @@ class Room {
     return Room(
       id: roomId,
       name: json['name'].toString(),
-      imgUrl: json['ImgUrl'].toString(),
-      members: json['members'] as List<String>,
+      imgUrl: json['imgUrl'].toString(),
+      members: json['members'].cast<String>() as List<String>,
       lastMessage: json['lastMessage'].toString(),
       sendTime: json['sendTime'].toString(),
     );
