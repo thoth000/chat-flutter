@@ -13,8 +13,8 @@ class TalkPageListTile extends StatelessWidget {
     return FutureBuilder(
       future: room,
       builder: (BuildContext context, AsyncSnapshot<Room> snapshot) {
-        if(!snapshot.hasData){
-          return Container();
+        if (!snapshot.hasData) {
+          return const SizedBox();
         }
         return FlatButton(
           onPressed: () {

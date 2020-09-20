@@ -28,12 +28,15 @@ class FirebaseRoomService {
   }
 
   Stream<List<Future<Room>>> getStreamSnapshot(String uid) {
-    final Stream<QuerySnapshot> querySnapshot = _db
-        .collection('message/v1/users/$uid/room_setting')
-        .snapshots();
+    final Stream<QuerySnapshot> querySnapshot =
+        _db.collection('message/v1/users/$uid/room_setting').snapshots();
     return querySnapshot.map((snapshot) {
       return snapshot.documents.map((doc) {
-        return _db.collection('message/v1/rooms').document(doc.documentID).get().then((roomDoc) {
+        return _db
+            .collection('message/v1/rooms')
+            .document(doc.documentID)
+            .get()
+            .then((roomDoc) {
           return Room.fromJson(roomDoc.data, doc.documentID);
         });
       }).toList();

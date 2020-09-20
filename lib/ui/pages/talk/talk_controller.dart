@@ -5,7 +5,7 @@ import 'package:chat_flutter/model/room.dart';
 
 class TalkController with ChangeNotifier {
   TalkController(this.authenticator) {
-    Future(() async{
+    Future(() async {
       uid = await authenticator.getUid();
       roomList = await firebaseRoomService.getMyRoomList(uid);
       notifyListeners();
