@@ -17,7 +17,7 @@ class SelectMemberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller =
-        Provider.of<SelectMemberController>(context, listen: false);
+        Provider.of<SelectMemberController>(context);
     final textController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
@@ -49,9 +49,9 @@ class SelectMemberPage extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: 'Enter a message',
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    controller.searchUser('id');
+                  icon: const Icon(Icons.search),
+                  onPressed: () async{
+                    await controller.getSearchedUserExceptMe(textController.text);
                   },
                 ),
               ),
@@ -63,9 +63,9 @@ class SelectMemberPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.only(left: 15),
               child: Text(
                 'Add Members',
