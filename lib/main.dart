@@ -1,4 +1,4 @@
-import 'package:chat_flutter/services/messgae_service.dart';
+import 'package:chat_flutter/services/message_service.dart';
 import 'package:chat_flutter/ui/pages/create_room/select_member.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
@@ -53,7 +53,8 @@ class MyApp extends StatelessWidget {
               Provider.of<Authenticator>(context, listen: false)),
           '/signInPage': (context) => SignInPage.wrapped(
               Provider.of<Authenticator>(context, listen: false)),
-          '/roomPage': RoomPage.wrapped,
+          '/roomPage': (context) => RoomPage.wrapped(
+              context, Provider.of<Authenticator>(context, listen: false)),
           '/profileEditPage': (context) => ProfileEditPage(),
           '/selectMemberPage': (context) => SelectMemberPage.wrapped(
               Provider.of<Authenticator>(context, listen: false)),

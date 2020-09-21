@@ -16,10 +16,10 @@ class Message {
     this.roomId,
   });
 
-  factory Message.fromJson(Map<String, dynamic> json) {
+  factory Message.fromJson(Map<String, dynamic> json,String userId) {
     bool judgeIsMe(String senderId) {
       // 自分のIDと比較
-      return senderId == 'userId';
+      return senderId == userId;
     }
 
     return Message(
