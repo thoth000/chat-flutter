@@ -1,15 +1,15 @@
 import 'package:chat_flutter/services/message_service.dart';
-import 'package:chat_flutter/ui/pages/create_room/select_member.dart';
+import 'package:chat_flutter/ui/pages/create_room/select_member_page.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
-import 'package:chat_flutter/ui/pages/room/room_edit.dart';
-import 'package:chat_flutter/ui/pages/sign_in/sign_in.dart';
-import 'package:chat_flutter/ui/pages/sign_up/sign_up.dart';
+import 'package:chat_flutter/ui/pages/room/room_edit_page.dart';
+import 'package:chat_flutter/ui/pages/sign_in/sign_in_page.dart';
+import 'package:chat_flutter/ui/pages/sign_up/sign_up_page.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_flutter/ui/pages/create_room/create_room.dart';
-import 'package:chat_flutter/ui/pages/home/home.dart';
-import 'package:chat_flutter/ui/pages/profile/profile_edit.dart';
-import 'package:chat_flutter/ui/pages/room/room.dart';
+import 'package:chat_flutter/ui/pages/create_room/create_room_page.dart';
+import 'package:chat_flutter/ui/pages/home/home_page.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_edit_page.dart';
+import 'package:chat_flutter/ui/pages/room/room_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
