@@ -7,8 +7,7 @@ class TalkController with ChangeNotifier {
   TalkController(this.authenticator) {
     Future(() async {
       uid = await authenticator.getUid();
-      roomList = await firebaseRoomService.getMyRoomList(uid);
-      notifyListeners();
+      await getMyRoomList();
     });
   }
 
@@ -16,4 +15,9 @@ class TalkController with ChangeNotifier {
   Authenticator authenticator;
   String uid;
   List<Future<Room>> roomList;
+
+  Future<void> getMyRoomList() async{
+    roomList = await firebaseRoomService.getMyRoomList(uid);
+    notifyListeners();
+  }
 }
