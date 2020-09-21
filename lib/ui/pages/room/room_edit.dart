@@ -3,14 +3,14 @@ import 'package:chat_flutter/ui/atoms/my_room_image.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
 
 class RoomEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final RoomController roomController = ModalRoute.of(context).settings.arguments as RoomController;
+    final RoomController roomController =
+        ModalRoute.of(context).settings.arguments as RoomController;
     final room = roomController.room;
     return Scaffold(
       appBar: AppBar(
@@ -103,8 +103,7 @@ class _RoomEditPage extends StatelessWidget {
                 ),
                 label: const Text('更新する'),
                 onPressed: () async {
-                  await roomController
-                      .changeRoomInfo(nameController.text);
+                  await roomController.changeRoomInfo(nameController.text);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,

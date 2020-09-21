@@ -57,7 +57,7 @@ class MessageListItem extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width / 2,
             ),
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
               horizontal: AppSpace.xsmall,
             ),
             decoration: BoxDecoration(
@@ -77,7 +77,7 @@ class MessageListItem extends StatelessWidget {
           if (!message.isMe)
             Text(
               CommonFuncUtil.dateTimeToString(message.sendTime),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: AppTextSize.xsmall,
               ),
             ),

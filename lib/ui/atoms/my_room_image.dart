@@ -1,9 +1,9 @@
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MyRoomImage extends StatelessWidget {
-  const MyRoomImage({Key key, this.size,this.roomController}) : super(key: key);
+  const MyRoomImage({Key key, this.size, this.roomController})
+      : super(key: key);
   final double size;
   final RoomController roomController;
 
