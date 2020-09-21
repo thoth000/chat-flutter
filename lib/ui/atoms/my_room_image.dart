@@ -1,5 +1,7 @@
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
+import 'package:chat_flutter/ui/pages/room/room_edit_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyRoomImage extends StatelessWidget {
   const MyRoomImage({Key key, this.size, this.roomController})
@@ -9,12 +11,14 @@ class MyRoomImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (roomController.selectedImageFile != null) {
+    final RoomEditController roomEditController =
+        Provider.of<RoomEditController>(context);
+    if (roomEditController.selectedImageFile != null) {
       return SizedBox(
         width: size,
         height: size,
         child: CircleAvatar(
-          backgroundImage: FileImage(roomController.selectedImageFile),
+          backgroundImage: FileImage(roomEditController.selectedImageFile),
         ),
       );
     } else if (roomController.room.imgUrl != '' &&
