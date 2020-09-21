@@ -18,6 +18,7 @@ class RoomPage extends StatelessWidget {
       create: (_) => RoomController(
         messageService: Provider.of<MessageService>(context, listen: false),
         authenticator: authenticator,
+        room: ModalRoute.of(context).settings.arguments as Room,
       ),
       child: const RoomPage._(),
     );
@@ -25,8 +26,8 @@ class RoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Room room = ModalRoute.of(context).settings.arguments as Room;
     final roomController = Provider.of<RoomController>(context);
+    final Room room = roomController.room;
     final TextEditingController textController = TextEditingController();
     if (roomController.userId == null) {
       return const Scaffold(
@@ -51,7 +52,13 @@ class RoomPage extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed<void>(
+                    context,
+                    '/roomEditPage',
+                    arguments: roomController,
+                  );
+            },
             icon: const Icon(
               Icons.more_vert,
             ),

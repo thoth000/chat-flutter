@@ -27,6 +27,17 @@ class FirebaseRoomService {
         .setData(settingData);
   }
 
+  Future<void> updateRoomData(Room room) async {
+    final Map<String, String> roomData = {
+      'name': room.name,
+      'imgUrl': room.imgUrl,
+    };
+    await _db
+        .collection('message/v1/rooms')
+        .document(room.id)
+        .updateData(roomData);
+  }
+
   Future<List<Future<Room>>> getMyRoomList(String uid) async {
     final QuerySnapshot querySnapshot = await _db
         .collection('message/v1/users/$uid/room_setting')
