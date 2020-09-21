@@ -9,18 +9,20 @@ import 'package:chat_flutter/model/user.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileController with ChangeNotifier {
-  ProfileController(this.authenticator) {
-    getUserById();
-  }
+  ProfileController(this.authenticator);
   User user;
   File selectedImageFile;
   Authenticator authenticator;
   FirebaseUserService firebaseUserService = FirebaseUserService();
 
-  Future<void> getUserById() async {
+  Future<String> getUserById() async {
     final String userId = await authenticator.getUid();
+    if(userId.isEmpty){
+      return '';
+    }
     user = await firebaseUserService.getUserData(userId);
     notifyListeners();
+    return 'success';
   }
 
   Future<void> selectProfileImage() async {

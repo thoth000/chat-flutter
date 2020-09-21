@@ -1,7 +1,8 @@
 import 'package:chat_flutter/config/app_radius.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
-import 'package:chat_flutter/ui/atoms/profile_image.dart';
+import 'package:chat_flutter/services/firebase_user_service.dart';
+import 'package:chat_flutter/ui/atoms/circular_image.dart';
 import 'package:chat_flutter/util/common_func_util.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class MessageListItem extends StatelessWidget {
   final Message message;
   @override
   Widget build(BuildContext context) {
+    final FirebaseUserService firebaseUserService = FirebaseUserService();
     return Padding(
       padding: const EdgeInsets.all(AppSpace.xsmall),
       child: Row(
@@ -37,8 +39,19 @@ class MessageListItem extends StatelessWidget {
               ],
             ),
           if (!message.isMe)
-            const ProfileImage(
-              size: 40,
+            FutureBuilder<String>(
+              future: firebaseUserService.getUserImgUrl(message.senderId),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const CircularImage(
+                    size: 40,
+                  );
+                }
+                return CircularImage(
+                  size: 40,
+                  imgUrl: snapshot.data,
+                );
+              },
             ),
           Container(
             constraints: BoxConstraints(

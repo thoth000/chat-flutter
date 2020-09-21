@@ -11,10 +11,10 @@ class ErrorDialog extends StatelessWidget {
       actions: [
         FlatButton(
           child: const Text('OK'),
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
           },
-          ),
+        ),
       ],
     );
   }

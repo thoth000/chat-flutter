@@ -4,7 +4,8 @@ import 'package:chat_flutter/services/firebase_user_service.dart';
 import 'package:flutter/material.dart';
 
 class SelectMemberController extends ChangeNotifier {
-  SelectMemberController(this.authenticator); /*{
+  SelectMemberController(this.authenticator);
+  /*{
     getAllUserExceptMe();
   }*/
 
@@ -35,14 +36,13 @@ class SelectMemberController extends ChangeNotifier {
     notifyListeners();
   }*/
 
-  Future<void> getSearchedUserExceptMe(String name) async{
-    final List<User> userList = await FirebaseUserService().getSearchedUser(name);
+  Future<void> getSearchedUserExceptMe(String name) async {
+    final List<User> userList =
+        await FirebaseUserService().getSearchedUser(name);
     final String myId = await authenticator.getUid();
     searchedUserList = userList.where((user) => user.id != myId).toList();
     notifyListeners();
   }
 
-  void searchUser(String id) {
-
-  }
+  void searchUser(String id) {}
 }

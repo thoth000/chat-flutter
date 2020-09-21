@@ -2,8 +2,8 @@ import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileImage extends StatelessWidget {
-  const ProfileImage({Key key, this.size}) : super(key: key);
+class MyProfileImage extends StatelessWidget {
+  const MyProfileImage({Key key, this.size}) : super(key: key);
   final double size;
 
   @override

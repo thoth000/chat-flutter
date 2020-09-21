@@ -3,6 +3,7 @@ import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/atoms/error_dialog.dart';
 import 'package:chat_flutter/ui/atoms/input_text_field.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
 import 'package:chat_flutter/ui/pages/sign_in/sign_in_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -104,21 +105,26 @@ class SignInPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(AppRadius.xlarge),
                     ),
                     onPressed: () async {
-                      if(controller.email==null || controller.password==null){
-                        const String message = 'Emails and passwords should not be empty.';
+                      if (controller.email == null ||
+                          controller.password == null) {
+                        const String message =
+                            'Emails and passwords should not be empty.';
                         await showDialog<void>(
                             context: context,
                             builder: (context) => const ErrorDialog(message));
+                      } else {
+                        try {
+                          await controller.signIn();
+                          await Provider.of<ProfileController>(context,
+                                  listen: false)
+                              .getUserById();
+                          await Navigator.pushNamed(context, '/homePage');
+                        } on Exception catch (e) {
+                          await showDialog<void>(
+                              context: context,
+                              builder: (context) => ErrorDialog(e.toString()));
+                        }
                       }
-                      else{
-                      try {
-                        await controller.signIn();
-                        await Navigator.pushNamed(context, '/homePage');
-                      } on Exception catch (e) {
-                        await showDialog<void>(
-                            context: context,
-                            builder: (context) => ErrorDialog(e.toString()));
-                      }}
                     },
                   ),
                   const SizedBox(
