@@ -1,9 +1,9 @@
 import 'package:chat_flutter/services/auth/authenticator.dart';
-import 'package:chat_flutter/ui/molecules/profile/app_bar.dart';
-import 'package:chat_flutter/ui/molecules/talk/app_bar.dart';
+import 'package:chat_flutter/ui/molecules/profile/profile_page_app_bar.dart';
+import 'package:chat_flutter/ui/molecules/talk/talk_page_app_bar.dart';
 import 'package:chat_flutter/ui/pages/home/home_controller.dart';
-import 'package:chat_flutter/ui/pages/profile/profile.dart';
-import 'package:chat_flutter/ui/pages/talk/talk.dart';
+import 'package:chat_flutter/ui/pages/profile/profile_page.dart';
+import 'package:chat_flutter/ui/pages/talk/talk_page.dart';
 import 'package:chat_flutter/ui/pages/talk/talk_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

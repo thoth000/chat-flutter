@@ -3,7 +3,7 @@ import 'package:chat_flutter/model/message.dart';
 import 'package:chat_flutter/model/room.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/services/message_service.dart';
-import 'package:chat_flutter/ui/molecules/message/list.dart';
+import 'package:chat_flutter/ui/molecules/message/message_list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
 import 'package:flutter/material.dart';
