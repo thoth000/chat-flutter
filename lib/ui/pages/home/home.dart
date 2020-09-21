@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
             Icons.message,
           ),
           title: Text(
-            '',
+            'talk',
           ),
         ),
         BottomNavigationBarItem(
@@ -78,7 +78,7 @@ class HomePage extends StatelessWidget {
             Icons.person,
           ),
           title: Text(
-            '',
+            'profile',
           ),
         ),
       ],

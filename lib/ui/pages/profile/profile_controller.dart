@@ -16,7 +16,7 @@ class ProfileController with ChangeNotifier {
 
   Future<String> getUserById() async {
     final String userId = await authenticator.getUid();
-    if(userId.isEmpty){
+    if (userId.isEmpty) {
       return '';
     }
     user = await firebaseUserService.getUserData(userId);

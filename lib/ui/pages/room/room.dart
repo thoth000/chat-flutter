@@ -54,10 +54,10 @@ class RoomPage extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.pushNamed<void>(
-                    context,
-                    '/roomEditPage',
-                    arguments: roomController,
-                  );
+                context,
+                '/roomEditPage',
+                arguments: roomController,
+              );
             },
             icon: const Icon(
               Icons.more_vert,

@@ -24,7 +24,7 @@ class InputMessageTextField extends StatelessWidget {
             AppSpace.small,
           ),
         ),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: AppTextSize.midium,
         ),
       ),

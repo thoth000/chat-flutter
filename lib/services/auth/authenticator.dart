@@ -50,7 +50,7 @@ class Authenticator {
 
   Future<String> getUid() async {
     final current = await fetchFirebaseUser();
-    if(current==null){
+    if (current == null) {
       return '';
     }
     return current.uid;
