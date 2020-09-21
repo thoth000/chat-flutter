@@ -1,5 +1,5 @@
 import 'package:chat_flutter/model/message.dart';
-import 'package:chat_flutter/services/messgae_service.dart';
+import 'package:chat_flutter/services/message_service.dart';
 import 'package:flutter/material.dart';
 
 class RoomController extends ChangeNotifier {

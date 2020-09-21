@@ -1,4 +1,4 @@
-import 'package:chat_flutter/services/messgae_service.dart';
+import 'package:chat_flutter/services/message_service.dart';
 import 'package:chat_flutter/ui/pages/create_room/select_member.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/ui/pages/profile/profile_controller.dart';
