@@ -239,3 +239,7 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/dart,xcode,flutter,androidstudio
+
+# firebase
+**/google-services.json
+**/GoogleService-Info.plist
