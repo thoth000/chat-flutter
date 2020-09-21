@@ -15,14 +15,14 @@ class ProfileController with ChangeNotifier {
   Authenticator authenticator;
   FirebaseUserService firebaseUserService = FirebaseUserService();
 
-  Future<void> getUserById() async {
+  Future<String> getUserById() async {
     final String userId = await authenticator.getUid();
-    print(userId);
     if(userId.isEmpty){
-      return;
+      return '';
     }
     user = await firebaseUserService.getUserData(userId);
     notifyListeners();
+    return 'success';
   }
 
   Future<void> selectProfileImage() async {

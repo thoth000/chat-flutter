@@ -16,7 +16,7 @@ class FirebaseRoomService {
     return docRef.documentID;
   }
 
-  Future<void> setRoomSetting(String userId, String roomId) async {
+  Future<void> setMyRoomSetting(String userId, String roomId) async {
     final settingData = {
       'allowNotification': false,
     };
@@ -25,22 +25,6 @@ class FirebaseRoomService {
         .collection('message/v1/users/$userId/room_setting')
         .document(roomId)
         .setData(settingData);
-  }
-
-  Stream<List<Future<Room>>> getStreamSnapshot(String uid) {
-    final Stream<QuerySnapshot> querySnapshot =
-        _db.collection('message/v1/users/$uid/room_setting').snapshots();
-    return querySnapshot.map((snapshot) {
-      return snapshot.documents.map((doc) {
-        return _db
-            .collection('message/v1/rooms')
-            .document(doc.documentID)
-            .get()
-            .then((roomDoc) {
-          return Room.fromJson(roomDoc.data, doc.documentID);
-        });
-      }).toList();
-    });
   }
 
   Future<List<Future<Room>>> getMyRoomList(String uid) async {

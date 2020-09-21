@@ -44,14 +44,16 @@ class Wrapped extends StatelessWidget {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Object>(
-      future: Provider.of<Authenticator>(context).getUid(),
+    return FutureBuilder<String>(
+      future: Provider.of<ProfileController>(context,listen: false).getUserById(),
       builder: (context, snapshot) {
         if(snapshot.connectionState==ConnectionState.waiting){
-          return Container();
-        }
-        if(snapshot.data!=''){
-          Provider.of<ProfileController>(context).getUserById();
+          return Container(
+            color: Colors.white,
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
         return MaterialApp(
           title: 'Flutter Demo',

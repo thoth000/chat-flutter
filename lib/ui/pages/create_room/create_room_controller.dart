@@ -43,7 +43,7 @@ class CreateRoomController with ChangeNotifier {
 
     // メンバー全員のroom_settingを作成(Cloud Functionsで実装する？)
     memberIdList.forEach((userId) async {
-      await _firebaseRoomService.setRoomSetting(userId, roomId);
+      await _firebaseRoomService.setMyRoomSetting(userId, roomId);
     });
   }
 
