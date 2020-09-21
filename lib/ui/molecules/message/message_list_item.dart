@@ -12,10 +12,8 @@ class MessageListItem extends StatelessWidget {
   final Message message;
   @override
   Widget build(BuildContext context) {
-    //isMeは頻繁に使うし変化しないから、ここで定義するのは？
-    //あとmessage.messageに少し違和感 => message.textとか？
     return Padding(
-      padding: EdgeInsets.all(AppSpace.xsmall),
+      padding: const EdgeInsets.all(AppSpace.xsmall),
       child: Row(
         mainAxisAlignment:
             message.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -26,13 +24,13 @@ class MessageListItem extends StatelessWidget {
               children: <Widget>[
                 Text(
                   (message.isRead) ? '既読' : '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: AppTextSize.xsmall,
                   ),
                 ),
                 Text(
                   CommonFuncUtil.dateTimeToString(message.sendTime),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: AppTextSize.xsmall,
                   ),
                 ),

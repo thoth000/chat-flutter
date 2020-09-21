@@ -15,7 +15,7 @@ class MessageService implements MessageInterface {
   }
 
   @override
-  Stream<List<Message>> getMessage(String roomId) {
-    return FirebaseMessageService().getMessageData(roomId);
+  Stream<List<Message>> getMessage(String roomId,String userId) {
+    return FirebaseMessageService().getMessageData(roomId,userId);
   }
 }
