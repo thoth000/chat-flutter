@@ -16,8 +16,7 @@ class SelectMemberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller =
-        Provider.of<SelectMemberController>(context);
+    final controller = Provider.of<SelectMemberController>(context);
     final textController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
@@ -50,8 +49,9 @@ class SelectMemberPage extends StatelessWidget {
                 hintText: 'Enter a message',
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.search),
-                  onPressed: () async{
-                    await controller.getSearchedUserExceptMe(textController.text);
+                  onPressed: () async {
+                    await controller
+                        .getSearchedUserExceptMe(textController.text);
                   },
                 ),
               ),

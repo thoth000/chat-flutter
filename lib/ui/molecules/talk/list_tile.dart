@@ -1,5 +1,6 @@
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
+import 'package:chat_flutter/ui/atoms/circular_image.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/room.dart';
 
@@ -30,14 +31,7 @@ class TalkPageListTile extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    height: 60,
-                    width: 60,
-                    child: CircleAvatar(
-                      radius: double.infinity,
-                      backgroundImage: NetworkImage(snapshot.data.imgUrl),
-                    ),
-                  ),
+                  CircularImage(size: 60, imgUrl: snapshot.data.imgUrl),
                   const SizedBox(
                     width: AppSpace.midium,
                   ),

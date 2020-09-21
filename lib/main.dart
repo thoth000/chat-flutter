@@ -22,14 +22,13 @@ void main() {
         create: (_) => MessageService(),
       ),
     ],
-    child: MyApp(),
+    child: Wrapped(),
   ));
 }
 
-class MyApp extends StatelessWidget {
+class Wrapped extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Authenticatorをコンストラクタで渡したかったので、MultiProviderではできなかった
     return ChangeNotifierProvider(
       create: (_) => ProfileController(
         Provider.of<Authenticator>(
@@ -37,31 +36,49 @@ class MyApp extends StatelessWidget {
           listen: false,
         ),
       ),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        initialRoute:
-            Provider.of<Authenticator>(context, listen: false).isSignIn.value
-                ? '/homePage'
-                : '/signUpPage',
-        routes: {
-          '/homePage': HomePage.wrapped,
-          '/signUpPage': (context) => SignUpPage.wrapped(
-              Provider.of<Authenticator>(context, listen: false)),
-          '/signInPage': (context) => SignInPage.wrapped(
-              Provider.of<Authenticator>(context, listen: false)),
-          '/roomPage': (context) => RoomPage.wrapped(
-              context, Provider.of<Authenticator>(context, listen: false)),
-          '/profileEditPage': (context) => ProfileEditPage(),
-          '/selectMemberPage': (context) => SelectMemberPage.wrapped(
-              Provider.of<Authenticator>(context, listen: false)),
-          '/createGroupPage': (context) => CreateRoomPage.wrapped(
-              Provider.of<Authenticator>(context, listen: false)),
-        },
-      ),
+      child: MyApp(),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Object>(
+      future: Provider.of<Authenticator>(context).getUid(),
+      builder: (context, snapshot) {
+        if(snapshot.connectionState==ConnectionState.waiting){
+          return Container();
+        }
+        if(snapshot.data!=''){
+          Provider.of<ProfileController>(context).getUserById();
+        }
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          initialRoute:
+              snapshot.data!=''
+                  ? '/homePage'
+                  : '/signUpPage',
+          routes: {
+            '/homePage': HomePage.wrapped,
+            '/signUpPage': (context) => SignUpPage.wrapped(
+                Provider.of<Authenticator>(context, listen: false)),
+            '/signInPage': (context) => SignInPage.wrapped(
+                Provider.of<Authenticator>(context, listen: false)),
+            '/roomPage': (context) => RoomPage.wrapped(
+                context, Provider.of<Authenticator>(context, listen: false)),
+            '/profileEditPage': (context) => ProfileEditPage(),
+            '/selectMemberPage': (context) => SelectMemberPage.wrapped(
+                Provider.of<Authenticator>(context, listen: false)),
+            '/createGroupPage': (context) => CreateRoomPage.wrapped(
+                Provider.of<Authenticator>(context, listen: false)),
+          },
+        );
+      }
     );
   }
 }

@@ -4,8 +4,8 @@ import 'package:chat_flutter/services/message_service.dart';
 import 'package:flutter/material.dart';
 
 class RoomController extends ChangeNotifier {
-  RoomController({this.messageService,this.authenticator}){
-    Future(()async{
+  RoomController({this.messageService, this.authenticator}) {
+    Future(() async {
       userId = await authenticator.getUid();
       notifyListeners();
     });
@@ -21,6 +21,6 @@ class RoomController extends ChangeNotifier {
   }
 
   Stream<List<Message>> messageList(String roomId) {
-    return messageService.getMessage(roomId,userId);
+    return messageService.getMessage(roomId, userId);
   }
 }

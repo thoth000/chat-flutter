@@ -29,6 +29,12 @@ class FirebaseUserService {
     return User.fromJson(user, uid);
   }
 
+  Future<String> getUserImgUrl(String uid) async {
+    final DocumentSnapshot result =
+        await _db.collection('message/v1/users').document('$uid').get();
+    return result.data['profileImageURL'].toString();
+  }
+
   /*Future<List<User>> getAllUser() async {
     final QuerySnapshot result =
         await _db.collection('message/v1/users').getDocuments();
@@ -39,11 +45,15 @@ class FirebaseUserService {
     }).toList();
   }*/
 
-  Future<List<User>> getSearchedUser(String name) async{
+  Future<List<User>> getSearchedUser(String name) async {
     final startAt = [name];
     final endAt = ['$name\uf8ff'];
-    final QuerySnapshot result =
-        await _db.collection('message/v1/users').orderBy('name').startAt(startAt).endAt(endAt).getDocuments();
+    final QuerySnapshot result = await _db
+        .collection('message/v1/users')
+        .orderBy('name')
+        .startAt(startAt)
+        .endAt(endAt)
+        .getDocuments();
     return result.documents.map((doc) {
       final Map<String, dynamic> user = doc.data;
       return User.fromJson(user, doc.documentID);
