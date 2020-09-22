@@ -46,7 +46,7 @@ class SelectMemberPage extends StatelessWidget {
             child: TextField(
               controller: textController,
               decoration: InputDecoration(
-                hintText: 'Enter a message',
+                hintText: 'Enter a name',
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.search),
                   onPressed: () async {
