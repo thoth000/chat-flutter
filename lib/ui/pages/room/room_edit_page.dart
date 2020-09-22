@@ -1,10 +1,12 @@
 import 'package:chat_flutter/model/room.dart';
 import 'package:chat_flutter/ui/atoms/my_room_image.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
+import 'package:chat_flutter/ui/pages/room/room_edit_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/config/app_text_size.dart';
+import 'package:provider/provider.dart';
 
 class RoomEditPage extends StatelessWidget {
   @override
@@ -12,27 +14,30 @@ class RoomEditPage extends StatelessWidget {
     final RoomController roomController =
         ModalRoute.of(context).settings.arguments as RoomController;
     final room = roomController.room;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Room',
-          style: TextStyle(
+    return ChangeNotifierProvider<RoomEditController>(
+      create: (_) => RoomEditController(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Room',
+            style: TextStyle(
+              color: Color(0xff707070),
+            ),
+          ),
+          backgroundColor: Colors.white,
+          iconTheme: const IconThemeData(
             color: Color(0xff707070),
           ),
         ),
         backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(
-          color: Color(0xff707070),
-        ),
+        body: (room == null)
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : _RoomEditPage(
+                roomController: roomController,
+              ),
       ),
-      backgroundColor: Colors.white,
-      body: (room == null)
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : _RoomEditPage(
-              roomController: roomController,
-            ),
     );
   }
 }
@@ -45,6 +50,8 @@ class _RoomEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Room room = roomController.room;
+    final RoomEditController roomEditController =
+        Provider.of<RoomEditController>(context);
     final TextEditingController nameController = TextEditingController(
       text: room.name,
     );
@@ -60,7 +67,7 @@ class _RoomEditPage extends StatelessWidget {
                 source: ImageSource.gallery,
               );
               if (selectImage != null) {
-                roomController.notifySelectImage(
+                roomEditController.notifySelectImage(
                   selectImage.path,
                 );
               }
@@ -103,7 +110,8 @@ class _RoomEditPage extends StatelessWidget {
                 ),
                 label: const Text('更新する'),
                 onPressed: () async {
-                  await roomController.changeRoomInfo(nameController.text);
+                  await roomController.changeRoomInfo(nameController.text,
+                      roomEditController.selectedImageFile);
                   Navigator.of(context).pop();
                 },
                 color: Colors.redAccent,

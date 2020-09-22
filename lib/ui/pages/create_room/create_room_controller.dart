@@ -18,10 +18,6 @@ class CreateRoomController with ChangeNotifier {
   final FirebaseRoomService _firebaseRoomService = FirebaseRoomService();
 
   Future<void> createRoom(List<User> members, String roomName) async {
-    final imagePath = selectedImageFile != null
-        ? await FirebaseStorageService()
-            .uploadImage(selectedImageFile, 'sss', StorageType.room)
-        : '';
 
     final List<String> memberIdList = members.map((member) {
       return member.id;
@@ -32,18 +28,25 @@ class CreateRoomController with ChangeNotifier {
     memberIdList.add(myId);
 
     room = Room(
+      id: '',
       name: roomName,
       members: memberIdList,
-      imgUrl: imagePath,
       // 初めはブランクで入れておく
+      imgUrl: '',
       lastMessage: '',
     );
 
-    final String roomId = await _firebaseRoomService.setRoomData(room);
+    room.id = await _firebaseRoomService.setRoomData(room);
+
+    if(selectedImageFile!=null) {
+      //roomIdで画像URLを作成する
+      room.imgUrl = await FirebaseStorageService().uploadImage(selectedImageFile, room.id, StorageType.room);
+      await FirebaseRoomService().updateRoomData(room);
+    }
 
     // メンバー全員のroom_settingを作成(Cloud Functionsで実装する？)
     memberIdList.forEach((userId) async {
-      await _firebaseRoomService.setMyRoomSetting(userId, roomId);
+      await _firebaseRoomService.setMyRoomSetting(userId, room.id);
     });
   }
 

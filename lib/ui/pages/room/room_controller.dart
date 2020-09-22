@@ -17,7 +17,6 @@ class RoomController extends ChangeNotifier {
     });
   }
   final Room room;
-  File selectedImageFile;
   final FirebaseRoomService firebaseRoomService = FirebaseRoomService();
   final MessageService messageService;
   final Authenticator authenticator;
@@ -32,12 +31,9 @@ class RoomController extends ChangeNotifier {
     return messageService.getMessage(roomId, userId);
   }
 
-  void notifySelectImage(String imagePath) {
-    selectedImageFile = File(imagePath);
-    notifyListeners();
-  }
 
-  Future<void> changeRoomInfo(String name) async {
+
+  Future<void> changeRoomInfo(String name,File selectedImageFile) async {
     room.name = name;
     if (selectedImageFile != null) {
       room.imgUrl = await FirebaseStorageService().uploadImage(
@@ -47,7 +43,6 @@ class RoomController extends ChangeNotifier {
       );
     }
     await firebaseRoomService.updateRoomData(room);
-    selectedImageFile = null;
     notifyListeners();
   }
 }
