@@ -31,9 +31,7 @@ class RoomController extends ChangeNotifier {
     return messageService.getMessage(roomId, userId);
   }
 
-
-
-  Future<void> changeRoomInfo(String name,File selectedImageFile) async {
+  Future<void> changeRoomInfo(String name, File selectedImageFile) async {
     room.name = name;
     if (selectedImageFile != null) {
       room.imgUrl = await FirebaseStorageService().uploadImage(

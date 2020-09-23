@@ -7,8 +7,7 @@ import 'package:provider/provider.dart';
 class TalkPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final List<Future<Room>> roomList =
-        Provider.of<TalkController>(context).roomList;
+    final List<Room> roomList = Provider.of<TalkController>(context).roomList;
     if (roomList == null) {
       return const Center(
         child: CircularProgressIndicator(),

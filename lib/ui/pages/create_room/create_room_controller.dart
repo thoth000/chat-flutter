@@ -5,6 +5,7 @@ import 'package:chat_flutter/model/storage_type.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
 import 'package:chat_flutter/services/firebase_room_service.dart';
 import 'package:chat_flutter/services/firebase_storage_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_flutter/model/user.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,7 +19,6 @@ class CreateRoomController with ChangeNotifier {
   final FirebaseRoomService _firebaseRoomService = FirebaseRoomService();
 
   Future<void> createRoom(List<User> members, String roomName) async {
-
     final List<String> memberIdList = members.map((member) {
       return member.id;
     }).toList();
@@ -33,14 +33,18 @@ class CreateRoomController with ChangeNotifier {
       members: memberIdList,
       // 初めはブランクで入れておく
       imgUrl: '',
-      lastMessage: '',
+      lastMessage: <String, dynamic>{
+        'text': '',
+        'createdAt': Timestamp.fromDate(DateTime.now()),
+      },
     );
 
     room.id = await _firebaseRoomService.setRoomData(room);
 
-    if(selectedImageFile!=null) {
+    if (selectedImageFile != null) {
       //roomIdで画像URLを作成する
-      room.imgUrl = await FirebaseStorageService().uploadImage(selectedImageFile, room.id, StorageType.room);
+      room.imgUrl = await FirebaseStorageService()
+          .uploadImage(selectedImageFile, room.id, StorageType.room);
       await FirebaseRoomService().updateRoomData(room);
     }
 
