@@ -11,7 +11,7 @@ class FirebaseMessageService {
       'text': message.text,
       'createdAt': message.sendTime,
     };
-    final updateData = {'lastMessage': message.text};
+    final updateData = {'lastMessage': messageData};
     await _db
         .collection('message/v1/rooms/${message.roomId}/transcripts')
         .document()

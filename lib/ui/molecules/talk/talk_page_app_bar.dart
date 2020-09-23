@@ -24,8 +24,9 @@ class TalkPageAppBar extends StatelessWidget with PreferredSizeWidget {
           icon: const Icon(
             Icons.refresh,
           ),
-          onPressed: () async{
-            await Provider.of<TalkController>(context,listen: false).getMyRoomList();
+          onPressed: () async {
+            await Provider.of<TalkController>(context, listen: false)
+                .getMyRoomList();
           },
         ),
         IconButton(

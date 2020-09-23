@@ -38,18 +38,29 @@ class FirebaseRoomService {
         .updateData(roomData);
   }
 
-  Future<List<Future<Room>>> getMyRoomList(String uid) async {
+  Future<List<Room>> getMyRoomList(String uid) async {
     final QuerySnapshot querySnapshot = await _db
         .collection('message/v1/users/$uid/room_setting')
         .getDocuments();
     final List<DocumentSnapshot> docList = querySnapshot.documents;
     final List<String> roomIdList =
         docList.map((doc) => doc.documentID).toList();
-    final List<Future<Room>> roomList = roomIdList.map((roomId) async {
-      final DocumentSnapshot room =
+    final List<Room> roomList = [];
+    for (final String roomId in roomIdList) {
+      final DocumentSnapshot roomData =
           await _db.collection('message/v1/rooms').document('$roomId').get();
-      return Room.fromJson(room.data, roomId);
-    }).toList();
+      roomList.add(Room.fromJson(roomData.data, roomId));
+    }
+    //時間順に並び替え
+    roomList.sort((a, b) {
+      final aTime = a.lastMessage['createdAt'] as Timestamp;
+      final bTime = b.lastMessage['createdAt'] as Timestamp;
+      if (aTime.compareTo(bTime) > 0) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
     return roomList;
   }
 }

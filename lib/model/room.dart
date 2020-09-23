@@ -4,15 +4,13 @@ class Room {
   String name;
   String imgUrl;
   List<String> members;
-  String lastMessage;
-  String sendTime;
+  Map<String, dynamic> lastMessage;
   Room({
     this.id,
     this.name,
     this.imgUrl,
     this.members,
     this.lastMessage,
-    this.sendTime,
   });
 
   factory Room.fromJson(Map<String, dynamic> json, String roomId) {
@@ -21,8 +19,7 @@ class Room {
       name: json['name'].toString(),
       imgUrl: json['imgUrl'].toString(),
       members: json['members'].cast<String>() as List<String>,
-      lastMessage: json['lastMessage'].toString(),
-      sendTime: json['sendTime'].toString(),
+      lastMessage: json['lastMessage'] as Map<String, dynamic>,
     );
   }
 }
