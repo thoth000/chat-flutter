@@ -12,7 +12,6 @@ class InputMessageTextField extends StatelessWidget {
     return Expanded(
       child: TextField(
         controller: roomTextController,
-        keyboardType: TextInputType.multiline,
         minLines: 1,
         maxLines: 4,
         decoration: InputDecoration(

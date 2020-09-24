@@ -2,6 +2,7 @@ import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
 import 'package:chat_flutter/model/room.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
+import 'package:chat_flutter/services/firebase_room_service.dart';
 import 'package:chat_flutter/services/message_service.dart';
 import 'package:chat_flutter/ui/molecules/message/message_list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
@@ -50,6 +51,13 @@ class RoomPage extends StatelessWidget {
             color: Color(0xff707070),
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () async{
+            await FirebaseRoomService().updateLastReadTime(room.id, roomController.userId);
+            Navigator.pop(context);
+          },
+        ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -71,10 +79,17 @@ class RoomPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              StreamProvider<List<Message>>(
-                create: (_) => roomController.messageList(room.id),
-                initialData: const [],
-                child: MessageList(),
+              StreamProvider<List<DateTime>>(
+                create: (_) => roomController.lastReadTimeList(room.id),
+                initialData : const [],
+                child: StreamProvider<List<Message>>(
+                  create: (_){
+                    roomController.listenStream();
+                    return roomController.messageList(room.id);
+                  },
+                  initialData: const [],
+                  child: MessageList(),
+                ),
               ),
               const SizedBox(
                 height: AppSpace.xBig,
@@ -101,6 +116,8 @@ class RoomPage extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () async {
+                        //
+                        FocusScope.of(context).unfocus();
                         await roomController.sendMessage(
                           textController.text,
                           room.id,

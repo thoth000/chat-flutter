@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:chat_flutter/model/message.dart';
@@ -31,6 +32,15 @@ class RoomController extends ChangeNotifier {
     return messageService.getMessage(roomId, userId);
   }
 
+  Stream<List<DateTime>> lastReadTimeList(String roomId){
+    return FirebaseRoomService().getLastReadTimeList(roomId);
+  }
+
+  StreamSubscription<List<Message>> listenStream() {
+  return messageList(room.id).listen((event) {
+      //読んだ時間更新
+      FirebaseRoomService().updateLastReadTime(room.id, userId);
+    });}
   Future<void> changeRoomInfo(String name, File selectedImageFile) async {
     room.name = name;
     if (selectedImageFile != null) {
@@ -42,5 +52,10 @@ class RoomController extends ChangeNotifier {
     }
     await firebaseRoomService.updateRoomData(room);
     notifyListeners();
+  }
+  @override
+  void dispose(){
+    listenStream().cancel();
+    super.dispose();
   }
 }

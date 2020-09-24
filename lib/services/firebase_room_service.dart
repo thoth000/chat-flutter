@@ -13,6 +13,11 @@ class FirebaseRoomService {
     };
     final DocumentReference docRef =
         await _db.collection('message/v1/rooms').add(roomData);
+    room.members.forEach((userId) async {
+      final memberData = {'lastReadTime': Timestamp.fromDate(DateTime.now())};
+      await _db
+          .collection('message/v1/rooms/${docRef.documentID}/members').document('$userId').setData(memberData);
+    });
     return docRef.documentID;
   }
 
@@ -36,6 +41,28 @@ class FirebaseRoomService {
         .collection('message/v1/rooms')
         .document(room.id)
         .updateData(roomData);
+  }
+
+  Future<void> updateLastReadTime(String roomId, String userId) async {
+    final Map<String, Timestamp> timeData = {
+      'lastReadTime': Timestamp.fromDate(DateTime.now().add(const Duration(seconds: 3)))
+    };
+    await _db
+        .collection('message/v1/rooms/$roomId/members')
+        .document('$userId')
+        .updateData(timeData);
+  }
+
+  Stream<List<DateTime>> getLastReadTimeList(String roomId) {
+    final Stream<QuerySnapshot> querySnapshot = _db
+        .collection('message/v1/rooms/$roomId/members')
+        .orderBy('lastReadTime', descending: false)
+        .snapshots();
+    return querySnapshot.map((snapshot) {
+      return snapshot.documents.map((doc) {
+        return (doc.data['lastReadTime'] as Timestamp).toDate();
+      }).toList();
+    });
   }
 
   Future<List<Room>> getMyRoomList(String uid) async {
