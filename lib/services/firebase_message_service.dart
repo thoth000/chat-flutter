@@ -9,7 +9,7 @@ class FirebaseMessageService {
       'from': message.senderId,
       'to': message.roomId,
       'text': message.text,
-      'createdAt': message.sendTime,
+      'createdAt': FieldValue.serverTimestamp(),
     };
     final updateData = {'lastMessage': messageData};
     await _db
