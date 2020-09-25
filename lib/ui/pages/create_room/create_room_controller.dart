@@ -35,7 +35,7 @@ class CreateRoomController with ChangeNotifier {
       imgUrl: '',
       lastMessage: <String, dynamic>{
         'text': '',
-        'createdAt': Timestamp.fromDate(DateTime.now()),
+        'createdAt': FieldValue.serverTimestamp(),
       },
     );
 
