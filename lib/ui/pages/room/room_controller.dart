@@ -18,6 +18,7 @@ class RoomController extends ChangeNotifier {
     });
   }
   final Room room;
+  final ScrollController scrollController = ScrollController();
   final FirebaseRoomService firebaseRoomService = FirebaseRoomService();
   final MessageService messageService;
   final Authenticator authenticator;
@@ -42,6 +43,12 @@ class RoomController extends ChangeNotifier {
       if (isReading) {
         //読んだ時間更新
         await FirebaseRoomService().setLastReadTime(room.id, userId);
+        await scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          //スクロール時間
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
       }
     });
   }
