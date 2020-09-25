@@ -13,11 +13,6 @@ class FirebaseRoomService {
     };
     final DocumentReference docRef =
         await _db.collection('message/v1/rooms').add(roomData);
-    room.members.forEach((userId) async {
-      final memberData = {'lastReadTime': FieldValue.serverTimestamp()};
-      await _db
-          .collection('message/v1/rooms/${docRef.documentID}/members').document('$userId').setData(memberData);
-    });
     return docRef.documentID;
   }
 
@@ -43,14 +38,14 @@ class FirebaseRoomService {
         .updateData(roomData);
   }
 
-  Future<void> updateLastReadTime(String roomId, String userId) async {
+  Future<void> setLastReadTime(String roomId, String userId) async {
     final timeData = {
       'lastReadTime': FieldValue.serverTimestamp(),
     };
     await _db
         .collection('message/v1/rooms/$roomId/members')
         .document('$userId')
-        .updateData(timeData);
+        .setData(timeData);
   }
 
   Stream<List<DateTime>> getLastReadTimeList(String roomId) {

@@ -41,7 +41,7 @@ class RoomController extends ChangeNotifier {
     return messageList(room.id).listen((event) async {
       if (isReading) {
         //読んだ時間更新
-        await FirebaseRoomService().updateLastReadTime(room.id, userId);
+        await FirebaseRoomService().setLastReadTime(room.id, userId);
       }
     });
   }
