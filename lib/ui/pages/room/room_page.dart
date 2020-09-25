@@ -2,7 +2,6 @@ import 'package:chat_flutter/config/app_space.dart';
 import 'package:chat_flutter/model/message.dart';
 import 'package:chat_flutter/model/room.dart';
 import 'package:chat_flutter/services/auth/authenticator.dart';
-import 'package:chat_flutter/services/firebase_room_service.dart';
 import 'package:chat_flutter/services/message_service.dart';
 import 'package:chat_flutter/ui/molecules/message/message_list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
@@ -54,7 +53,7 @@ class RoomPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () async{
-            await FirebaseRoomService().updateLastReadTime(room.id, roomController.userId);
+            roomController.dispose();
             Navigator.pop(context);
           },
         ),
