@@ -9,7 +9,6 @@ class MessageService implements MessageInterface {
       text: text,
       senderId: senderId,
       roomId: roomId,
-      sendTime: DateTime.now(),
     );
     await FirebaseMessageService().setMessageData(message);
   }
