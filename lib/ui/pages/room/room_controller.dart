@@ -42,7 +42,7 @@ class RoomController extends ChangeNotifier {
     return messageList(room.id).listen((event) async {
       if (isReading) {
         //読んだ時間更新
-        await FirebaseRoomService().setLastReadTime(room.id, userId);
+        await FirebaseRoomService().setMyLastReadTime(room.id, userId);
         await scrollController.animateTo(
           scrollController.position.maxScrollExtent,
           //スクロール時間
