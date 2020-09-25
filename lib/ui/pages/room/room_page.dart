@@ -50,6 +50,13 @@ class RoomPage extends StatelessWidget {
             color: Color(0xff707070),
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () async{
+            roomController.dispose();
+            Navigator.pop(context);
+          },
+        ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -71,10 +78,17 @@ class RoomPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              StreamProvider<List<Message>>(
-                create: (_) => roomController.messageList(room.id),
-                initialData: const [],
-                child: MessageList(),
+              StreamProvider<List<DateTime>>(
+                create: (_) => roomController.lastReadTimeList(room.id),
+                initialData : const [],
+                child: StreamProvider<List<Message>>(
+                  create: (_){
+                    roomController.listenStream();
+                    return roomController.messageList(room.id);
+                  },
+                  initialData: const [],
+                  child: MessageList(),
+                ),
               ),
               const SizedBox(
                 height: AppSpace.xBig,
@@ -101,6 +115,8 @@ class RoomPage extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () async {
+                        //
+                        FocusScope.of(context).unfocus();
                         await roomController.sendMessage(
                           textController.text,
                           room.id,
