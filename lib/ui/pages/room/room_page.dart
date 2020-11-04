@@ -6,6 +6,7 @@ import 'package:chat_flutter/services/message_service.dart';
 import 'package:chat_flutter/ui/molecules/message/message_list.dart';
 import 'package:chat_flutter/ui/molecules/room/input_message_text_field.dart';
 import 'package:chat_flutter/ui/pages/room/room_controller.dart';
+import 'package:chat_flutter/ui/molecules/room/room_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -37,41 +38,7 @@ class RoomPage extends StatelessWidget {
       );
     }
     return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(
-          color: Color(0xff707070),
-        ),
-        title: Text(
-          room.name,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            color: Color(0xff707070),
-          ),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () async{
-            roomController.dispose();
-            Navigator.pop(context);
-          },
-        ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed<void>(
-                context,
-                '/roomEditPage',
-                arguments: roomController,
-              );
-            },
-            icon: const Icon(
-              Icons.more_vert,
-            ),
-          ),
-        ],
-      ),
+      appBar: RoomAppBar(),
       body: Stack(
         children: <Widget>[
           Column(
