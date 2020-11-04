@@ -47,9 +47,9 @@ class RoomPage extends StatelessWidget {
             children: <Widget>[
               StreamProvider<List<DateTime>>(
                 create: (_) => roomController.lastReadTimeList(room.id),
-                initialData : const [],
+                initialData: const [],
                 child: StreamProvider<List<Message>>(
-                  create: (_){
+                  create: (_) {
                     roomController.listenStream();
                     return roomController.messageList(room.id);
                   },

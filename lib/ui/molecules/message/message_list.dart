@@ -8,7 +8,8 @@ class MessageList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Message> messageList = Provider.of<List<Message>>(context);
-    final ScrollController scrollController = Provider.of<RoomController>(context).scrollController;
+    final ScrollController scrollController =
+        Provider.of<RoomController>(context).scrollController;
     if (messageList == null) {
       return Container();
     } else if (messageList.isEmpty) {
