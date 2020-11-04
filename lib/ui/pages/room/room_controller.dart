@@ -42,13 +42,7 @@ class RoomController extends ChangeNotifier {
     return messageList(room.id).listen((event) async {
       if (isReading) {
         //読んだ時間更新
-        await FirebaseRoomService().setLastReadTime(room.id, userId);
-        await scrollController.animateTo(
-          scrollController.position.maxScrollExtent,
-          //スクロール時間
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
+        await FirebaseRoomService().setMyLastReadTime(room.id, userId);
       }
     });
   }
@@ -64,6 +58,15 @@ class RoomController extends ChangeNotifier {
     }
     await firebaseRoomService.updateRoomData(room);
     notifyListeners();
+  }
+
+  Future<void> scrollPage() async {
+    await scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      //スクロール時間
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
   }
 
   @override

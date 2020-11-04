@@ -38,7 +38,7 @@ class FirebaseRoomService {
         .updateData(roomData);
   }
 
-  Future<void> setLastReadTime(String roomId, String userId) async {
+  Future<void> setMyLastReadTime(String roomId, String userId) async {
     final timeData = {
       'lastReadTime': FieldValue.serverTimestamp(),
     };
